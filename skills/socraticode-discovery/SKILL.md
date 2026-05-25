@@ -9,7 +9,10 @@ Use SocratiCode as a navigation layer, not as the final source of truth.
 
 ## Required flow
 
-1. Check index readiness with `codebase_status`.
+1. Check index readiness with `codebase_status` using primary `projectPath: "d:\\llm"`.
+   - If the call fails, hangs, times out, or is disconnected, retry with `projectPath: "/Users/earth/Documents/GitHub"` (local Docker SocratiCode on this machine — Qdrant + Ollama via `npx -y socraticode`).
+   - If MCP is unusable, retry via local `npx -y socraticode` with the same projectPath order.
+   - Only after both paths fail on MCP and CLI, fall back to direct repository inspection and say so explicitly.
 2. Locate candidate files with `codebase_search`.
 3. Inspect specific functions, structs, methods, or interfaces with `codebase_symbol` when available.
 4. Use graph tools for dependency, caller/callee, or circular dependency investigation when available.

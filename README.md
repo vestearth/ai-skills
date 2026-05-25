@@ -88,6 +88,13 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
 - Cursor: use `.mdc` rules that route to the matching `skills/<skill>/SKILL.md`.
 - Claude Code: expose each folder under `skills/` as a Claude-compatible skill.
 
+## Examples
+
+Use these as starter `AGENTS.md` files when consuming `ai-skills/` from another repository.
+
+- `examples/generic-go-service/AGENTS.md` for a normal Go service repo.
+- `examples/games-labs/AGENTS.md` for the Games Labs workspace with `ai-dev-office/`, SocratiCode, gateway/protobuf, RabbitMQ, providers, and shared-lib concerns.
+
 ## Playbooks
 
 Playbooks hold domain-specific operating rules that are too specific for generic skills.

@@ -14,7 +14,8 @@ Use `ai-skills/skills/socraticode-discovery/SKILL.md`.
 1. Use SocratiCode MCP/indexed context for discovery and navigation.
 2. Treat SocratiCode output as candidate context, not proof.
 3. Read source files, tests, CI output, logs, or production evidence before making repository-specific claims.
-4. If SocratiCode is unavailable or unindexed, say so and fall back to direct repository inspection.
+4. **projectPath fallback:** primary `d:\llm` (remote) → `/Users/earth/Documents/GitHub` (local Docker SocratiCode on this machine) on failure, hang, timeout, or disconnect — before source inspection.
+5. If both projectPaths fail on MCP and CLI, say so and fall back to direct repository inspection.
 
 ## Cursor Routing
 
