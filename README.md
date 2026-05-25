@@ -50,12 +50,16 @@ These are the skills counted toward the v2.0 target in [VERSION.md](VERSION.md).
 | --- | --- |
 | `tech-lead-review` | Evaluating architecture, ownership, cross-team impact, risk, scalability, or maintainability |
 | `microservice-boundary-review` | Changing service ownership, service boundaries, gRPC contracts, or event flows |
+| `grpc-contract-review` | Changing protobuf, gRPC services, grpc-gateway mappings, generated artifacts, or wire compatibility |
+| `rabbitmq-event-review` | Changing RabbitMQ publishers, consumers, event schemas, routing keys, retries, DLQs, or async service flows |
 
 ### Platform
 
 | Skill | Use when |
 | --- | --- |
 | `socraticode-discovery` | Starting repository-specific discovery with SocratiCode, search, symbol lookup, or graph analysis |
+| `golang-service-review` | Reviewing Go service implementation, context propagation, errors, repositories, tests, module hygiene, or production readiness |
+| `datadog-observability` | Reviewing metrics, logs, traces, dashboards, monitors, SLOs, tags, or incident visibility |
 
 ### Earth
 
@@ -63,6 +67,9 @@ These are the skills counted toward the v2.0 target in [VERSION.md](VERSION.md).
 | --- | --- |
 | `games-labs-api-review` | Reviewing Games Labs API, gateway, mobile, missions, wallet, VIP, store, or provider-facing changes |
 | `seamless-provider-review` | Reviewing seamless game provider integrations, callbacks, signatures, launch URLs, or round APIs |
+| `backend-interview-review` | Evaluating backend interview answers, take-homes, system design, debugging, or production-readiness judgment |
+| `frontend-interview-review` | Evaluating frontend interview answers, UI exercises, accessibility, performance, API integration, or product judgment |
+| `sprint-planning` | Turning goals, backlog items, incidents, or stakeholder requests into bounded sprint scope and verification plans |
 
 ## Compatibility Skills
 

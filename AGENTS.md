@@ -22,3 +22,10 @@ Recommended skills:
 - tech-lead-review
 - games-labs-api-review
 - seamless-provider-review
+- grpc-contract-review
+- rabbitmq-event-review
+- golang-service-review
+- datadog-observability
+- backend-interview-review
+- frontend-interview-review
+- sprint-planning

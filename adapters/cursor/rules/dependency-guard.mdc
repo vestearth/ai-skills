@@ -1,0 +1,31 @@
+---
+description: Route dependency, Docker, CI, Go module, and shared-lib changes to dependency guard.
+globs:
+  - "**/go.mod"
+  - "**/go.sum"
+  - "**/go.work"
+  - "**/Dockerfile"
+  - "**/*.yaml"
+  - "**/*.yml"
+  - "**/*.sh"
+alwaysApply: false
+---
+
+# Dependency Guard
+
+Use `ai-skills/skills/dependency-guard/SKILL.md`.
+
+## Routing
+
+- Go module changes
+- Docker build changes
+- CI build/test changes
+- Shared dependency or shared-lib version changes
+- `go.work`, `replace`, vendoring, or readonly build behavior
+
+## Rules
+
+1. Do not allow local-only dependency behavior to mask CI failures.
+2. Avoid `go mod tidy` inside Dockerfiles or production build paths.
+3. Prefer readonly, reproducible builds.
+4. Verify dependency changes with the smallest relevant build/test evidence.

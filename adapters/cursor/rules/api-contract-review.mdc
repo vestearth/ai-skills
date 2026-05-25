@@ -1,0 +1,27 @@
+---
+description: Route API, protobuf, gateway, mobile, and web contract changes to the right ai-skills review.
+globs:
+  - "**/*.proto"
+  - "**/*.go"
+  - "**/*.json"
+  - "**/*.yaml"
+  - "**/*.yml"
+  - "**/*.md"
+alwaysApply: false
+---
+
+# API Contract Review Routing
+
+Use the most specific contract skill.
+
+## Routing
+
+- Games Labs API, mobile, gateway, missions, wallet, VIP, store, or provider-facing flow -> `ai-skills/skills/games-labs-api-review/SKILL.md`
+- gRPC, protobuf, grpc-gateway, generated artifacts, field numbers, or enum compatibility -> `ai-skills/skills/grpc-contract-review/SKILL.md`
+- Generic API/proto/mobile/web contract changes -> `ai-skills/skills/api-contract-review/SKILL.md`
+
+## Rules
+
+1. Do not approve contract changes from summaries alone.
+2. Check backward compatibility, client rollout, error/status behavior, and generated artifacts.
+3. Source code, `.proto` files, generated outputs, tests, CI, and logs override skill guidance.

@@ -1,6 +1,6 @@
 # AI Skills Version
 
-Current: v2.0-draft
+Current: v2.0
 Target: v2.0
 
 V2.0 is complete when the four skill layers below are present and documented.
@@ -16,14 +16,14 @@ V2.0 is complete when the four skill layers below are present and documented.
 
 ## V2.0 Completion
 
-Current target completion: 9 / 16 skills
+Current target completion: 16 / 16 skills
 
 | Layer | Present | Planned | Status |
 | --- | ---: | ---: | --- |
 | Foundation Skills | 4 | 0 | complete |
-| Architecture Skills | 2 | 2 | in progress |
-| Platform Skills | 1 | 2 | in progress |
-| Earth Skills | 2 | 3 | in progress |
+| Architecture Skills | 4 | 0 | complete |
+| Platform Skills | 3 | 0 | complete |
+| Earth Skills | 5 | 0 | complete |
 
 ## Foundation Skills
 
@@ -40,16 +40,16 @@ System design, ownership, and service-boundary judgment.
 
 - [x] `tech-lead-review`
 - [x] `microservice-boundary-review`
-- [ ] `grpc-contract-review`
-- [ ] `rabbitmq-event-review`
+- [x] `grpc-contract-review`
+- [x] `rabbitmq-event-review`
 
 ## Platform Skills
 
 Tools, runtime, and service implementation review.
 
 - [x] `socraticode-discovery`
-- [ ] `golang-service-review`
-- [ ] `datadog-observability`
+- [x] `golang-service-review`
+- [x] `datadog-observability`
 
 ## Earth Skills
 
@@ -57,9 +57,9 @@ Personal/domain-specific skills for Earth workflows and Games Labs context.
 
 - [x] `games-labs-api-review`
 - [x] `seamless-provider-review`
-- [ ] `backend-interview-review`
-- [ ] `frontend-interview-review`
-- [ ] `sprint-planning`
+- [x] `backend-interview-review`
+- [x] `frontend-interview-review`
+- [x] `sprint-planning`
 
 ## Compatibility Skills
 

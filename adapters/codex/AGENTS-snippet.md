@@ -22,6 +22,13 @@ Suggested routing:
 - Deployment -> release-checklist
 - Repository discovery -> socraticode-discovery
 - Architecture review -> tech-lead-review
+- gRPC/protobuf/gateway contract changes -> grpc-contract-review
+- RabbitMQ event or async flow changes -> rabbitmq-event-review
+- Go service implementation review -> golang-service-review
+- Datadog dashboards/monitors/telemetry -> datadog-observability
 - Games Labs API changes -> games-labs-api-review
 - Seamless provider callbacks/signatures -> seamless-provider-review
+- Backend interview evaluation -> backend-interview-review
+- Frontend interview evaluation -> frontend-interview-review
+- Sprint or backlog planning -> sprint-planning
 - Other provider integrations -> vendor-integration

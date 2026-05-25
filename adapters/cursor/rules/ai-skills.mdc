@@ -1,0 +1,41 @@
+---
+description: Route Cursor work to the smallest relevant ai-skills guidance file.
+globs:
+  - "**/*"
+alwaysApply: false
+---
+
+# AI Skills
+
+Use reusable guidance from `ai-skills/`.
+
+## Rules
+
+1. Apply only the smallest relevant skill.
+2. Do not treat skills as source-code evidence.
+3. Source code, tests, CI, logs, production evidence, and user instructions override skill guidance.
+4. Prefer domain-specific skills before compatibility skills.
+
+## Routing
+
+- Bugs, logs, failing tests, crashes -> `ai-skills/skills/debugging/SKILL.md`
+- Code review or merge readiness -> `ai-skills/skills/code-review/SKILL.md`
+- Dependency, Docker, CI, shared module, `go.work`, or `replace` changes -> `ai-skills/skills/dependency-guard/SKILL.md`
+- Release, deployment, rollback, or smoke test readiness -> `ai-skills/skills/release-checklist/SKILL.md`
+- Architecture, ownership, scalability, cross-team risk -> `ai-skills/skills/tech-lead-review/SKILL.md`
+- Service ownership or microservice boundary changes -> `ai-skills/skills/microservice-boundary-review/SKILL.md`
+- gRPC, protobuf, grpc-gateway, generated artifacts -> `ai-skills/skills/grpc-contract-review/SKILL.md`
+- RabbitMQ events, routing keys, queues, retries, DLQs -> `ai-skills/skills/rabbitmq-event-review/SKILL.md`
+- SocratiCode or indexed codebase discovery -> `ai-skills/skills/socraticode-discovery/SKILL.md`
+- Go service implementation review -> `ai-skills/skills/golang-service-review/SKILL.md`
+- Datadog metrics, logs, traces, dashboards, monitors -> `ai-skills/skills/datadog-observability/SKILL.md`
+- Games Labs API/mobile/gateway changes -> `ai-skills/skills/games-labs-api-review/SKILL.md`
+- Seamless provider callbacks, signatures, launch URLs -> `ai-skills/skills/seamless-provider-review/SKILL.md`
+- Backend interview evaluation -> `ai-skills/skills/backend-interview-review/SKILL.md`
+- Frontend interview evaluation -> `ai-skills/skills/frontend-interview-review/SKILL.md`
+- Sprint or backlog planning -> `ai-skills/skills/sprint-planning/SKILL.md`
+
+Compatibility fallback:
+
+- Generic API contract work -> `ai-skills/skills/api-contract-review/SKILL.md`
+- Generic third-party integration work -> `ai-skills/skills/vendor-integration/SKILL.md`
