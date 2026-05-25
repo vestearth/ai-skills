@@ -17,6 +17,10 @@ project-root/
   ai-skills/          # reusable skill/checklist library
 ```
 
+## Version
+
+See [VERSION.md](VERSION.md) for the current skill taxonomy, v2.0 completion status, and future version themes.
+
 ## Skill index
 
 | Skill | Use when |
@@ -28,6 +32,10 @@ project-root/
 | `vendor-integration` | Integrating external game/payment/provider callbacks or seamless APIs |
 | `microservice-boundary-review` | Changing service ownership, gRPC/RabbitMQ flows, cross-service behavior |
 | `release-checklist` | Preparing deployment, production rollout, verification, or rollback notes |
+| `socraticode-discovery` | Starting repository-specific discovery with SocratiCode, search, symbol lookup, or graph analysis |
+| `tech-lead-review` | Evaluating architecture, ownership, cross-team impact, risk, scalability, or maintainability |
+| `games-labs-api-review` | Reviewing Games Labs API, gateway, mobile, missions, wallet, VIP, store, or provider-facing changes |
+| `seamless-provider-review` | Reviewing seamless game provider integrations, callbacks, signatures, launch URLs, or round APIs |
 
 ## Adapter strategy
 

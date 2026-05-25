@@ -18,3 +18,7 @@ Recommended skills:
 - vendor-integration
 - microservice-boundary-review
 - release-checklist
+- socraticode-discovery
+- tech-lead-review
+- games-labs-api-review
+- seamless-provider-review
