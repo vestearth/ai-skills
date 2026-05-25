@@ -7,6 +7,16 @@ This repository is the reusable thinking layer for AI-assisted development. It s
 - `ai-dev-office/` answers: who should do the work, in what order, with what handoff contract.
 - `ai-skills` answers: how the agent should think while debugging, reviewing, integrating, or releasing.
 
+## Why this is separate
+
+`ai-skills` is designed to travel across projects.
+
+Project repositories change. Teams, services, APIs, and deployment targets change. But many working principles should stay reusable: how to debug from evidence, review production risk, protect API contracts, verify dependencies, prepare releases, and use discovery tools without treating them as source-of-truth.
+
+Keeping those principles in a separate repository makes them portable across future work. A project can consume `ai-skills/` through `AGENTS.md`, Cursor rules, Claude skills, or other agent adapters without copying the same guidance into every codebase.
+
+This keeps project repos focused on project-specific rules, while `ai-skills` keeps the reusable operating system for AI-assisted engineering.
+
 ## Recommended project layout
 
 ```text
@@ -21,21 +31,47 @@ project-root/
 
 See [VERSION.md](VERSION.md) for the current skill taxonomy, v2.0 completion status, and future version themes.
 
-## Skill index
+## Core Skill Layers
+
+These are the skills counted toward the v2.0 target in [VERSION.md](VERSION.md).
+
+### Foundation
 
 | Skill | Use when |
 | --- | --- |
 | `debugging` | Investigating bugs, broken behavior, failed tests, logs, stack traces |
 | `code-review` | Reviewing code changes before merge or handoff |
-| `api-contract-review` | Changing API responses, protobuf contracts, gateway routes, mobile/web contracts |
 | `dependency-guard` | Changing Go modules, Dockerfiles, CI build rules, or shared-lib versions |
-| `vendor-integration` | Integrating external game/payment/provider callbacks or seamless APIs |
-| `microservice-boundary-review` | Changing service ownership, gRPC/RabbitMQ flows, cross-service behavior |
 | `release-checklist` | Preparing deployment, production rollout, verification, or rollback notes |
-| `socraticode-discovery` | Starting repository-specific discovery with SocratiCode, search, symbol lookup, or graph analysis |
+
+### Architecture
+
+| Skill | Use when |
+| --- | --- |
 | `tech-lead-review` | Evaluating architecture, ownership, cross-team impact, risk, scalability, or maintainability |
+| `microservice-boundary-review` | Changing service ownership, service boundaries, gRPC contracts, or event flows |
+
+### Platform
+
+| Skill | Use when |
+| --- | --- |
+| `socraticode-discovery` | Starting repository-specific discovery with SocratiCode, search, symbol lookup, or graph analysis |
+
+### Earth
+
+| Skill | Use when |
+| --- | --- |
 | `games-labs-api-review` | Reviewing Games Labs API, gateway, mobile, missions, wallet, VIP, store, or provider-facing changes |
 | `seamless-provider-review` | Reviewing seamless game provider integrations, callbacks, signatures, launch URLs, or round APIs |
+
+## Compatibility Skills
+
+These remain available for v1 compatibility and broader routing, but they are not counted in the v2.0 core completion total.
+
+| Skill | Use when |
+| --- | --- |
+| `api-contract-review` | Changing APIs, protobuf contracts, grpc-gateway routes, or frontend/mobile integrations outside a more specific domain skill |
+| `vendor-integration` | Integrating third-party APIs, callbacks, provider platforms, or payment/game vendors outside a more specific domain skill |
 
 ## Adapter strategy
 
@@ -44,6 +80,13 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
 - Codex: reference this repository from project `AGENTS.md`.
 - Cursor: use `.mdc` rules that route to the matching `skills/<skill>/SKILL.md`.
 - Claude Code: expose each folder under `skills/` as a Claude-compatible skill.
+
+## Playbooks
+
+Playbooks hold domain-specific operating rules that are too specific for generic skills.
+
+- `skills/api-contract-review` describes how to review API contracts in general.
+- `playbooks/games-labs/api-review.md` describes Games Labs-specific API expectations such as status values, client UX routing, idempotency, gateway/protobuf alignment, and rollout checks.
 
 ## Source of truth rule
 

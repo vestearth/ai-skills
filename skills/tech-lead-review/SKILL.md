@@ -37,6 +37,32 @@ Before discussing implementation details, answer the higher-level questions.
 - Is coupling increasing?
 - Is ownership becoming unclear?
 
+## Decision Criteria
+
+Prefer simple implementation when:
+
+- Ownership is clear.
+- The blast radius is low.
+- Rollback is easy.
+- Data migration is not required.
+- Existing monitoring already covers the failure modes.
+- API, mobile, web, provider, and event contracts do not change.
+
+Escalate design when:
+
+- Multiple services own the same concept.
+- Rollback requires data migration or manual repair.
+- Monitoring is missing for the new failure modes.
+- Mobile, web, provider, API, gRPC, or event contracts change.
+- The change introduces cross-service write paths or shared mutable state.
+- The team cannot name the owner of the data, business rule, and workflow.
+
+Choose investigation first when:
+
+- The root cause is still unknown.
+- Contract behavior differs between docs, code, and production logs.
+- The team is relying on memory or summaries instead of repository evidence.
+
 ## Output
 
 - Recommendation

@@ -5,6 +5,8 @@ description: Use when reviewing API changes for Games Labs services, mobile inte
 
 # Games Labs API Review
 
+Use this skill for Games Labs API review. For domain-specific API conventions, also read `playbooks/games-labs/api-review.md`.
+
 ## Contract review
 
 - Is the change backward compatible?
