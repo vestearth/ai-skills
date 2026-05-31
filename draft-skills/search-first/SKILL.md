@@ -1,181 +1,134 @@
----
-name: search-first
-description: Research-before-coding workflow. Search for existing tools, libraries, and patterns before writing custom code. Invokes the researcher agent.
----
+# Search First
 
-# /search-first — Research Before You Code
+Use this skill before implementing, debugging, refactoring, or reviewing code in an unfamiliar area.
 
-Systematizes the "search for existing solutions before implementing" workflow.
+The goal is to discover the existing system before making changes.
 
-## Trigger
+## Use when
 
-Use this skill when:
-- Starting a new feature that likely has existing solutions
-- Adding a dependency or integration
-- The user asks "add X functionality" and you're about to write code
-- Before creating a new utility, helper, or abstraction
+- Starting work in an unfamiliar repository, service, module, or package.
+- Implementing a feature that may already have similar behavior.
+- Debugging behavior without knowing the owning code path.
+- Reviewing a change that touches unfamiliar code.
+- Refactoring code with unclear callers or dependencies.
+- Investigating API routes, protobuf, events, database tables, configs, or error codes.
+- Working with generated code, shared libraries, provider integrations, or deployment config.
 
-## Workflow
+## Do not use when
 
-```
-┌─────────────────────────────────────────────┐
-│  0. TOOL AVAILABILITY PREFLIGHT             │
-│     Check search channels before relying on │
-│     them; report skipped channels honestly   │
-├─────────────────────────────────────────────┤
-│  1. NEED ANALYSIS                           │
-│     Define what functionality is needed      │
-│     Identify language/framework constraints  │
-├─────────────────────────────────────────────┤
-│  2. PARALLEL SEARCH (researcher agent)      │
-│     ┌──────────┐ ┌──────────┐ ┌──────────┐  │
-│     │  npm /   │ │  MCP /   │ │  GitHub / │  │
-│     │  PyPI    │ │  Skills  │ │  Web      │  │
-│     └──────────┘ └──────────┘ └──────────┘  │
-├─────────────────────────────────────────────┤
-│  3. EVALUATE                                │
-│     Score candidates (functionality, maint, │
-│     community, docs, license, deps)         │
-├─────────────────────────────────────────────┤
-│  4. DECIDE                                  │
-│     ┌─────────┐  ┌──────────┐  ┌─────────┐  │
-│     │  Adopt  │  │  Extend  │  │  Build   │  │
-│     │ as-is   │  │  /Wrap   │  │  Custom  │  │
-│     └─────────┘  └──────────┘  └─────────┘  │
-├─────────────────────────────────────────────┤
-│  5. IMPLEMENT                               │
-│     Install package / Configure MCP /       │
-│     Write minimal custom code               │
-└─────────────────────────────────────────────┘
-```
+- The task is purely wording or documentation with no system behavior.
+- The exact file and symbol are already provided and no broader impact is possible.
+- The user explicitly asks for a direct explanation without codebase discovery.
 
-## Decision Matrix
+## Required workflow
 
-| Signal | Action |
-|--------|--------|
-| Exact match, well-maintained, MIT/Apache | **Adopt** — install and use directly |
-| Partial match, good foundation | **Extend** — install + write thin wrapper |
-| Multiple weak matches | **Compose** — combine 2-3 small packages |
-| Nothing suitable found | **Build** — write custom, but informed by research |
+### 1. Define the search target
 
-## How to Use
+Identify what must be found:
 
-### Step 0: Tool Availability Preflight
+- symbol/function/type/method
+- endpoint/route
+- proto service/message/RPC
+- error code/status value
+- config/env key
+- table/migration/query
+- event/routing key/queue
+- package/module/folder
+- test/fixture/mock
+- CI/deployment reference
 
-This is agent guidance, not an executable setup script. Check only the channels
-that are relevant to the task and project in front of you.
+### 2. Search exact terms
 
-| Channel | Check | If missing |
-|---------|-------|------------|
-| Repository search | `rg --files` and targeted `rg` queries | State that only visible files were inspected |
-| Package registry | `npm --version`, `python -m pip --version`, or project package manager | Use web/docs search and avoid claiming registry coverage |
-| GitHub CLI | `gh auth status` | Use public web or local git history only |
-| MCP/docs tools | Available tool list or local MCP config | Fall back to official docs/web search |
-| Skills directory | `ls ~/.claude/skills ~/.codex/skills` where applicable | Say no local skill catalog was available |
+Search exact names first.
 
-### Quick Mode (inline)
+Examples:
 
-Before writing a utility or adding functionality, mentally run through:
+- `WalletService`
+- `/api/v1/missions/progress`
+- `claimable`
+- `INSUFFICIENT_BALANCE`
+- `MISSION_RESET_TIME`
+- `user_wallets`
 
-0. Does this already exist in the repo? → `rg` through relevant modules/tests first
-1. Is this a common problem? → Search npm/PyPI
-2. Is there an MCP for this? → Check `~/.claude/settings.json` and search
-3. Is there a skill for this? → Check `~/.claude/skills/`
-4. Is there a GitHub implementation/template? → Run GitHub code search for maintained OSS before writing net-new code
+### 3. Search variants
 
-### Full Mode (agent)
+Search naming variants and related domain terms.
 
-For non-trivial functionality, launch the researcher agent:
+Examples:
 
-```
-Agent(subagent_type="general-purpose", prompt="
-  Research existing tools for: [DESCRIPTION]
-  Language/framework: [LANG]
-  Constraints: [ANY]
+- `wallet`, `balance`, `ledger`
+- `mission`, `quest`, `task`
+- `provider`, `callback`, `seamless`
+- `claim`, `reward`, `collect`
 
-  Search: npm/PyPI, MCP servers, Claude Code skills, GitHub
-  Return: Structured comparison with recommendation
-")
-```
+### 4. Inspect closest sources
 
-Older Claude Code docs may call this `Task(...)`; use the current agent/subagent
-tool name exposed by the active harness.
+Open the most relevant files instead of reading the whole repository.
 
-## Search Shortcuts by Category
+Prefer:
 
-### Development Tooling
-- Linting → `eslint`, `ruff`, `textlint`, `markdownlint`
-- Formatting → `prettier`, `black`, `gofmt`
-- Testing → `jest`, `pytest`, `go test`
-- Pre-commit → `husky`, `lint-staged`, `pre-commit`
+- implementation file
+- interface/contract
+- test file
+- route registration
+- proto/schema/migration
+- caller/importer
+- generated mapping only when needed
 
-### AI/LLM Integration
-- Claude SDK → Context7 for latest docs
-- Prompt management → Check MCP servers
-- Document processing → `unstructured`, `pdfplumber`, `mammoth`
+### 5. Summarize discovered context
 
-### Data & APIs
-- HTTP clients → `httpx` (Python), `ky`/`undici` (Node)
-- Validation → `zod` (TS), `pydantic` (Python)
-- Database → Check for MCP servers first
+Before editing or answering, summarize:
 
-### Content & Publishing
-- Markdown processing → `remark`, `unified`, `markdown-it`
-- Image optimization → `sharp`, `imagemin`
+- what exists
+- where it lives
+- what pattern it follows
+- what remains unknown
 
-## Integration Points
+### 6. Continue with the task
 
-### With planner agent
-The planner should invoke researcher before Phase 1 (Architecture Review):
-- Researcher identifies available tools
-- Planner incorporates them into the implementation plan
-- Avoids "reinventing the wheel" in the plan
+Only after discovery, proceed to implement, review, debug, or recommend.
 
-### With architect agent
-The architect should consult researcher for:
-- Technology stack decisions
-- Integration pattern discovery
-- Existing reference architectures
+## SocratiCode guidance
 
-### With iterative-retrieval skill
-Combine for progressive discovery:
-- Cycle 1: Broad search (npm, PyPI, MCP)
-- Cycle 2: Evaluate top candidates in detail
-- Cycle 3: Test compatibility with project constraints
+When available, prefer:
 
-## Examples
+- `codebase_status` before relying on index freshness
+- `codebase_search` for terms and usage
+- `codebase_symbol` for known symbols
+- `codebase_graph_query` for imports/dependents
+- direct file reads for final confirmation
 
-### Example 1: "Add dead link checking"
-```
-Need: Check markdown files for broken links
-Search: npm "markdown dead link checker"
-Found: textlint-rule-no-dead-link (score: 9/10)
-Action: ADOPT — npm install textlint-rule-no-dead-link
-Result: Zero custom code, battle-tested solution
-```
+SocratiCode is a discovery layer, not the final source of truth.
 
-### Example 2: "Add HTTP client wrapper"
-```
-Need: Resilient HTTP client with retries and timeout handling
-Search: npm "http client retry", PyPI "httpx retry"
-Found: got (Node) with retry plugin, httpx (Python) with built-in retry
-Action: ADOPT — use got/httpx directly with retry config
-Result: Zero custom code, production-proven libraries
-```
+## Evidence required
 
-### Example 3: "Add config file linter"
-```
-Need: Validate project config files against a schema
-Search: npm "config linter schema", "json schema validator cli"
-Found: ajv-cli (score: 8/10)
-Action: ADOPT + EXTEND — install ajv-cli, write project-specific schema
-Result: 1 package + 1 schema file, no custom validation logic
-```
+Include search evidence when the conclusion depends on repository state:
 
-## Anti-Patterns
+- search terms used
+- files inspected
+- symbols/routes/contracts found
+- gaps or failed searches
+- whether index freshness was checked
 
-- **Jumping to code**: Writing a utility without checking if one exists
-- **Ignoring MCP**: Not checking if an MCP server already provides the capability
-- **Silent skipping**: Reporting "nothing found" when a search channel was unavailable
-- **Over-customizing**: Wrapping a library so heavily it loses its benefits
-- **Dependency bloat**: Installing a massive package for one small feature
+## Output format
+
+```text
+Search First
+
+Target:
+-
+
+Searches performed:
+-
+
+Relevant files:
+-
+
+What exists:
+-
+
+Gaps:
+-
+
+Next action:
+-

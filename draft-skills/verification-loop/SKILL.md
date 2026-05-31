@@ -1,125 +1,116 @@
----
-name: verification-loop
-description: "A comprehensive verification system for Codex/Cursor sessions."
----
+# Verification Loop
 
-# Verification Loop Skill
+Use this skill when a task requires confidence before final answer, merge, deploy, or handoff.
 
-A comprehensive verification system for Codex/Cursor sessions.
+The goal is to verify claims with the strongest practical evidence available.
 
-## When to Use
+## Use when
 
-Invoke this skill:
-- After completing a feature or significant code change
-- Before creating a PR
-- When you want to ensure quality gates pass
-- After refactoring
+- After implementing or modifying code.
+- Before claiming a bug is fixed.
+- Before saying tests, build, lint, or CI are clean.
+- Before handing work to reviewer, QA, mobile, frontend, DevOps, or vendor.
+- Before merging, deploying, releasing, or writing rollout notes.
+- When debugging a reported issue.
+- When reviewing risky changes in APIs, protobuf, database, auth, wallet, provider callbacks, or CI.
 
-## Verification Phases
+## Do not use when
 
-### Phase 1: Build Verification
-```bash
-# Check if project builds
-npm run build 2>&1 | tail -20
-# OR
-pnpm build 2>&1 | tail -20
-```
+- The task is purely brainstorming.
+- The user asks only for wording or translation.
+- No factual/system claim is being made.
 
-If build fails, STOP and fix before continuing.
+## Required workflow
 
-### Phase 2: Type Check
-```bash
-# TypeScript projects
-npx tsc --noEmit 2>&1 | head -30
+### 1. Define expected outcome
 
-# Python projects
-pyright . 2>&1 | head -30
-```
+State what should be true.
 
-Report all type errors. Fix critical ones before continuing.
+Examples:
 
-### Phase 3: Lint Check
-```bash
-# JavaScript/TypeScript
-npm run lint 2>&1 | head -30
+- The endpoint returns `claimable` after mission progress reaches the target.
+- The service builds with `GOWORK=off`.
+- The provider callback rejects invalid signatures.
+- The migration is backward compatible.
 
-# Python
-ruff check . 2>&1 | head -30
-```
+### 2. Identify verification target
 
-### Phase 4: Test Suite
-```bash
-# Run tests with coverage
-npm run test -- --coverage 2>&1 | tail -50
+Identify the claim being checked:
 
-# Check coverage threshold
-# Target: 80% minimum
-```
+- behavior
+- contract
+- compilation
+- test coverage
+- dependency safety
+- migration safety
+- runtime configuration
+- documentation accuracy
 
-Report:
-- Total tests: X
-- Passed: X
-- Failed: X
-- Coverage: X%
+### 3. Choose strongest practical check
 
-### Phase 5: Security Scan
-```bash
-# Check for secrets
-grep -rn "sk-" --include="*.ts" --include="*.js" . 2>/dev/null | head -10
-grep -rn "api_key" --include="*.ts" --include="*.js" . 2>/dev/null | head -10
+Prefer checks in this order:
 
-# Check for console.log
-grep -rn "console.log" --include="*.ts" --include="*.tsx" src/ 2>/dev/null | head -10
-```
+1. Automated tests
+2. Build/typecheck
+3. Lint/static analysis
+4. Contract/schema/proto generation check
+5. Migration dry run or rollback review
+6. Runtime logs/metrics/traces
+7. Search-based confirmation
+8. Manual inspection
 
-### Phase 6: Diff Review
-```bash
-# Show what changed
-git diff --stat
-git diff HEAD~1 --name-only
-```
+### 4. Run or inspect evidence
 
-Review each changed file for:
-- Unintended changes
-- Missing error handling
-- Potential edge cases
+Use available tools and repository evidence.
 
-## Output Format
+If a command cannot be run, explain why.
 
-After running all phases, produce a verification report:
+### 5. Compare actual vs expected
 
-```
-VERIFICATION REPORT
-==================
+State whether the evidence confirms the expected outcome.
 
-Build:     [PASS/FAIL]
-Types:     [PASS/FAIL] (X errors)
-Lint:      [PASS/FAIL] (X warnings)
-Tests:     [PASS/FAIL] (X/Y passed, Z% coverage)
-Security:  [PASS/FAIL] (X issues)
-Diff:      [X files changed]
+### 6. Fix, retry, or escalate
 
-Overall:   [READY/NOT READY] for PR
+If verification fails:
 
-Issues to Fix:
-1. ...
-2. ...
-```
+- fix and rerun
+- narrow the issue
+- document blocker
+- avoid claiming completion
 
-## Continuous Mode
+### 7. Report final verification
 
-For long sessions, run verification every 15 minutes or after major changes:
+State what was verified and what was not verified.
 
-```markdown
-Set a mental checkpoint:
-- After completing each function
-- After finishing a component
-- Before moving to next task
+## Evidence required
 
-Run: /verify
-```
+For each verification claim, include:
 
-## Integration with Hooks
+- command/tool/check used
+- file/path/symbol when relevant
+- result summary
+- failed or skipped checks
+- remaining risk
 
-This skill complements PostToolUse hooks but provides deeper verification.
-Hooks catch issues immediately; this skill provides comprehensive review.
+## Output format
+
+```text
+Verification Loop
+
+Expected outcome:
+-
+
+Verification performed:
+-
+
+Result:
+- Passed / Failed / Partial / Not run
+
+Evidence:
+-
+
+Not verified:
+-
+
+Remaining risk:
+-
