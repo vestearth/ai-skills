@@ -7,16 +7,41 @@ description: Use when reviewing seamless game provider integrations, balance cal
 
 Use this skill for provider integrations such as AFB, 1UP, or similar game platform APIs.
 
-## Core checks
+## Use When
 
-### Environment
+- Reviewing seamless game provider integrations, balance callbacks, payout flows, launch URLs, signatures, staging aliases, or provider round APIs.
+- A provider callback or launch flow depends on external credentials, aliases, signatures, or retry behavior.
+- Provider evidence must be compared against local implementation.
+
+## Do Not Use When
+
+- The integration is not a seamless game provider; use `vendor-integration`.
+- The task is only Games Labs client API behavior; use `games-labs-api-review`.
+- The task is only release readiness; use `release-checklist`.
+
+## Goal
+
+Verify provider integration readiness across environment, signatures, launch flow, callbacks, idempotency, and retry handling.
+
+## Required Inputs
+
+- Full request body
+- Full response body
+- Headers
+- Signature input
+- Provider error code
+- Environment name
+
+## Process
+
+Check environment:
 
 - Confirm staging vs production base URL.
 - Confirm platform alias or tenant ID.
 - Confirm callback URL registered on provider side.
 - Confirm provider is using the expected environment credentials.
 
-### Authentication and signature
+Check authentication and signature:
 
 - Confirm required headers.
 - Confirm HMAC/hash algorithm.
@@ -24,13 +49,13 @@ Use this skill for provider integrations such as AFB, 1UP, or similar game platf
 - Confirm timestamp/nonce rules if present.
 - Compare the locally generated signature with provider examples.
 
-### Launch flow
+Check launch flow:
 
 - Confirm login or launch API returns a playable URL.
 - Confirm token presence and expiry behavior.
 - Confirm language/currency/user identity mapping.
 
-### Callback flow
+Check callback flow:
 
 Review callback endpoints such as:
 
@@ -41,23 +66,14 @@ Review callback endpoints such as:
 - round check
 - cancel/rollback
 
-### Idempotency and retries
+Check idempotency and retries:
 
 - Confirm transaction ID uniqueness.
 - Confirm duplicate callback handling.
 - Confirm retry behavior.
 - Confirm rollback behavior.
 
-## Required evidence
-
-- Full request body
-- Full response body
-- Headers
-- Signature input
-- Provider error code
-- Environment name
-
-## Output
+## Output Format
 
 - Integration status
 - Missing provider information
@@ -65,3 +81,10 @@ Review callback endpoints such as:
 - Risk list
 - Test cases
 - Next action
+
+## Anti-patterns
+
+- Trusting provider setup without request, response, header, and signature evidence.
+- Mixing staging and production aliases or credentials.
+- Treating duplicate callbacks as rare instead of expected retry behavior.
+- Verifying launch URL generation without checking callback balance and payout flows.

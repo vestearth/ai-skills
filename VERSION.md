@@ -1,9 +1,10 @@
 # AI Skills Version
 
-Current: v2.0
-Target: v2.0
+Current: v2.1
+Target: v2.1
 
 V2.0 is complete when the four skill layers below are present and documented.
+V2.1 is complete when the skill contract is consistent, validation is available, and adapter adoption notes are documented.
 
 ## Version Themes
 
@@ -11,8 +12,20 @@ V2.0 is complete when the four skill layers below are present and documented.
 | --- | --- |
 | v1 | Generic reusable engineering skills |
 | v2 | Earth working principles and operating style |
+| v2.1 | Skill quality, validation, and adapter adoption |
 | v3 | Games Labs production/domain system |
 | v4 | Tech Lead OS |
+
+## V2.1 Completion
+
+Current target completion: complete
+
+| Area | Status |
+| --- | --- |
+| Skill contract consistency | complete |
+| Local validation script | complete |
+| Adapter adoption notes | complete |
+| V3 backlog note | complete |
 
 ## V2.0 Completion
 
@@ -71,3 +84,15 @@ These skills remain available for v1 compatibility or broader routing.
 ## Rule
 
 Do not mark a skill as present until `skills/<skill-name>/SKILL.md` exists.
+Run `scripts/validate-skills.sh` before release or adapter sync.
+
+## Next: V3 Backlog
+
+V3 should expand Games Labs production/domain playbooks without adding broad new skills first.
+
+Suggested playbooks:
+
+- provider settlement
+- missions events
+- mobile contract handoff
+- shared-lib rollout

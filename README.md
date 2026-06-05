@@ -29,7 +29,7 @@ project-root/
 
 ## Version
 
-See [VERSION.md](VERSION.md) for the current skill taxonomy, v2.0 completion status, and future version themes.
+See [VERSION.md](VERSION.md) for the current skill taxonomy, v2.1 quality/adoption status, and future version themes.
 
 ## Core Skill Layers
 
@@ -88,6 +88,23 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
 - Cursor: use `.mdc` rules that route to the matching `skills/<skill>/SKILL.md`.
 - Claude Code: expose each folder under `skills/` as a Claude-compatible skill.
 
+## Quality checks
+
+Run the local validator before release or adapter sync:
+
+```bash
+scripts/validate-skills.sh
+```
+
+The validator checks skill frontmatter, required contract sections, folder/name alignment, and README/VERSION skill coverage.
+
+## Adoption workflow
+
+1. Add the smallest relevant adapter snippet or rule to the consuming project.
+2. Keep project-specific truth in that project's `AGENTS.md`, code, tests, CI, logs, and production evidence.
+3. Keep `ai-skills` as reusable guidance; do not copy full skill bodies into adapters.
+4. Run `scripts/validate-skills.sh` after changing skill routing or version tables.
+
 ## Examples
 
 Use these as starter `AGENTS.md` files when consuming `ai-skills/` from another repository.
@@ -101,6 +118,10 @@ Playbooks hold domain-specific operating rules that are too specific for generic
 
 - `skills/api-contract-review` describes how to review API contracts in general.
 - `playbooks/games-labs/api-review.md` describes Games Labs-specific API expectations such as status values, client UX routing, idempotency, gateway/protobuf alignment, and rollout checks.
+
+## Next: v3 Games Labs playbooks
+
+The next expansion should add production/domain playbooks before broad new skills. Good candidates are provider settlement, missions events, mobile contract handoff, and shared-lib rollout.
 
 ## Source of truth rule
 

@@ -18,6 +18,14 @@ Example layout:
     SKILL.md
 ```
 
+After copying or syncing, run this from the `ai-skills/` checkout:
+
+```bash
+scripts/validate-skills.sh
+```
+
+The validator confirms skill metadata, required sections, and README/VERSION coverage before the adapter is treated as current.
+
 ## Rules
 
 1. Preserve each `SKILL.md` exactly when installing.
@@ -25,6 +33,7 @@ Example layout:
 3. Treat skills as guidance, not evidence.
 4. Source code, tests, CI, logs, production evidence, and user instructions override skill guidance.
 5. Prefer v2 core/domain-specific skills before compatibility skills.
+6. Keep this adapter thin; do not duplicate full skill bodies here.
 
 ## Compatibility Fallbacks
 

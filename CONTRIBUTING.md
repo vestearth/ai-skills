@@ -68,6 +68,16 @@ Skills are guidance, not evidence.
 
 Repository source code, tests, CI, logs, production evidence, and explicit user instructions override skill guidance.
 
+## Validation
+
+Run the local validator before release, adapter sync, or skill taxonomy changes:
+
+```bash
+scripts/validate-skills.sh
+```
+
+The validator checks frontmatter, required sections, skill folder names, and README/VERSION skill coverage.
+
 ## Style
 
 - Keep `SKILL.md` concise.
@@ -75,6 +85,7 @@ Repository source code, tests, CI, logs, production evidence, and explicit user 
 - Put detailed references in `references/` only when needed.
 - Do not mark a skill as complete in [VERSION.md](VERSION.md) until `skills/<skill-name>/SKILL.md` exists.
 - Prefer specific skills over broad compatibility skills.
+- Keep adapters thin and verify them with `scripts/validate-skills.sh` after routing changes.
 
 ## Compatibility
 

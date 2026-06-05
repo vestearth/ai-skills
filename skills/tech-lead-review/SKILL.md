@@ -7,37 +7,59 @@ description: Use when evaluating architecture, implementation plans, cross-team 
 
 Before discussing implementation details, answer the higher-level questions.
 
-## Ownership
+## Use When
+
+- Evaluating architecture, implementation plans, cross-team impact, ownership, risk, scalability, or long-term maintainability.
+- A change may affect multiple services, clients, teams, contracts, or operational responsibilities.
+- You need to decide whether to keep implementation simple, escalate design, or investigate first.
+
+## Do Not Use When
+
+- The task is only an active bug with unknown root cause; prefer `debugging`.
+- The task is only service-boundary ownership; prefer `microservice-boundary-review`.
+- The task is only merge readiness; prefer `code-review`.
+
+## Goal
+
+Choose the right level of design rigor by clarifying ownership, dependencies, risks, operations, scalability, and decision criteria.
+
+## Required Inputs
+
+- Feature, plan, incident, or change description.
+- Affected services, clients, teams, contracts, data, or workflows.
+- Known risks, rollout needs, monitoring, rollback, and migration constraints when available.
+
+## Process
+
+Review ownership:
 
 - Who owns this feature?
 - Who owns the data?
 - Who owns the business rule?
 
-## Dependencies
+Review dependencies:
 
 - Which services depend on this?
 - Which teams depend on this?
 - Which clients depend on this?
 
-## Risk
+Review risk:
 
 - What breaks if this changes?
 - What is the rollback plan?
 - What is the migration plan?
 
-## Operations
+Review operations:
 
 - How will this be monitored?
 - How will failures be detected?
 - How will incidents be investigated?
 
-## Scalability
+Review scalability:
 
 - Will traffic growth change the design?
 - Is coupling increasing?
 - Is ownership becoming unclear?
-
-## Decision Criteria
 
 Prefer simple implementation when:
 
@@ -63,10 +85,17 @@ Choose investigation first when:
 - Contract behavior differs between docs, code, and production logs.
 - The team is relying on memory or summaries instead of repository evidence.
 
-## Output
+## Output Format
 
 - Recommendation
 - Risks
 - Tradeoffs
 - Rollback considerations
 - Monitoring considerations
+
+## Anti-patterns
+
+- Treating unclear ownership as a detail to resolve during implementation.
+- Choosing a complex design when rollback is easy and blast radius is low.
+- Ignoring monitoring gaps for new failure modes.
+- Approving cross-service write paths without naming owners and rollback behavior.

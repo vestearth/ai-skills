@@ -10,7 +10,9 @@ Use reusable guidance from `ai-skills/`.
 
 1. Apply only the smallest relevant skill.
 2. Do not treat skills as source-code evidence.
-3. Source code, tests, CI, logs, and user instructions override skill guidance.
+3. Source code, tests, CI, logs, production evidence, and user instructions override skill guidance.
+4. Prefer domain-specific skills before compatibility skills.
+5. After changing this routing snippet, run `scripts/validate-skills.sh` in `ai-skills/`.
 
 Suggested routing:
 
