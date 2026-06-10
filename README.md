@@ -29,7 +29,7 @@ project-root/
 
 ## Version
 
-See [VERSION.md](VERSION.md) for the current skill taxonomy, v2.1 quality/adoption status, and future version themes.
+See [VERSION.md](VERSION.md) for the current skill taxonomy, quality/adoption status, and future version themes.
 
 ## Core Skill Layers
 
@@ -131,10 +131,14 @@ Playbooks hold domain-specific operating rules that are too specific for generic
 
 - `skills/api-contract-review` describes how to review API contracts in general.
 - `playbooks/games-labs/api-review.md` describes Games Labs-specific API expectations such as status values, client UX routing, idempotency, gateway/protobuf alignment, and rollout checks.
+- `playbooks/games-labs/mobile-contract-handoff.md` describes how to answer mobile/web contract questions from current API, gateway, protobuf, client, docs, and runtime evidence.
+- `playbooks/games-labs/shared-lib-rollout.md` describes how to check shared-lib adoption, pseudo-version alignment, generated contract drift, and cross-repo build evidence.
+- `playbooks/games-labs/provider-settlement.md` describes how to review provider settlement across callback acceptance, wallet correctness, round lifecycle, events, and reconciliation.
+- `playbooks/games-labs/missions-events.md` describes how to debug mission progress through producer events, RabbitMQ routing, consumers, mission rules, and client-facing status.
 
-## Next: v3 Games Labs playbooks
+## v3 Games Labs Playbooks
 
-The next expansion should add production/domain playbooks before broad new skills. Good candidates are provider settlement, missions events, mobile contract handoff, and shared-lib rollout.
+The v3 expansion adds production/domain playbooks before broad new skills. These playbooks capture high-reuse Games Labs operating patterns while keeping the generic skill catalog small.
 
 ## Source of truth rule
 

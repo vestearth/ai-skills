@@ -1,10 +1,12 @@
 # AI Skills Version
 
-Current: v2.1
-Target: v2.1
+Current: v3
+Target: v3
 
 V2.0 is complete when the four skill layers below are present and documented.
 V2.1 is complete when the skill contract is consistent, validation is available, and adapter adoption notes are documented.
+V2.2 is complete when the delivery/infra skill layer is present and documented.
+V3 is complete when the Games Labs production/domain playbooks are present and routed from adoption docs.
 
 ## Version Themes
 
@@ -27,6 +29,30 @@ Current target completion: complete
 | Local validation script | complete |
 | Adapter adoption notes | complete |
 | V3 backlog note | complete |
+
+## V2.2 Completion
+
+Current target completion: complete
+
+| Area | Status |
+| --- | --- |
+| Container build review | complete |
+| CI/CD pipeline review | complete |
+| Kubernetes deploy review | complete |
+| GitOps deploy review | complete |
+| Incident response | complete |
+| Secrets management | complete |
+
+## V3 Completion
+
+Current target completion: complete
+
+| Playbook | Status |
+| --- | --- |
+| playbooks/games-labs/mobile-contract-handoff.md | complete |
+| playbooks/games-labs/shared-lib-rollout.md | complete |
+| playbooks/games-labs/provider-settlement.md | complete |
+| playbooks/games-labs/missions-events.md | complete |
 
 ## V2.0 Completion
 
@@ -105,13 +131,13 @@ These skills remain available for v1 compatibility or broader routing.
 Do not mark a skill as present until `skills/<skill-name>/SKILL.md` exists.
 Run `scripts/validate-skills.sh` before release or adapter sync.
 
-## Next: V3 Backlog
+## V3 Playbooks
 
-V3 should expand Games Labs production/domain playbooks without adding broad new skills first.
+V3 expands Games Labs production/domain playbooks without adding broad new skills.
 
-Suggested playbooks:
+Completed playbooks:
 
-- provider settlement
-- missions events
-- mobile contract handoff
-- shared-lib rollout
+- playbooks/games-labs/mobile-contract-handoff.md
+- playbooks/games-labs/shared-lib-rollout.md
+- playbooks/games-labs/provider-settlement.md
+- playbooks/games-labs/missions-events.md

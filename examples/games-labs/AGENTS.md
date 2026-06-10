@@ -38,6 +38,10 @@ Use the smallest relevant skill:
 - Code review or merge readiness: `ai-skills/skills/code-review/SKILL.md`
 - Games Labs API, gateway, mobile, missions, wallet, VIP, store, provider-facing flows: `ai-skills/skills/games-labs-api-review/SKILL.md`
 - Games Labs API domain rules: `ai-skills/playbooks/games-labs/api-review.md`
+- Mobile/web contract handoff, persisted-vs-preview fields, status mapping, and "does backend need work?" questions: `ai-skills/playbooks/games-labs/mobile-contract-handoff.md`
+- Shared-lib rollout, pseudo-version alignment, generated contract drift, handler message ownership, or cross-repo adoption status: `ai-skills/playbooks/games-labs/shared-lib-rollout.md`
+- Provider settlement, round lifecycle, settled amount, turnover, duplicate callbacks, or reconciliation: `ai-skills/playbooks/games-labs/provider-settlement.md`
+- Missions event progress, `player.activity.v1`, daily mission status, force-complete, RabbitMQ routing, or restore/quote handoff: `ai-skills/playbooks/games-labs/missions-events.md`
 - Seamless provider callbacks, signatures, launch URLs, balance, payout, rounds: `ai-skills/skills/seamless-provider-review/SKILL.md`
 - gRPC/protobuf/gateway contract changes: `ai-skills/skills/grpc-contract-review/SKILL.md`
 - RabbitMQ events, routing, retries, DLQs: `ai-skills/skills/rabbitmq-event-review/SKILL.md`

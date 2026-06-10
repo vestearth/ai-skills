@@ -29,3 +29,10 @@ Recommended skills:
 - backend-interview-review
 - frontend-interview-review
 - sprint-planning
+
+Recommended Games Labs playbooks:
+- playbooks/games-labs/api-review.md
+- playbooks/games-labs/mobile-contract-handoff.md
+- playbooks/games-labs/shared-lib-rollout.md
+- playbooks/games-labs/provider-settlement.md
+- playbooks/games-labs/missions-events.md
