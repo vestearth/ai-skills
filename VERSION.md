@@ -13,6 +13,7 @@ V2.1 is complete when the skill contract is consistent, validation is available,
 | v1 | Generic reusable engineering skills |
 | v2 | Earth working principles and operating style |
 | v2.1 | Skill quality, validation, and adapter adoption |
+| v2.2 | Delivery / Infra skill layer (container, CI/CD, deploy) |
 | v3 | Games Labs production/domain system |
 | v4 | Tech Lead OS |
 
@@ -63,6 +64,24 @@ Tools, runtime, and service implementation review.
 - [x] `socraticode-discovery`
 - [x] `golang-service-review`
 - [x] `datadog-observability`
+
+## Delivery / Infra Skills
+
+Container, pipeline, and deployment review for the GHCR + GitHub Actions + k3s +
+Kustomize + ArgoCD stack. This layer gives the devops agent a thinking layer to
+reason with, the way code-review backs the reviewer agent.
+
+Tier 1:
+
+- [x] `container-build-review`
+- [x] `cicd-pipeline-review`
+- [x] `k8s-deploy-review`
+
+Tier 2:
+
+- [x] `gitops-deploy-review`
+- [x] `incident-response`
+- [x] `secrets-management`
 
 ## Earth Skills
 

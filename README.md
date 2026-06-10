@@ -61,6 +61,19 @@ These are the skills counted toward the v2.0 target in [VERSION.md](VERSION.md).
 | `golang-service-review` | Reviewing Go service implementation, context propagation, errors, repositories, tests, module hygiene, or production readiness |
 | `datadog-observability` | Reviewing metrics, logs, traces, dashboards, monitors, SLOs, tags, or incident visibility |
 
+### Delivery / Infra
+
+The thinking layer for the `devops` agent: GHCR + GitHub Actions + k3s + Kustomize + ArgoCD.
+
+| Skill | Use when |
+| --- | --- |
+| `container-build-review` | Changing Dockerfiles, multi-stage builds, base images, build secrets, or image reproducibility/hygiene |
+| `cicd-pipeline-review` | Changing GitHub Actions / CI/CD workflows, build-push-deploy jobs, action versions, workflow permissions, or pipeline secrets |
+| `k8s-deploy-review` | Changing Kubernetes/k3s manifests, Kustomize overlays, probes, resource limits, rollout strategy, or image references |
+| `gitops-deploy-review` | Changing ArgoCD Applications, sync policies, declared image versions, or reconciling git-as-source-of-truth against live cluster state |
+| `incident-response` | Triage, containment, rollback decision, runbook, and post-incident review during a production incident or degradation |
+| `secrets-management` | Provisioning, rotating, scoping secrets/tokens/kubeconfig and keeping plaintext out of git, logs, and image layers |
+
 ### Earth
 
 | Skill | Use when |
