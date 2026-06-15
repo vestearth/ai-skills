@@ -6,6 +6,7 @@ This repository is the reusable thinking layer for AI-assisted development. It s
 
 - `ai-dev-office/` answers: who should do the work, in what order, with what handoff contract.
 - `ai-skills` answers: how the agent should think while debugging, reviewing, integrating, or releasing.
+- `knowledge-base/` answers: what durable project knowledge, decisions, flow maps, and reviewed notes exist.
 
 ## Why this is separate
 
@@ -17,6 +18,14 @@ Keeping those principles in a separate repository makes them portable across fut
 
 This keeps project repos focused on project-specific rules, while `ai-skills` keeps the reusable operating system for AI-assisted engineering.
 
+## Relationship to knowledge-base
+
+`knowledge-base/` is the durable project memory: decisions, flow maps, project notes, templates, and reviewed engineering knowledge.
+
+`ai-skills/` is the reusable agent behavior layer: rules and skills for how agents should search, verify, review, debug, and change systems.
+
+Use `knowledge-base/` for project context and long-lived notes, but do not treat it as stronger evidence than current repository files, tests, CI, logs, or production signals.
+
 ## Recommended project layout
 
 ```text
@@ -24,6 +33,7 @@ project-root/
   AGENTS.md
   .cursor/rules/
   ai-dev-office/      # optional orchestration framework
+  knowledge-base/     # optional durable project memory
   ai-skills/          # reusable skill/checklist library
 ```
 
