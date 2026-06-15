@@ -32,8 +32,10 @@ The validator confirms skill metadata, required sections, and README/VERSION cov
 2. Use the smallest relevant skill for the task.
 3. Treat skills as guidance, not evidence.
 4. Source code, tests, CI, logs, production evidence, and user instructions override skill guidance.
-5. Prefer v2 core/domain-specific skills before compatibility skills.
-6. Keep this adapter thin; do not duplicate full skill bodies here.
+5. Apply `minimal-change-review` before code, file, dependency, scaffold, or workflow changes.
+6. Apply `verification-loop` before completion, fix, merge, deploy, or handoff claims.
+7. Prefer v2 core/domain-specific skills before compatibility skills.
+8. Keep this adapter thin; do not duplicate full skill bodies here.
 
 ## Compatibility Fallbacks
 

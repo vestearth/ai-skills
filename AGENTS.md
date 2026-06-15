@@ -2,6 +2,13 @@
 
 Use the smallest relevant skill.
 
+Before any agent modifies code, creates files, adds dependencies, or scaffolds behavior, apply:
+
+- `rules/minimal-change/RULE.md`
+- `rules/reuse-before-build/RULE.md`
+- `rules/search-before-create/RULE.md` when creating new artifacts
+- `skills/minimal-change-review/SKILL.md`
+
 Priority:
 1. User request
 2. Project AGENTS.md
@@ -10,9 +17,27 @@ Priority:
 
 Repository-specific claims require source-code verification.
 
+Before final answers, handoffs, merge claims, or fix claims, apply:
+
+- `rules/evidence-required/RULE.md`
+- `rules/verify-before-final/RULE.md`
+- `skills/verification-loop/SKILL.md` when a workflow is needed
+
+When gathering context in large or unfamiliar repositories, apply:
+
+- `rules/context-discipline/RULE.md`
+- `skills/search-first/SKILL.md`
+- `skills/context-discipline/SKILL.md` when context budget matters
+
 Recommended skills:
+- minimal-change-review
+- verification-loop
+- search-first
+- context-discipline
+- change-impact-analysis
 - debugging
 - code-review
+- clickhouse-io
 - api-contract-review
 - dependency-guard
 - vendor-integration

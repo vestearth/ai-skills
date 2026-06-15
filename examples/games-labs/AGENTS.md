@@ -34,8 +34,14 @@ project-root/
 
 Use the smallest relevant skill:
 
+- Code/file/dependency/scaffold changes: `ai-skills/skills/minimal-change-review/SKILL.md`
+- Completion, fix, merge, deploy, or handoff claims: `ai-skills/skills/verification-loop/SKILL.md`
+- Unfamiliar repository area: `ai-skills/skills/search-first/SKILL.md`
+- Large, stale, or tool-derived context: `ai-skills/skills/context-discipline/SKILL.md`
+- Shared code, contracts, schemas, generated code, runtime config, or high-risk paths: `ai-skills/skills/change-impact-analysis/SKILL.md`
 - Bugs, logs, failed tests, crashes: `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness: `ai-skills/skills/code-review/SKILL.md`
+- ClickHouse tables, ingestion, queries, retention, or event storage: `ai-skills/skills/clickhouse-io/SKILL.md`
 - Games Labs API, gateway, mobile, missions, wallet, VIP, store, provider-facing flows: `ai-skills/skills/games-labs-api-review/SKILL.md`
 - Games Labs API domain rules: `ai-skills/playbooks/games-labs/api-review.md`
 - Mobile/web contract handoff, persisted-vs-preview fields, status mapping, and "does backend need work?" questions: `ai-skills/playbooks/games-labs/mobile-contract-handoff.md`
@@ -60,6 +66,9 @@ Compatibility fallback:
 
 ## Games Labs Rules
 
+- Apply `ai-skills/rules/minimal-change/RULE.md`, `ai-skills/rules/reuse-before-build/RULE.md`, and `ai-skills/rules/search-before-create/RULE.md` before creating or changing code.
+- Apply `ai-skills/rules/evidence-required/RULE.md` and `ai-skills/rules/verify-before-final/RULE.md` before final completion or handoff claims.
+- Apply `ai-skills/rules/context-discipline/RULE.md` when gathering context in a large or unfamiliar area.
 - Internal service-to-service communication should use gRPC.
 - External HTTP access should go through `api-gateway`.
 - Asynchronous or event-driven communication should use RabbitMQ.

@@ -21,8 +21,14 @@ Skills are working guidance, not proof.
 
 Use the smallest relevant skill:
 
+- Code/file/dependency/scaffold changes: `ai-skills/skills/minimal-change-review/SKILL.md`
+- Completion, fix, merge, deploy, or handoff claims: `ai-skills/skills/verification-loop/SKILL.md`
+- Unfamiliar repository area: `ai-skills/skills/search-first/SKILL.md`
+- Large, stale, or tool-derived context: `ai-skills/skills/context-discipline/SKILL.md`
+- Shared code, contracts, schemas, generated code, runtime config, or high-risk paths: `ai-skills/skills/change-impact-analysis/SKILL.md`
 - Bugs, logs, failed tests, crashes: `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness: `ai-skills/skills/code-review/SKILL.md`
+- ClickHouse tables, ingestion, queries, retention, or event storage: `ai-skills/skills/clickhouse-io/SKILL.md`
 - Go service implementation review: `ai-skills/skills/golang-service-review/SKILL.md`
 - gRPC/protobuf/gateway contract changes: `ai-skills/skills/grpc-contract-review/SKILL.md`
 - RabbitMQ events, routing, retries, DLQs: `ai-skills/skills/rabbitmq-event-review/SKILL.md`
@@ -45,6 +51,9 @@ If SocratiCode or another index is available, use it only as a navigation layer,
 
 ## Operating Rules
 
+- Apply `ai-skills/rules/minimal-change/RULE.md`, `ai-skills/rules/reuse-before-build/RULE.md`, and `ai-skills/rules/search-before-create/RULE.md` before creating or changing code.
+- Apply `ai-skills/rules/evidence-required/RULE.md` and `ai-skills/rules/verify-before-final/RULE.md` before final completion or handoff claims.
+- Apply `ai-skills/rules/context-discipline/RULE.md` when gathering context in a large or unfamiliar area.
 - Do not approve from summaries alone.
 - Do not introduce local-only dependency behavior that CI cannot reproduce.
 - Define or update `.proto` before generated code when changing gRPC contracts.

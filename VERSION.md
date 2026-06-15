@@ -54,6 +54,22 @@ Current target completion: complete
 | playbooks/games-labs/provider-settlement.md | complete |
 | playbooks/games-labs/missions-events.md | complete |
 
+## Operating Guardrails
+
+Reusable baseline guardrails for checking reuse, evidence, verification, context, and impact before building.
+
+- [x] `minimal-change-review`
+- [x] `verification-loop`
+- [x] `search-first`
+- [x] `context-discipline`
+- [x] `change-impact-analysis`
+- [x] `rules/reuse-before-build/RULE.md`
+- [x] `rules/minimal-change/RULE.md`
+- [x] `rules/search-before-create/RULE.md`
+- [x] `rules/evidence-required/RULE.md`
+- [x] `rules/verify-before-final/RULE.md`
+- [x] `rules/context-discipline/RULE.md`
+
 ## V2.0 Completion
 
 Current target completion: 16 / 16 skills
@@ -90,6 +106,12 @@ Tools, runtime, and service implementation review.
 - [x] `socraticode-discovery`
 - [x] `golang-service-review`
 - [x] `datadog-observability`
+
+## Specialized Skills
+
+Reusable specialized technical skills outside the v2.0 core completion count.
+
+- [x] `clickhouse-io`
 
 ## Delivery / Infra Skills
 

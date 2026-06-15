@@ -35,6 +35,24 @@ See [VERSION.md](VERSION.md) for the current skill taxonomy, quality/adoption st
 
 These are the skills counted toward the v2.0 target in [VERSION.md](VERSION.md).
 
+## Guardrail Rules
+
+These apply before choosing a larger implementation path.
+
+| Skill or rule | Use when |
+| --- | --- |
+| `minimal-change-review` | Before modifying code, creating files, adding dependencies, scaffolding features, or checking for overbuilt implementations |
+| `verification-loop` | Before final answers, fix claims, merge/deploy readiness, release notes, or handoff claims |
+| `search-first` | Starting implementation, debugging, refactoring, review, or repository discovery in an unfamiliar area |
+| `context-discipline` | Repository context is large, stale, tool-derived, or likely to overload the session |
+| `change-impact-analysis` | Changing shared code, contracts, schemas, generated code, service behavior, runtime config, or high-risk production paths |
+| `rules/reuse-before-build/RULE.md` | Checking need, existing code, standard library, platform/native features, existing dependencies, then smallest new code |
+| `rules/minimal-change/RULE.md` | Keeping edits scoped to the smallest safe change |
+| `rules/search-before-create/RULE.md` | Searching before creating files, helpers, DTOs, configs, hooks, scripts, workflows, fixtures, or templates |
+| `rules/evidence-required/RULE.md` | Requiring source, command, test, CI, log, or runtime evidence for codebase claims |
+| `rules/verify-before-final/RULE.md` | Requiring relevant verification before completion, fix, merge, deploy, or handoff claims |
+| `rules/context-discipline/RULE.md` | Gathering targeted context without dumping broad repository state |
+
 ### Foundation
 
 | Skill | Use when |
@@ -60,6 +78,12 @@ These are the skills counted toward the v2.0 target in [VERSION.md](VERSION.md).
 | `socraticode-discovery` | Starting repository-specific discovery with SocratiCode, search, symbol lookup, or graph analysis |
 | `golang-service-review` | Reviewing Go service implementation, context propagation, errors, repositories, tests, module hygiene, or production readiness |
 | `datadog-observability` | Reviewing metrics, logs, traces, dashboards, monitors, SLOs, tags, or incident visibility |
+
+### Specialized
+
+| Skill | Use when |
+| --- | --- |
+| `clickhouse-io` | Designing, reviewing, or debugging ClickHouse tables, ingestion, analytics queries, retention, or event storage |
 
 ### Delivery / Infra
 

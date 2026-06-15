@@ -19,8 +19,14 @@ Use reusable guidance from `ai-skills/`.
 
 ## Routing
 
+- Code/file/dependency/scaffold changes -> `ai-skills/skills/minimal-change-review/SKILL.md`
+- Completion, fix, merge, deploy, or handoff claims -> `ai-skills/skills/verification-loop/SKILL.md`
+- Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
+- Large, stale, or tool-derived context -> `ai-skills/skills/context-discipline/SKILL.md`
+- Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> `ai-skills/skills/change-impact-analysis/SKILL.md`
 - Bugs, logs, failing tests, crashes -> `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness -> `ai-skills/skills/code-review/SKILL.md`
+- ClickHouse tables, ingestion, queries, retention, or event storage -> `ai-skills/skills/clickhouse-io/SKILL.md`
 - Dependency, Docker, CI, shared module, `go.work`, or `replace` changes -> `ai-skills/skills/dependency-guard/SKILL.md`
 - Release, deployment, rollback, or smoke test readiness -> `ai-skills/skills/release-checklist/SKILL.md`
 - Architecture, ownership, scalability, cross-team risk -> `ai-skills/skills/tech-lead-review/SKILL.md`

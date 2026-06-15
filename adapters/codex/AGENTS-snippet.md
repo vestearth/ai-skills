@@ -16,8 +16,14 @@ Use reusable guidance from `ai-skills/`.
 
 Suggested routing:
 
+- Before code/file/dependency/scaffold changes -> minimal-change-review
+- Before completion, fix, merge, deploy, or handoff claims -> verification-loop
+- Unfamiliar repository area -> search-first
+- Large, stale, or tool-derived context -> context-discipline
+- Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> change-impact-analysis
 - Bugs -> debugging
 - Code review -> code-review
+- ClickHouse tables, ingestion, queries, retention, or event storage -> clickhouse-io
 - API changes -> api-contract-review
 - Dependency changes -> dependency-guard
 - Service ownership changes -> microservice-boundary-review
