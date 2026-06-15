@@ -2,11 +2,14 @@
 
 Use the smallest relevant skill.
 
-Before any agent modifies code, creates files, adds dependencies, or scaffolds behavior, apply:
+Before any agent modifies code, creates files, adds dependencies, or scaffolds behavior, apply the relevant minimal-change guardrails.
 
 - `rules/minimal-change/RULE.md`
 - `rules/reuse-before-build/RULE.md`
 - `rules/search-before-create/RULE.md` when creating new artifacts
+
+For non-trivial changes, new artifacts, dependencies, abstractions, or scaffolding, apply:
+
 - `skills/minimal-change-review/SKILL.md`
 
 Priority:
