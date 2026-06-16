@@ -24,6 +24,8 @@ Promote useful notes only when reuse pressure proves they belong outside raw cap
 
 Move knowledge to the smallest durable home that matches how it will be reused.
 
+Promotion starts after capture gatekeeping. If the item does not pass `Knowledge Base/Promotion Rule.md`'s Capture Gate, skip it or leave it in source/review instead of promoting it.
+
 ## Required Inputs
 
 - Candidate note or capture item.
@@ -33,12 +35,13 @@ Move knowledge to the smallest durable home that matches how it will be reused.
 ## Process
 
 1. Identify the candidate knowledge and current location.
-2. Check whether it is sourced, fresh, and distinct from existing notes.
-3. Confirm reuse pressure.
-4. Choose the target: project note, `20 Flows/`, `30 ADR/`, `40 Lessons/`, `50 Concepts/`, prompt library, or `ai-skills/`.
-5. Preserve or add `Source:` / `Sources:` and `Related` links.
-6. Leave uncertain items in `Review Queue.md`.
-7. Run vault checks after note moves or link changes.
+2. Apply the Capture Gate from `Knowledge Base/Promotion Rule.md`.
+3. Check whether it is sourced, fresh, and distinct from existing notes.
+4. Confirm reuse pressure.
+5. Choose the target: project note, `20 Flows/`, `30 ADR/`, `40 Lessons/`, `50 Concepts/`, prompt library, or `ai-skills/`.
+6. Preserve or add `Source:` / `Sources:` and `Related` links.
+7. Leave uncertain source, freshness, or human-judgment items in `Review Queue.md`.
+8. Run vault checks after note moves or link changes.
 
 ## Output Format
 
@@ -53,5 +56,6 @@ Move knowledge to the smallest durable home that matches how it will be reused.
 
 - Promoting notes because they look clean.
 - Creating ADRs for non-decisions.
+- Promoting raw AI output without human/source review.
 - Turning project-specific facts into reusable skills too early.
 - Moving unsourced or stale claims into durable sections.

@@ -24,6 +24,8 @@ Extract durable knowledge from completed work into a note or patch for `knowledg
 
 Capture only useful durable knowledge with links, sources, and the right write target.
 
+Use the `Knowledge Base/Promotion Rule.md` Capture Gate before writing: capture only when the item is useful beyond the current task and is grounded in real work or source evidence.
+
 ## Required Inputs
 
 - Task outcome or summary.
@@ -32,7 +34,7 @@ Capture only useful durable knowledge with links, sources, and the right write t
 
 ## Process
 
-1. Decide whether the knowledge is durable enough to capture.
+1. Apply the Capture Gate from `Knowledge Base/Promotion Rule.md`; skip routine logs, raw transcripts, obvious implementation details, and unsupported AI output.
 2. Search existing notes first.
 3. Prefer updating an existing note when the concept already exists.
 4. Choose the write target: `Inbox.md` for raw capture, `10 Projects/` for project knowledge, `20 Flows/` for flow maps, `30 ADR/` for decisions, `40 Lessons/` for reusable lessons, or `50 Concepts/` for concepts.
@@ -53,6 +55,7 @@ Capture only useful durable knowledge with links, sources, and the right write t
 ## Anti-patterns
 
 - Capturing everything just because work happened.
+- Capturing raw AI output instead of extracting the reusable lesson.
 - Creating a new note when an existing note should be updated.
 - Promoting raw capture directly into reusable knowledge without reuse pressure.
 - Recording claims without sources.
