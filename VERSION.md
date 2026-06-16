@@ -70,6 +70,15 @@ Reusable baseline guardrails for checking reuse, evidence, verification, context
 - [x] `rules/verify-before-final/RULE.md`
 - [x] `rules/context-discipline/RULE.md`
 
+## Knowledge Operation Skills
+
+Reusable behaviors for querying, capturing, promoting, and source-reviewing durable knowledge in `knowledge-base/`.
+
+- [x] `knowledge-query`
+- [x] `knowledge-capture`
+- [x] `knowledge-promote`
+- [x] `knowledge-source-review`
+
 ## V2.0 Completion
 
 Current target completion: 16 / 16 skills

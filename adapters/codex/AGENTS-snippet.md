@@ -21,6 +21,10 @@ Suggested routing:
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> context-discipline
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> change-impact-analysis
+- Project memory, decisions, architecture notes, lessons, or flow maps -> knowledge-query
+- Durable knowledge capture after completed work -> knowledge-capture
+- Inbox/project note promotion -> knowledge-promote
+- Knowledge-base source, freshness, publication, or drift review -> knowledge-source-review
 - Bugs -> debugging
 - Code review -> code-review
 - ClickHouse tables, ingestion, queries, retention, or event storage -> clickhouse-io

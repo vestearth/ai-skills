@@ -26,6 +26,17 @@ This keeps project repos focused on project-specific rules, while `ai-skills` ke
 
 Use `knowledge-base/` for project context and long-lived notes, but do not treat it as stronger evidence than current repository files, tests, CI, logs, or production signals.
 
+## Knowledge Operations
+
+These skills connect the reusable behavior layer to the durable memory layer.
+
+| Skill | Use when |
+| --- | --- |
+| `knowledge-query` | A task may depend on durable project memory, prior decisions, architecture notes, lessons, flow maps, or knowledge-base context |
+| `knowledge-capture` | Completed work reveals durable decisions, lessons, project understanding, flows, or reusable knowledge that should be captured |
+| `knowledge-promote` | Inbox or project notes may need promotion into ADRs, reusable lessons, concepts, flow maps, or skills |
+| `knowledge-source-review` | Reviewing notes for sources, freshness, publication safety, broken links, or drift from current repository evidence |
+
 ## Recommended project layout
 
 ```text

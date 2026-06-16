@@ -38,6 +38,10 @@ Recommended skills:
 - search-first
 - context-discipline
 - change-impact-analysis
+- knowledge-query
+- knowledge-capture
+- knowledge-promote
+- knowledge-source-review
 - debugging
 - code-review
 - clickhouse-io

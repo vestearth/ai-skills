@@ -24,6 +24,10 @@ Use reusable guidance from `ai-skills/`.
 - Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
 - Large, stale, or tool-derived context -> `ai-skills/skills/context-discipline/SKILL.md`
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> `ai-skills/skills/change-impact-analysis/SKILL.md`
+- Project memory, decisions, architecture notes, lessons, or flow maps -> `ai-skills/skills/knowledge-query/SKILL.md`
+- Durable knowledge capture after completed work -> `ai-skills/skills/knowledge-capture/SKILL.md`
+- Inbox/project note promotion -> `ai-skills/skills/knowledge-promote/SKILL.md`
+- Knowledge-base source, freshness, publication, or drift review -> `ai-skills/skills/knowledge-source-review/SKILL.md`
 - Bugs, logs, failing tests, crashes -> `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness -> `ai-skills/skills/code-review/SKILL.md`
 - ClickHouse tables, ingestion, queries, retention, or event storage -> `ai-skills/skills/clickhouse-io/SKILL.md`

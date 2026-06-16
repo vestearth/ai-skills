@@ -34,8 +34,9 @@ The validator confirms skill metadata, required sections, and README/VERSION cov
 4. Source code, tests, CI, logs, production evidence, and user instructions override skill guidance.
 5. Apply `minimal-change-review` before code, file, dependency, scaffold, or workflow changes.
 6. Apply `verification-loop` before completion, fix, merge, deploy, or handoff claims.
-7. Prefer v2 core/domain-specific skills before compatibility skills.
-8. Keep this adapter thin; do not duplicate full skill bodies here.
+7. Apply `knowledge-query`, `knowledge-capture`, `knowledge-promote`, or `knowledge-source-review` when working with `knowledge-base/`.
+8. Prefer v2 core/domain-specific skills before compatibility skills.
+9. Keep this adapter thin; do not duplicate full skill bodies here.
 
 ## Compatibility Fallbacks
 
