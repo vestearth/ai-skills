@@ -2,6 +2,10 @@
 
 Use the smallest relevant skill.
 
+This repository is the reusable policy, playbook, review-check, and agent
+behavior contract layer. It guides how agents reason and produce outputs; it is
+not an orchestrator and not a source of truth.
+
 Before any agent modifies code, creates files, adds dependencies, or scaffolds behavior, apply the relevant minimal-change guardrails.
 
 - `rules/minimal-change/RULE.md`
@@ -19,6 +23,10 @@ Priority:
 4. ai-skills guidance
 
 Repository-specific claims require source-code verification.
+
+New or revised skills should state use when, do not use when, required inputs,
+process, checklist or review criteria, anti-patterns, output format, and
+definition of done.
 
 Before final answers, handoffs, merge claims, or fix claims, apply:
 

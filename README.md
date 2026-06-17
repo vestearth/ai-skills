@@ -18,6 +18,27 @@ Keeping those principles in a separate repository makes them portable across fut
 
 This keeps project repos focused on project-specific rules, while `ai-skills` keeps the reusable operating system for AI-assisted engineering.
 
+## Evidence-first role
+
+`ai-skills` is the policy, reusable playbook, review-check, and agent behavior
+contract layer. It is not an orchestrator and not a source of truth. Skills guide
+how agents reason, review, debug, plan, and produce outputs for work such as
+`api-contract-review`, `tech-lead-review`, `dependency-guard`, `debugging`,
+`sprint-planning`, `rabbitmq-event-review`, and `golang-service-review`.
+
+Each skill should define:
+
+- use when / do not use when
+- required inputs
+- process
+- checklist or review criteria
+- anti-patterns
+- output format
+- definition of done
+
+Current repository files, tests, CI, logs, runtime config, current contracts, and
+actual runtime behavior still decide what is true.
+
 ## Relationship to knowledge-base
 
 `knowledge-base/` is the durable project memory: decisions, flow maps, project notes, templates, and reviewed engineering knowledge.
