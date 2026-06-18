@@ -57,6 +57,7 @@ These skills connect the reusable behavior layer to the durable memory layer.
 | `knowledge-capture` | Completed work reveals durable decisions, lessons, project understanding, flows, or reusable knowledge that should be captured |
 | `knowledge-promote` | Inbox or project notes may need promotion into ADRs, reusable lessons, concepts, flow maps, or skills |
 | `knowledge-source-review` | Reviewing notes for sources, freshness, publication safety, broken links, or drift from current repository evidence |
+| `self-learning` | Propose-only loop: gather feedback, triage to one of five outcomes, delegate, and propose a change for approval |
 
 ## Recommended project layout
 

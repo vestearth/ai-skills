@@ -78,6 +78,7 @@ Reusable behaviors for querying, capturing, promoting, and source-reviewing dura
 - [x] `knowledge-capture`
 - [x] `knowledge-promote`
 - [x] `knowledge-source-review`
+- [x] `self-learning`
 
 ## V2.0 Completion
 
