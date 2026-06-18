@@ -24,6 +24,24 @@ existing skills. It does NOT duplicate the bodies of `writing-skills` or the
 | Proposal output format (diff + rationale + evidence) | validate → `scripts/validate-skills.sh` |
 | Reuse-pressure threshold before touching a skill | edit a cross-cutting rule → `ai-skills/rules/<name>/RULE.md` |
 
+### Dependency fallback (no superpowers)
+
+`superpowers:writing-skills` is the preferred authoring path but must not be a hard
+dependency. If it is unavailable:
+
+```
+If superpowers:writing-skills is unavailable:
+- use ai-skills/CONTRIBUTING.md
+- copy structure from nearest existing skill
+- keep patch minimal
+- run scripts/validate-skills.sh
+- mark as fallback-authored proposal
+```
+
+A fallback-authored proposal is still subject to the propose-only gate and the
+reuse-pressure gate; it is simply flagged so the reviewer knows TDD pressure-testing
+was not applied this round.
+
 ## Data flow (4 stages)
 
 1. **GATHER** — collect feedback signals from three sources:
@@ -95,8 +113,13 @@ ai-skills/skills/self-learning/
     pressure-tests.md    # RED/GREEN scenarios used to verify the skill
 ```
 
-Then symlink into `.claude/skills/self-learning` (same as the other 34 wired skills) and
-update ai-skills `VERSION.md` / `README.md`.
+Then wire into the configured agent skill targets — including `.claude/skills` if used,
+and the Codex/Cursor adapters where applicable — and update ai-skills
+`VERSION.md` / `README.md`.
+
+> Source of truth remains `ai-skills/skills/self-learning/`.
+> `.claude/skills` (and any other adapter target) is only an agent-facing mirror, not
+> canonical. Wiring one target must not silently drop the others.
 
 ## Testing (writing-skills = TDD for skills)
 
