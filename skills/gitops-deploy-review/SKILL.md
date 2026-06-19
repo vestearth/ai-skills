@@ -52,6 +52,7 @@ Check source and scope:
 - `repoURL`, `path`, and `targetRevision` point at the intended branch/folder.
 - The app's destination namespace/cluster is correct.
 - One source of truth: the same workload is not managed by both GitOps and an imperative pipeline step in conflicting ways.
+- `ignoreDifferences` on a ConfigMap/Secret `/data` means git is **not** the source for those values — identify the injector (a CI step, image-updater, external controller). Flag it if that injector can be disabled or gated, because the values then silently disappear with nothing to restore them.
 
 Check observability of sync:
 
@@ -69,5 +70,6 @@ Check observability of sync:
 - Tracking a `latest` image tag in git so the controller can never detect a new build and the running version is undefined.
 - Triggering deploys with `kubectl rollout restart` while `selfHeal` reverts manual state — the two fight each other.
 - Treating the GitOps controller as installed-and-forgotten while real promotion happens out-of-band.
+- Using `ignoreDifferences` on ConfigMap/Secret data without recording who injects those values, so disabling that injector silently drops runtime config the controller will not restore.
 - Enabling `prune` without knowing which live resources are intentionally not in git.
 - No monitoring on sync status, so a stuck or failed sync goes unnoticed.
