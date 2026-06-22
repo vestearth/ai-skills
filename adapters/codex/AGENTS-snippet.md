@@ -25,13 +25,20 @@ Suggested routing:
 - Durable knowledge capture after completed work -> knowledge-capture
 - Inbox/project note promotion -> knowledge-promote
 - Knowledge-base source, freshness, publication, or drift review -> knowledge-source-review
+- Turning feedback, corrections, or lessons into a proposed skill/rule/knowledge change -> self-learning
 - Bugs -> debugging
 - Code review -> code-review
 - ClickHouse tables, ingestion, queries, retention, or event storage -> clickhouse-io
 - API changes -> api-contract-review
 - Dependency changes -> dependency-guard
 - Service ownership changes -> microservice-boundary-review
-- Deployment -> release-checklist
+- Deployment, rollout, or release readiness -> release-checklist
+- CI/CD pipeline or GitHub Actions workflow changes -> cicd-pipeline-review
+- Dockerfile, base image, or container build changes -> container-build-review
+- ArgoCD, GitOps sync, or declared image version changes -> gitops-deploy-review
+- Kubernetes / k3s / Kustomize manifest changes -> k8s-deploy-review
+- Secrets, credentials, tokens, or kubeconfig handling -> secrets-management
+- Production incident, outage, degradation, or rollback decision -> incident-response
 - Repository discovery -> socraticode-discovery
 - Architecture review -> tech-lead-review
 - gRPC/protobuf/gateway contract changes -> grpc-contract-review
