@@ -51,6 +51,7 @@ Check build/deploy correctness:
 - A "restart"/rollout step that relies on `latest` is flagged — it cannot pin or roll back a version.
 - `continue-on-error` / `|| true` on a deploy step is flagged: a failed deploy must not report success.
 - `concurrency` prevents overlapping deploys to the same target; `cancel-in-progress` is intended.
+- A workflow that also **seeds runtime config** (applies a ConfigMap/Secret from CI secrets, injects env) is flagged when its trigger is narrowed or disabled (e.g. switched to `workflow_dispatch`): code may still deploy by another path while the config silently stops being applied, so the next pod roll loses it. Confirm another owner injects those values.
 
 Check reproducibility and gating:
 
@@ -76,3 +77,4 @@ Check consistency:
 - Deploying `latest` then `rollout restart` so no version is pinned and rollback is impossible.
 - `continue-on-error: true` on the deploy step, turning a failed rollout into a green run.
 - Long-lived PAT / kubeconfig secrets where OIDC is available.
+- Narrowing or disabling a workflow that is the sole injector of runtime ConfigMap/Secret values — code still ships by another path while the config silently disappears on the next pod roll.
