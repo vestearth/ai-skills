@@ -176,7 +176,7 @@ Run the local validator before release or adapter sync:
 scripts/validate-skills.sh
 ```
 
-The validator checks skill frontmatter, required contract sections, folder/name alignment, and README/VERSION skill coverage.
+The validator checks skill frontmatter, required contract sections, folder/name alignment, README/VERSION coverage, and Codex/Cursor adapter coverage.
 
 ## Adoption workflow
 

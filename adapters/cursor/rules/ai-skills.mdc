@@ -28,11 +28,18 @@ Use reusable guidance from `ai-skills/`.
 - Durable knowledge capture after completed work -> `ai-skills/skills/knowledge-capture/SKILL.md`
 - Inbox/project note promotion -> `ai-skills/skills/knowledge-promote/SKILL.md`
 - Knowledge-base source, freshness, publication, or drift review -> `ai-skills/skills/knowledge-source-review/SKILL.md`
+- Turning feedback, corrections, or lessons into a proposed skill/rule/knowledge change -> `ai-skills/skills/self-learning/SKILL.md`
 - Bugs, logs, failing tests, crashes -> `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness -> `ai-skills/skills/code-review/SKILL.md`
 - ClickHouse tables, ingestion, queries, retention, or event storage -> `ai-skills/skills/clickhouse-io/SKILL.md`
 - Dependency, Docker, CI, shared module, `go.work`, or `replace` changes -> `ai-skills/skills/dependency-guard/SKILL.md`
 - Release, deployment, rollback, or smoke test readiness -> `ai-skills/skills/release-checklist/SKILL.md`
+- CI/CD pipeline or GitHub Actions workflow changes -> `ai-skills/skills/cicd-pipeline-review/SKILL.md`
+- Dockerfile, base image, or container build changes -> `ai-skills/skills/container-build-review/SKILL.md`
+- ArgoCD, GitOps sync, or declared image version changes -> `ai-skills/skills/gitops-deploy-review/SKILL.md`
+- Kubernetes / k3s / Kustomize manifest changes -> `ai-skills/skills/k8s-deploy-review/SKILL.md`
+- Secrets, credentials, tokens, or kubeconfig handling -> `ai-skills/skills/secrets-management/SKILL.md`
+- Production incident, outage, degradation, or rollback decision -> `ai-skills/skills/incident-response/SKILL.md`
 - Architecture, ownership, scalability, cross-team risk -> `ai-skills/skills/tech-lead-review/SKILL.md`
 - Service ownership or microservice boundary changes -> `ai-skills/skills/microservice-boundary-review/SKILL.md`
 - gRPC, protobuf, grpc-gateway, generated artifacts -> `ai-skills/skills/grpc-contract-review/SKILL.md`

@@ -92,6 +92,24 @@ if [ -f "$ROOT_DIR/README.md" ]; then
   done
 fi
 
+adapter_docs=(
+  "$ROOT_DIR/adapters/codex/AGENTS-snippet.md"
+  "$ROOT_DIR/adapters/cursor/rules/ai-skills.mdc"
+)
+
+for doc in "${adapter_docs[@]}"; do
+  if [ ! -f "$doc" ]; then
+    fail "missing adapter document: ${doc#$ROOT_DIR/}"
+    continue
+  fi
+
+  for skill_name in "${skill_names[@]}"; do
+    if ! grep -q "$skill_name" "$doc"; then
+      fail "${doc#$ROOT_DIR/}: missing skill '$skill_name'"
+    fi
+  done
+done
+
 if [ "$failures" -gt 0 ]; then
   printf '\nSkill validation failed with %d issue(s).\n' "$failures" >&2
   exit 1

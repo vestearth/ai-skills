@@ -24,7 +24,7 @@ After copying or syncing, run this from the `ai-skills/` checkout:
 scripts/validate-skills.sh
 ```
 
-The validator confirms skill metadata, required sections, and README/VERSION coverage before the adapter is treated as current.
+The validator checks source skill metadata, required sections, README/VERSION coverage, and Codex/Cursor routing coverage. It does not inspect the installed `~/.claude/skills` mirror.
 
 ## Rules
 
