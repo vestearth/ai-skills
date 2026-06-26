@@ -18,7 +18,7 @@ Review production impact before style.
 - The task is to debug an active failure; prefer `debugging`.
 - The user asks to implement known changes rather than review them.
 - The review is purely release readiness; prefer `release-checklist`.
-- The diff is in a specialized domain; run the matching domain review alongside or first — protobuf/gRPC or generated artifacts (`grpc-contract-review`), RabbitMQ events (`rabbitmq-event-review`), Games Labs APIs (`games-labs-api-review`), Go service implementation (`golang-service-review`), provider callbacks (`seamless-provider-review`), or deploy/infra manifests (`k8s-deploy-review`, `gitops-deploy-review`).
+- The diff is in a specialized domain — do not rely on this generic review alone; run the matching domain review first (it may run alongside this one): protobuf/gRPC or generated artifacts (`grpc-contract-review`), RabbitMQ events (`rabbitmq-event-review`), Games Labs APIs (`games-labs-api-review`), Go service implementation (`golang-service-review`), provider callbacks (`seamless-provider-review`), or deploy/infra manifests (`k8s-deploy-review`, `gitops-deploy-review`).
 
 ## Goal
 

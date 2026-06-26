@@ -37,7 +37,7 @@ Protect Games Labs clients and service contracts with clear mobile/web impact, s
 
 - Endpoint, method, request shape, response shape, and error behavior.
 - Relevant service, gateway, protobuf, Postman/docs, or mobile handoff examples.
-- Domain playbook context from `playbooks/games-labs/api-review.md` when the change affects client behavior.
+- Matching playbook context from `playbooks/games-labs/` (see the Playbooks section) when the change affects client behavior.
 
 ## Process
 

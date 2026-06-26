@@ -29,7 +29,7 @@ Keep data, business rules, and workflows owned by clear services with stable com
 
 ## Process
 
-1. Map ownership — name the single service that owns the data, the business rule, and the workflow. If more than one service claims any of these, stop and resolve ownership before designing the boundary.
+1. Map ownership — name the owning service for each axis: the data, the business rule, and the workflow (they may be different services). If ownership of any axis is shared or unclear, stop and resolve it before designing the boundary.
 2. Choose the communication style by need:
    - The caller needs an immediate, consistent answer → gRPC (synchronous). Defer protobuf message/field and wire-compatibility details to `grpc-contract-review`.
    - The reaction can be eventually consistent or fanned out, and the producer must not block on consumers → event messaging. Defer schema, routing keys, retries, and delivery semantics to `rabbitmq-event-review`.
