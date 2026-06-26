@@ -7,6 +7,8 @@ description: Use when reviewing seamless game provider integrations, balance cal
 
 Use this skill for provider integrations such as AFB, 1UP, or similar game platform APIs.
 
+This skill covers callback *mechanics* (environment, signatures, launch, callback acceptance, idempotency). If the callback affects wallet balance, round lifecycle, or downstream mission/turnover end-to-end, also read `playbooks/games-labs/provider-settlement.md` — a callback that is accepted is not the same as a round that is correctly settled.
+
 ## Use When
 
 - Reviewing seamless game provider integrations, balance callbacks, payout flows, launch URLs, signatures, staging aliases, or provider round APIs.

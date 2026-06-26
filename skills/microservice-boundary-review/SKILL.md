@@ -29,32 +29,13 @@ Keep data, business rules, and workflows owned by clear services with stable com
 
 ## Process
 
-Answer ownership questions:
-
-- Which service owns the data?
-- Which service owns the business rule?
-- Which service owns the workflow?
-
-Should communication use:
-
-- gRPC
-- Event messaging
-- API Gateway
-
-Check:
-
-- Ownership clarity
-- Contract stability
-- Failure handling
-- Retry behavior
-- Observability
-
-Reject:
-
-- Cross-service database access
-- Shared mutable state
-- Duplicated business logic
-- Unclear ownership
+1. Map ownership — name the single service that owns the data, the business rule, and the workflow. If more than one service claims any of these, stop and resolve ownership before designing the boundary.
+2. Choose the communication style by need:
+   - The caller needs an immediate, consistent answer → gRPC (synchronous). Defer protobuf message/field and wire-compatibility details to `grpc-contract-review`.
+   - The reaction can be eventually consistent or fanned out, and the producer must not block on consumers → event messaging. Defer schema, routing keys, retries, and delivery semantics to `rabbitmq-event-review`.
+   - The path is external or client-facing and aggregates/exposes a service → API Gateway.
+3. Check boundary health for each cross-service call — ownership clarity, contract stability, failure handling, retry behavior, and observability.
+4. Reject boundary violations and require a fix before approval — cross-service database access, shared mutable state, duplicated business logic, or unclear ownership.
 
 ## Output Format
 

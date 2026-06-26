@@ -5,7 +5,17 @@ description: Use when reviewing API changes for Games Labs services, mobile inte
 
 # Games Labs API Review
 
-Use this skill for Games Labs API review. For domain-specific API conventions, also read `playbooks/games-labs/api-review.md`.
+Use this skill as the routing front door for Games Labs API review. The deeper, domain-specific operating rules live in `playbooks/games-labs/` — treat the playbooks as the source of truth and this skill as the entry point.
+
+## Playbooks
+
+Read the playbook that matches the change; do not duplicate its content here.
+
+- `playbooks/games-labs/api-review.md` — API conventions: status strategy, error/UX routing, idempotency, gateway/protobuf alignment, rollout.
+- `playbooks/games-labs/mobile-contract-handoff.md` — answering mobile/web contract questions and deciding whether backend work is required.
+- `playbooks/games-labs/missions-events.md` — debugging mission progress across producer events, RabbitMQ routing, consumers, and client-facing status.
+- `playbooks/games-labs/shared-lib-rollout.md` — shared-lib adoption, pseudo-version alignment, and generated-contract drift.
+- `playbooks/games-labs/provider-settlement.md` — end-to-end provider settlement (pair with `seamless-provider-review` for callback mechanics).
 
 ## Use When
 
@@ -45,17 +55,9 @@ Review error strategy:
 
 Review status strategy:
 
-Prefer explicit status values where appropriate.
-
-Examples:
-
-- not_started
-- in_progress
-- claimable
-- claimed
-- inactive
-- upcoming
-- expired
+- Prefer explicit, stable, client-friendly status values over implicit client inference.
+- Avoid status values that expose backend implementation names or force mobile/web to duplicate business rules.
+- See the Status Strategy section of `playbooks/games-labs/api-review.md` for the canonical guidance and value list.
 
 Review idempotency:
 

@@ -21,6 +21,7 @@ Gather enough context to act accurately without flooding the session.
 - The user provides all relevant text directly.
 - The task is a small edit in one known file.
 - The task is purely wording, translation, or explanation.
+- The goal is to locate existing ownership, a pattern, or a specific symbol/route/contract; prefer `search-first`. (context-discipline = budget the window; search-first = find the thing.)
 
 ## Required Rule
 

@@ -21,6 +21,7 @@ Discover the existing system before changing it.
 - The task is purely wording or documentation with no system behavior.
 - The exact file and symbol are provided and no broader impact is possible.
 - The user explicitly asks for a direct explanation without codebase discovery.
+- The problem is managing a limited context window — what to load versus deliberately skip — rather than locating a specific thing; prefer `context-discipline`. (search-first = find the thing; context-discipline = budget the window.)
 
 ## Required Rule
 

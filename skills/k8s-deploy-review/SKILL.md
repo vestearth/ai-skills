@@ -16,7 +16,7 @@ description: Use when adding or changing Kubernetes / k3s manifests, Kustomize o
 
 - The concern is the image build itself; prefer `container-build-review`.
 - The concern is the CI/CD pipeline that applies the manifests; prefer `cicd-pipeline-review`.
-- The concern is GitOps sync policy/drift in an ArgoCD app; note it and prefer a dedicated GitOps review when available.
+- The concern is GitOps sync policy/drift in an ArgoCD app; prefer `gitops-deploy-review`.
 - The task is release readiness and rollback narrative; prefer `release-checklist`.
 
 ## Required Inputs

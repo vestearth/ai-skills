@@ -28,22 +28,12 @@ Prevent local-only dependency behavior from hiding CI or production build failur
 
 ## Process
 
-- No accidental go.work dependency
-- No go mod tidy in Dockerfile
-- Build uses -mod=readonly
-- Dependency versions are intentional
-- CI and local build behavior match
-
-For Go services, check:
-
-- GOWORK=off
-- GOFLAGS=-mod=readonly
-- go build succeeds
-
-For shared libraries, check:
-
-- Version alignment across services
-- No local replace directives in production services
+1. Identify the changed build inputs — `go.mod`, `go.sum`, `go.work`, Dockerfile, CI config, or a shared-module version bump.
+2. Check workspace and replace directives — no accidental `go.work` dependency leaking in, and no local `replace` directives in production services.
+3. Reproduce the build the way CI does — `GOWORK=off`, `GOFLAGS=-mod=readonly`, no `go mod tidy` in the Dockerfile, and confirm `go build` succeeds.
+4. Confirm dependency versions are intentional — pinned deliberately, not pulled in by a stray `tidy` or workspace edit.
+5. For shared libraries (such as `shared-lib`), check version alignment across the services that consume them.
+6. Compare local versus CI build behavior and record the evidence (commands run and their output).
 
 ## Output Format
 
