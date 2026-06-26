@@ -46,8 +46,11 @@ is a consistent, structured proposal — not ad hoc reasoning.
    skill only after passing the reuse-pressure gate (recurs >=2x or cross-repo/task
    value); otherwise route it to knowledge-base or no-op.
 3. ROUTE — delegate the actual work, but do not commit it:
-   - create/edit a skill -> `superpowers:writing-skills` (TDD); if unavailable, use the
-     fallback in `references/decision-matrix.md`.
+   - create/edit a skill -> `superpowers:writing-skills` (TDD). If that skill is
+     unavailable (Codex/Cursor/plain Claude), fall back: follow `CONTRIBUTING.md`,
+     copy the structure of the nearest existing skill, keep the patch minimal, run
+     `scripts/validate-skills.sh`, and mark the proposal "fallback-authored" (TDD
+     pressure-testing not applied). Full fallback in `references/decision-matrix.md`.
    - record knowledge -> `knowledge-capture` / `knowledge-promote`.
    - edit a cross-cutting rule -> the relevant `rules/<name>/RULE.md`.
 4. PROPOSE — assemble one proposal (see Output Format), validate skill changes with

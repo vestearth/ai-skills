@@ -76,7 +76,18 @@ Run the local validator before release, adapter sync, or skill taxonomy changes:
 scripts/validate-skills.sh
 ```
 
-The validator checks frontmatter, required sections, skill folder names, and README/VERSION skill coverage.
+The validator checks:
+
+- Skill frontmatter (`name` matching the folder, `description`) and the required sections.
+- Skill folder/name alignment and README/VERSION skill coverage.
+- Codex and Cursor adapter coverage, and that committed Cursor `.mdc` rules use the
+  `ai-skills/skills/...` prefix and resolve to real skill files.
+- Games Labs playbook coverage: every `playbooks/games-labs/*.md` is referenced from
+  each routing surface (VERSION.md, README.md, AGENTS.md, the Games Labs example
+  `AGENTS.md`, and `games-labs-api-review`), and every playbook path mentioned in a
+  surface resolves to a real file.
+- Reference path integrity: paths a `SKILL.md` points at (`rules/`, `playbooks/`,
+  `scripts/`, `adapters/`, `examples/`, or its own `references/`) resolve to real files.
 
 ## Style
 

@@ -84,26 +84,60 @@ if [ -f "$ROOT_DIR/VERSION.md" ]; then
   done < <(sed -n 's/.*`\([^`]*\)`.*/\1/p' "$ROOT_DIR/VERSION.md" | grep -v '/' | sort -u)
 fi
 
-# Playbook coverage: keep VERSION.md's "V3 complete" claim from drifting out of
-# sync with the playbooks actually on disk. Every playbooks/games-labs/*.md must
-# be listed in VERSION.md, and every playbook path referenced in VERSION.md must
-# resolve to a real file.
+# Playbook coverage: a games-labs playbook is a routing/product surface, so it must
+# be discoverable from every place that routes to it, not just present on disk.
+# Forward: every playbooks/games-labs/*.md is referenced in each routing surface.
+# Reverse: every playbook path mentioned in a surface resolves to a real file. This
+# keeps VERSION.md's "V3 complete" claim and the adapter/skill routing from drifting
+# apart.
 PLAYBOOKS_DIR="$ROOT_DIR/playbooks/games-labs"
-if [ -d "$PLAYBOOKS_DIR" ] && [ -f "$ROOT_DIR/VERSION.md" ]; then
-  while IFS= read -r playbook_file; do
-    rel="playbooks/games-labs/$(basename "$playbook_file")"
-    if ! grep -qF "$rel" "$ROOT_DIR/VERSION.md"; then
-      fail "VERSION.md: missing playbook '$rel'"
+playbook_surfaces=(
+  "VERSION.md"
+  "README.md"
+  "AGENTS.md"
+  "examples/games-labs/AGENTS.md"
+  "skills/games-labs-api-review/SKILL.md"
+)
+if [ -d "$PLAYBOOKS_DIR" ]; then
+  for surface in "${playbook_surfaces[@]}"; do
+    surface_path="$ROOT_DIR/$surface"
+    if [ ! -f "$surface_path" ]; then
+      fail "missing playbook routing surface: $surface"
+      continue
     fi
-  done < <(find "$PLAYBOOKS_DIR" -mindepth 1 -maxdepth 1 -name '*.md' | sort)
+    while IFS= read -r playbook_file; do
+      rel="playbooks/games-labs/$(basename "$playbook_file")"
+      if ! grep -qF "$rel" "$surface_path"; then
+        fail "$surface: missing playbook reference '$rel'"
+      fi
+    done < <(find "$PLAYBOOKS_DIR" -mindepth 1 -maxdepth 1 -name '*.md' | sort)
 
-  while IFS= read -r listed_playbook; do
-    [ -z "$listed_playbook" ] && continue
-    if [ ! -f "$ROOT_DIR/$listed_playbook" ]; then
-      fail "VERSION.md: listed playbook '$listed_playbook' has no file"
-    fi
-  done < <(grep -oE 'playbooks/games-labs/[a-z0-9-]+\.md' "$ROOT_DIR/VERSION.md" | sort -u)
+    while IFS= read -r ref; do
+      if [ ! -f "$ROOT_DIR/$ref" ]; then
+        fail "$surface: broken playbook reference '$ref' (no such file)"
+      fi
+    done < <(grep -oE 'playbooks/games-labs/[a-z0-9-]+\.md' "$surface_path" | sort -u)
+  done
 fi
+
+# Reference path integrity: a path a SKILL.md points at must resolve to a real
+# file, so a skill never routes an agent to a dead link. Root-prefixed refs
+# (rules/, playbooks/, scripts/, adapters/, examples/) resolve from the repo root;
+# references/ refs resolve from the skill's own directory.
+while IFS= read -r skill_file; do
+  skill_dir="$(dirname "$skill_file")"
+  while IFS= read -r ref; do
+    if [ ! -e "$ROOT_DIR/$ref" ]; then
+      fail "${skill_file#$ROOT_DIR/}: broken reference '$ref' (no such file under repo root)"
+    fi
+  done < <(grep -oE '(rules|playbooks|scripts|adapters|examples)/[A-Za-z0-9._/-]+\.(md|sh|ya?ml|mdc)' "$skill_file" | sort -u)
+
+  while IFS= read -r ref; do
+    if [ ! -e "$skill_dir/$ref" ]; then
+      fail "${skill_file#$ROOT_DIR/}: broken reference '$ref' (no such file in skill references/)"
+    fi
+  done < <(grep -oE 'references/[A-Za-z0-9._/-]+\.(md|sh)' "$skill_file" | sort -u)
+done < <(find "$SKILLS_DIR" -type f -name 'SKILL.md' | sort)
 
 if [ -f "$ROOT_DIR/README.md" ]; then
   for skill_name in "${skill_names[@]}"; do

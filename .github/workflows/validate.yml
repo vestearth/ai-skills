@@ -1,0 +1,21 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate skills, playbooks, and adapters
+        run: bash scripts/validate-skills.sh
+      - name: Smoke-test the Cursor installer
+        run: bash scripts/test-install-cursor.sh
+      - name: Whitespace and conflict-marker check (PR)
+        if: github.event_name == 'pull_request'
+        run: git diff --check "origin/${{ github.base_ref }}...HEAD"
