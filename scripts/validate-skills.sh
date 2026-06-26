@@ -110,6 +110,26 @@ for doc in "${adapter_docs[@]}"; do
   done
 done
 
+# Cursor adapter rules route to `ai-skills/skills/<skill>/SKILL.md` paths, which
+# resolve from the parent workspace (the nested/recommended layout this team
+# uses). A bad prefix makes every pointer dead but still passes a name-substring
+# check, so verify paths explicitly. The standalone `skills/...` form is produced
+# only by install-cursor.sh --standalone and must never be committed.
+for rule in "$ROOT_DIR"/adapters/cursor/rules/*.mdc; do
+  [ -f "$rule" ] || continue
+  # Reject the standalone prefix (backtick directly followed by `skills/`).
+  if grep -q '`skills/' "$rule"; then
+    fail "adapters/cursor/rules/$(basename "$rule"): committed source must use 'ai-skills/skills/...', not standalone 'skills/...' (standalone form is install-cursor.sh --standalone only)"
+  fi
+  # Each `ai-skills/skills/<name>/SKILL.md` must resolve to skills/<name>/SKILL.md
+  # under this repo root (strip the leading ai-skills/ segment).
+  while IFS= read -r ref; do
+    if [ ! -f "$ROOT_DIR/${ref#ai-skills/}" ]; then
+      fail "adapters/cursor/rules/$(basename "$rule"): broken skill path '$ref' (no such file under ai-skills)"
+    fi
+  done < <(grep -oE 'ai-skills/skills/[a-z0-9-]+/SKILL\.md' "$rule" | sort -u)
+done
+
 if [ "$failures" -gt 0 ]; then
   printf '\nSkill validation failed with %d issue(s).\n' "$failures" >&2
   exit 1

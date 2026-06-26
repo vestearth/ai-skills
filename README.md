@@ -168,6 +168,37 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
 - Cursor: use `.mdc` rules that route to the matching `skills/<skill>/SKILL.md`.
 - Claude Code: expose each folder under `skills/` as a Claude-compatible skill.
 
+### Cursor setup
+
+Cursor only auto-loads `.mdc` rules from `<workspace-root>/.cursor/rules/` — it
+does **not** read `adapters/cursor/rules/` on its own. Use the installer so the
+rules land in the right place with the correct skill-path prefix for the folder
+you open as the Cursor workspace. Do not hand-copy the `.mdc` files.
+
+```bash
+# Default — you open the PARENT folder that contains ai-skills/ as the Cursor
+# workspace (the recommended layout). Symlinks rules into <parent>/.cursor/rules,
+# keeping the committed `ai-skills/skills/...` prefix that resolves from there:
+scripts/install-cursor.sh
+# or target an explicit parent:
+scripts/install-cursor.sh --nested /path/to/project-root
+
+# You open ai-skills ITSELF as the Cursor workspace: rewrites the prefix to
+# `skills/...` and copies into ai-skills/.cursor/rules:
+scripts/install-cursor.sh --standalone
+```
+
+Which folder is your workspace? In Cursor, the top item in the file explorer is
+the workspace root. If it's the parent containing `ai-skills/`, use the default;
+if it's `ai-skills` itself, use `--standalone`.
+
+Rules use `globs` + `alwaysApply: false`, so they attach when you edit a
+matching file (e.g. `*.proto`, `go.mod`), not on every prompt. After install,
+edit a matching file and confirm the rule appears in Cursor's active context.
+
+An operator who runs several agents and keeps Cursor as an intentionally
+un-wired oracle lane (see knowledge-base ADR-0002) should simply not run this.
+
 ## Quality checks
 
 Run the local validator before release or adapter sync:
