@@ -26,6 +26,32 @@ scripts/validate-skills.sh
 
 The validator checks source skill metadata, required sections, README/VERSION coverage, and Codex/Cursor routing coverage. It does not inspect the installed `~/.claude/skills` mirror.
 
+## Subagents
+
+Claude Code subagents (`.claude/agents/<name>.md`) are a Claude-lane wiring artifact
+— a lane that activates a task, distinct from ai-dev-office role personas (behavior)
+and from skills (task triggers). Their source of truth lives here, under
+`adapters/claude/agents/`, and is wired into a workspace by an absolute symlink,
+mirroring how `skills/` is mirrored into `.claude/skills/`:
+
+```bash
+ln -sfn "$PWD/adapters/claude/agents/<name>.md" "<workspace>/.claude/agents/<name>.md"
+```
+
+Subagent bodies reference repo paths relative to the **workspace root** (the dir
+Claude Code runs from), so they resolve correctly through the symlink. Keep them
+read-only / suggest-only where they touch durable state.
+
+Current subagents:
+
+- `knowledge-capturer` — post-task, read-only; emits a suggest-only
+  `runs/<task-id>/knowledge-capture-output.yaml` capture proposal
+  (workflow: `ai-dev-office/workflows/knowledge-capture.md`; never writes the vault
+  or commits). Codex/Cursor use the lane-neutral runner
+  `ai-dev-office/scripts/knowledge-capture.rb` instead.
+
+See `30 ADR/ADR-0006 Claude Subagents Live In ai-skills Adapters` in `knowledge-base`.
+
 ## Rules
 
 1. Preserve each `SKILL.md` exactly when installing.
