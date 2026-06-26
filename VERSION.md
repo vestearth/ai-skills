@@ -49,6 +49,7 @@ Current target completion: complete
 
 | Playbook | Status |
 | --- | --- |
+| playbooks/games-labs/api-review.md | complete |
 | playbooks/games-labs/mobile-contract-handoff.md | complete |
 | playbooks/games-labs/shared-lib-rollout.md | complete |
 | playbooks/games-labs/provider-settlement.md | complete |
@@ -169,6 +170,7 @@ V3 expands Games Labs production/domain playbooks without adding broad new skill
 
 Completed playbooks:
 
+- playbooks/games-labs/api-review.md
 - playbooks/games-labs/mobile-contract-handoff.md
 - playbooks/games-labs/shared-lib-rollout.md
 - playbooks/games-labs/provider-settlement.md

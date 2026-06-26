@@ -84,6 +84,27 @@ if [ -f "$ROOT_DIR/VERSION.md" ]; then
   done < <(sed -n 's/.*`\([^`]*\)`.*/\1/p' "$ROOT_DIR/VERSION.md" | grep -v '/' | sort -u)
 fi
 
+# Playbook coverage: keep VERSION.md's "V3 complete" claim from drifting out of
+# sync with the playbooks actually on disk. Every playbooks/games-labs/*.md must
+# be listed in VERSION.md, and every playbook path referenced in VERSION.md must
+# resolve to a real file.
+PLAYBOOKS_DIR="$ROOT_DIR/playbooks/games-labs"
+if [ -d "$PLAYBOOKS_DIR" ] && [ -f "$ROOT_DIR/VERSION.md" ]; then
+  while IFS= read -r playbook_file; do
+    rel="playbooks/games-labs/$(basename "$playbook_file")"
+    if ! grep -qF "$rel" "$ROOT_DIR/VERSION.md"; then
+      fail "VERSION.md: missing playbook '$rel'"
+    fi
+  done < <(find "$PLAYBOOKS_DIR" -mindepth 1 -maxdepth 1 -name '*.md' | sort)
+
+  while IFS= read -r listed_playbook; do
+    [ -z "$listed_playbook" ] && continue
+    if [ ! -f "$ROOT_DIR/$listed_playbook" ]; then
+      fail "VERSION.md: listed playbook '$listed_playbook' has no file"
+    fi
+  done < <(grep -oE 'playbooks/games-labs/[a-z0-9-]+\.md' "$ROOT_DIR/VERSION.md" | sort -u)
+fi
+
 if [ -f "$ROOT_DIR/README.md" ]; then
   for skill_name in "${skill_names[@]}"; do
     if ! grep -q "\`$skill_name\`" "$ROOT_DIR/README.md"; then
