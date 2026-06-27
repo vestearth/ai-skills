@@ -28,12 +28,20 @@ Prevent local-only dependency behavior from hiding CI or production build failur
 
 ## Process
 
-1. Identify the changed build inputs — `go.mod`, `go.sum`, `go.work`, Dockerfile, CI config, or a shared-module version bump.
+1. Identify the changed build inputs — `go.mod`, `go.sum`, `go.work`, Dockerfile, CI config, or a shared-module version bump. `go.mod` and `go.sum` move together: a require/version change in one with no matching change in the other is a red flag — inspect why before trusting it.
 2. Check workspace and replace directives — no accidental `go.work` dependency leaking in, and no local `replace` directives in production services.
-3. Reproduce the build the way CI does — `GOWORK=off`, `GOFLAGS=-mod=readonly`, no `go mod tidy` in the Dockerfile, and confirm `go build` succeeds.
-4. Confirm dependency versions are intentional — pinned deliberately, not pulled in by a stray `tidy` or workspace edit.
-5. For shared libraries (such as `shared-lib`), check version alignment across the services that consume them.
-6. Compare local versus CI build behavior and record the evidence (commands run and their output).
+3. Reproduce the build the way CI does — workspace off, modules read-only — and verify `build` and `test` separately (a green `build` does not prove tests compile or pass):
+
+   ```bash
+   GOWORK=off GOFLAGS=-mod=readonly go build ./...
+   GOWORK=off GOFLAGS=-mod=readonly go test ./...
+   ```
+
+   `-mod=readonly` makes these fail loudly if the build would need to mutate `go.mod`/`go.sum` — which is exactly the behavior CI has, and what a local developer build (with `go.work`) hides.
+4. Treat `go mod tidy` as a mutating command, not a verification one. Run it locally when needed, then review the resulting `go.mod`/`go.sum` diff before committing; never run it inside the Dockerfile or build step.
+5. Confirm dependency versions are intentional — pinned deliberately, not pulled in by a stray `tidy` or workspace edit.
+6. For shared libraries (such as `shared-lib`), check version alignment across the services that consume them.
+7. Compare local versus CI build behavior and record the evidence (commands run and their output).
 
 ## Output Format
 
@@ -45,6 +53,8 @@ Prevent local-only dependency behavior from hiding CI or production build failur
 
 ## Anti-patterns
 
-- Local-only dependency behavior masks CI failures
-- Docker build mutates dependency graph
-- Dependency source is unclear
+- Trusting a green local build that used the developer workspace (`go.work`) instead of the CI conditions (`GOWORK=off`, `-mod=readonly`).
+- Running `go mod tidy` in the Dockerfile or build step, letting the image mutate the dependency graph.
+- Running `go mod tidy` without reviewing the resulting `go.mod`/`go.sum` diff.
+- Treating a passing `go build` as proof that tests compile or pass.
+- Bumping a shared module without checking version alignment across the services that consume it.

@@ -28,13 +28,13 @@ how agents reason, review, debug, plan, and produce outputs for work such as
 
 Each skill should define:
 
-- use when / do not use when
+- use when
+- do not use when
+- goal
 - required inputs
 - process
-- checklist or review criteria
-- anti-patterns
 - output format
-- definition of done
+- anti-patterns
 
 Current repository files, tests, CI, logs, runtime config, current contracts, and
 actual runtime behavior still decide what is true.

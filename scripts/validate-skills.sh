@@ -147,6 +147,17 @@ if [ -f "$ROOT_DIR/README.md" ]; then
   done
 fi
 
+# Root AGENTS.md routes agents to skills, so it must stay in sync with the skill
+# set and the Codex/Cursor adapters (which the loop below already enforces).
+# Otherwise a new skill silently never reaches the Codex lane via root routing.
+if [ -f "$ROOT_DIR/AGENTS.md" ]; then
+  for skill_name in "${skill_names[@]}"; do
+    if ! grep -q "$skill_name" "$ROOT_DIR/AGENTS.md"; then
+      fail "AGENTS.md: missing skill '$skill_name'"
+    fi
+  done
+fi
+
 adapter_docs=(
   "$ROOT_DIR/adapters/codex/AGENTS-snippet.md"
   "$ROOT_DIR/adapters/cursor/rules/ai-skills.mdc"

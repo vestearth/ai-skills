@@ -24,9 +24,8 @@ Priority:
 
 Repository-specific claims require source-code verification.
 
-New or revised skills should state use when, do not use when, required inputs,
-process, checklist or review criteria, anti-patterns, output format, and
-definition of done.
+New or revised skills should state use when, do not use when, goal, required
+inputs, process, output format, and anti-patterns.
 
 Before final answers, handoffs, merge claims, or fix claims, apply:
 
@@ -50,6 +49,7 @@ Recommended skills:
 - knowledge-capture
 - knowledge-promote
 - knowledge-source-review
+- self-learning
 - debugging
 - code-review
 - clickhouse-io
@@ -66,6 +66,12 @@ Recommended skills:
 - rabbitmq-event-review
 - golang-service-review
 - datadog-observability
+- container-build-review
+- cicd-pipeline-review
+- k8s-deploy-review
+- gitops-deploy-review
+- incident-response
+- secrets-management
 - backend-interview-review
 - frontend-interview-review
 - sprint-planning
