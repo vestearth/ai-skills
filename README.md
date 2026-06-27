@@ -207,7 +207,19 @@ Run the local validator before release or adapter sync:
 scripts/validate-skills.sh
 ```
 
-The validator checks skill frontmatter, required contract sections, folder/name alignment, README/VERSION coverage, and Codex/Cursor adapter coverage.
+The validator checks skill frontmatter, required contract sections, folder/name
+alignment, skill coverage across README / VERSION / root `AGENTS.md` / Codex /
+Cursor adapters, Games Labs playbook coverage across every routing surface, and
+that the paths a `SKILL.md` points at resolve to real files.
+
+Smoke-test the Cursor installer (nested and standalone layouts) with:
+
+```bash
+scripts/test-install-cursor.sh
+```
+
+Both run in CI on pushes to `main` and on pull requests via
+`.github/workflows/validate.yml`.
 
 ## Adoption workflow
 
