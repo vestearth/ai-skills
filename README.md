@@ -238,6 +238,8 @@ Playbooks hold domain-specific operating rules that are too specific for generic
 
 The v3 expansion adds production/domain playbooks before broad new skills. These playbooks capture high-reuse Games Labs operating patterns while keeping the generic skill catalog small.
 
+Each playbook is described under [Playbooks](#playbooks) above; completion status is tracked in [VERSION.md](VERSION.md) (V3 Completion). This section intentionally keeps no second list, so description and status never drift apart.
+
 ## Source of truth rule
 
 The actual repository files, tests, build output, CI, and production logs always beat AI memory, indexed context, old summaries, or previous task history.
