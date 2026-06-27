@@ -167,11 +167,4 @@ Run `scripts/validate-skills.sh` before release or adapter sync.
 ## V3 Playbooks
 
 V3 expands Games Labs production/domain playbooks without adding broad new skills.
-
-Completed playbooks:
-
-- playbooks/games-labs/api-review.md
-- playbooks/games-labs/mobile-contract-handoff.md
-- playbooks/games-labs/shared-lib-rollout.md
-- playbooks/games-labs/provider-settlement.md
-- playbooks/games-labs/missions-events.md
+The completed playbooks and their status are tracked in the [V3 Completion](#v3-completion) table above; this section keeps no second list, so the two never drift.
