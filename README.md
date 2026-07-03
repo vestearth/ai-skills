@@ -141,7 +141,7 @@ These apply before choosing a larger implementation path.
 
 ### Delivery / Infra
 
-The thinking layer for the `devops` agent: GHCR + GitHub Actions + k3s + Kustomize + ArgoCD.
+The thinking layer for the `devops` agent: GitHub Actions + ECR/ECS (current Games Labs lane — see `playbooks/games-labs/ecs-deploy.md`), plus GHCR + k3s + Kustomize + ArgoCD (legacy lane, kept for reuse).
 
 | Skill | Use when |
 | --- | --- |
@@ -277,6 +277,7 @@ Playbooks hold domain-specific operating rules that are too specific for generic
 - `playbooks/games-labs/shared-lib-rollout.md` describes how to check shared-lib adoption, pseudo-version alignment, generated contract drift, and cross-repo build evidence.
 - `playbooks/games-labs/provider-settlement.md` describes how to review provider settlement across callback acceptance, wallet correctness, round lifecycle, events, and reconciliation.
 - `playbooks/games-labs/missions-events.md` describes how to debug mission progress through producer events, RabbitMQ routing, consumers, mission rules, and client-facing status.
+- `playbooks/games-labs/ecs-deploy.md` describes the AWS ECS deploy lane: staging/prod workflows, the `ecs/env.names` env contract, Cloud Map service URLs, fail-loud deploy checks, and rollback by task-definition revision.
 
 ## v3 Games Labs Playbooks
 

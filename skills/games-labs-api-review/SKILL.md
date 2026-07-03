@@ -14,6 +14,7 @@ Read the playbook that matches the change; do not duplicate its content here.
 - `playbooks/games-labs/api-review.md` — API conventions: status strategy, error/UX routing, idempotency, gateway/protobuf alignment, rollout.
 - `playbooks/games-labs/mobile-contract-handoff.md` — answering mobile/web contract questions and deciding whether backend work is required.
 - `playbooks/games-labs/missions-events.md` — debugging mission progress across producer events, RabbitMQ routing, consumers, and client-facing status.
+- `playbooks/games-labs/ecs-deploy.md` — ECS staging/prod deploy lane: env.names contract, Cloud Map service URLs, task-definition render, rollback by revision.
 - `playbooks/games-labs/shared-lib-rollout.md` — shared-lib adoption, pseudo-version alignment, and generated-contract drift.
 - `playbooks/games-labs/provider-settlement.md` — end-to-end provider settlement (pair with `seamless-provider-review` for callback mechanics).
 

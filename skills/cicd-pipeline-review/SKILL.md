@@ -11,6 +11,8 @@ description: Use when adding or changing GitHub Actions workflows, CI/CD pipelin
 - Reviewing a build → push → deploy flow, image tagging, or rollout step.
 - Changing workflow `permissions`, secrets, `concurrency`, triggers, or third-party action versions.
 - Confirming that a pipeline fails loudly and deploys the artifact it actually built.
+- For Games Labs ECS deploy workflows (`staging.yml`/`prod.yml`, `ecs/task-definition.json`,
+  `ecs/env.names`), pair this skill with `playbooks/games-labs/ecs-deploy.md`.
 
 ## Do Not Use When
 

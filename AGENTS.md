@@ -83,3 +83,4 @@ Recommended Games Labs playbooks:
 - playbooks/games-labs/shared-lib-rollout.md
 - playbooks/games-labs/provider-settlement.md
 - playbooks/games-labs/missions-events.md
+- playbooks/games-labs/ecs-deploy.md

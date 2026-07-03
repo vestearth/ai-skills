@@ -18,6 +18,7 @@ description: Use when adding or changing ArgoCD Applications, GitOps sync polici
 - The concern is the manifest's own correctness (probes, limits); prefer `k8s-deploy-review`.
 - The concern is the CI workflow that pushes the image; prefer `cicd-pipeline-review`.
 - The task is release readiness/rollback narrative; prefer `release-checklist`.
+- The deploy target is AWS ECS (the current Games Labs staging/prod lane — no GitOps controller involved); prefer `cicd-pipeline-review` + `playbooks/games-labs/ecs-deploy.md`.
 
 ## Required Inputs
 

@@ -18,6 +18,7 @@ description: Use when adding or changing Kubernetes / k3s manifests, Kustomize o
 - The concern is the CI/CD pipeline that applies the manifests; prefer `cicd-pipeline-review`.
 - The concern is GitOps sync policy/drift in an ArgoCD app; prefer `gitops-deploy-review`.
 - The task is release readiness and rollback narrative; prefer `release-checklist`.
+- The deploy target is AWS ECS (the current Games Labs staging/prod lane — no k8s manifests involved); prefer `cicd-pipeline-review` + `playbooks/games-labs/ecs-deploy.md`.
 
 ## Required Inputs
 

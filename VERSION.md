@@ -54,6 +54,7 @@ Current target completion: complete
 | playbooks/games-labs/shared-lib-rollout.md | complete |
 | playbooks/games-labs/provider-settlement.md | complete |
 | playbooks/games-labs/missions-events.md | complete |
+| playbooks/games-labs/ecs-deploy.md | complete |
 
 ## Tech Lead OS Bridge / Productivity Layer
 

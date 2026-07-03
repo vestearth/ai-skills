@@ -53,6 +53,7 @@ Use the smallest relevant skill:
 - Shared-lib rollout, pseudo-version alignment, generated contract drift, handler message ownership, or cross-repo adoption status: `ai-skills/playbooks/games-labs/shared-lib-rollout.md`
 - Provider settlement, round lifecycle, settled amount, turnover, duplicate callbacks, or reconciliation: `ai-skills/playbooks/games-labs/provider-settlement.md`
 - Missions event progress, `player.activity.v1`, daily mission status, force-complete, RabbitMQ routing, or restore/quote handoff: `ai-skills/playbooks/games-labs/missions-events.md`
+- ECS deploy workflows (`staging.yml`/`prod.yml`), `ecs/task-definition.json`, `ecs/env.names`, inter-service Cloud Map URLs, or ECS rollback: `ai-skills/playbooks/games-labs/ecs-deploy.md`
 - Seamless provider callbacks, signatures, launch URLs, balance, payout, rounds: `ai-skills/skills/seamless-provider-review/SKILL.md`
 - gRPC/protobuf/gateway contract changes: `ai-skills/skills/grpc-contract-review/SKILL.md`
 - RabbitMQ events, routing, retries, DLQs: `ai-skills/skills/rabbitmq-event-review/SKILL.md`
