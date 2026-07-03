@@ -55,6 +55,22 @@ Current target completion: complete
 | playbooks/games-labs/provider-settlement.md | complete |
 | playbooks/games-labs/missions-events.md | complete |
 
+## Tech Lead OS Bridge / Productivity Layer
+
+Current target completion: complete
+
+This bridge adds productivity skills that improve planning, handoff, and
+skill-library quality without declaring the full v4 Tech Lead OS complete.
+
+| Skill | Status |
+| --- | --- |
+| `skill-authoring-review` | complete |
+| `decision-grilling` | complete |
+| `session-handoff` | complete |
+
+Future v4 mentoring backlog: extract teach concepts into knowledge-base
+templates and mentoring guidance, but do not add a teach skill in this layer.
+
 ## Operating Guardrails
 
 Reusable baseline guardrails for checking reuse, evidence, verification, context, and impact before building.
@@ -83,14 +99,14 @@ Reusable behaviors for querying, capturing, promoting, and source-reviewing dura
 
 ## V2.0 Completion
 
-Current target completion: 16 / 16 skills
+Current target completion: 14 / 14 skills
 
 | Layer | Present | Planned | Status |
 | --- | ---: | ---: | --- |
 | Foundation Skills | 4 | 0 | complete |
 | Architecture Skills | 4 | 0 | complete |
 | Platform Skills | 3 | 0 | complete |
-| Earth Skills | 5 | 0 | complete |
+| Earth Skills | 3 | 0 | complete |
 
 ## Foundation Skills
 
@@ -148,8 +164,6 @@ Personal/domain-specific skills for Earth workflows and Games Labs context.
 
 - [x] `games-labs-api-review`
 - [x] `seamless-provider-review`
-- [x] `backend-interview-review`
-- [x] `frontend-interview-review`
 - [x] `sprint-planning`
 
 ## Compatibility Skills

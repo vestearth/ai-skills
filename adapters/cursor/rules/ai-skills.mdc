@@ -20,6 +20,9 @@ Use reusable guidance from `ai-skills/`.
 ## Routing
 
 - Code/file/dependency/scaffold changes -> `ai-skills/skills/minimal-change-review/SKILL.md`
+- Creating, editing, or pruning ai-skills guidance -> `ai-skills/skills/skill-authoring-review/SKILL.md`
+- Stress-testing a plan, design, rollout, or implementation approach -> `ai-skills/skills/decision-grilling/SKILL.md`
+- Compacting current work for another agent, session, reviewer, or continuation -> `ai-skills/skills/session-handoff/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims -> `ai-skills/skills/verification-loop/SKILL.md`
 - Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
 - Large, stale, or tool-derived context -> `ai-skills/skills/context-discipline/SKILL.md`
@@ -49,8 +52,6 @@ Use reusable guidance from `ai-skills/`.
 - Datadog metrics, logs, traces, dashboards, monitors -> `ai-skills/skills/datadog-observability/SKILL.md`
 - Games Labs API/mobile/gateway changes -> `ai-skills/skills/games-labs-api-review/SKILL.md`
 - Seamless provider callbacks, signatures, launch URLs -> `ai-skills/skills/seamless-provider-review/SKILL.md`
-- Backend interview evaluation -> `ai-skills/skills/backend-interview-review/SKILL.md`
-- Frontend interview evaluation -> `ai-skills/skills/frontend-interview-review/SKILL.md`
 - Sprint or backlog planning -> `ai-skills/skills/sprint-planning/SKILL.md`
 
 Compatibility fallback:

@@ -4,27 +4,32 @@ Expose `ai-skills` to Claude Code as a skill library.
 
 ## Recommended Setup
 
-Copy or symlink each skill folder under `skills/` into Claude's skills directory while preserving the folder name and `SKILL.md`.
-
-Example layout:
-
-```text
-~/.claude/skills/
-  debugging/
-    SKILL.md
-  code-review/
-    SKILL.md
-  grpc-contract-review/
-    SKILL.md
-```
-
-After copying or syncing, run this from the `ai-skills/` checkout:
+Run the installer from the `ai-skills/` checkout; do not hand-copy or hand-symlink
+skill folders (that is how the mirror drifts when skills are added or removed):
 
 ```bash
-scripts/validate-skills.sh
+scripts/install-claude.sh              # nested: into <parent-of-ai-skills>/.claude/skills
+scripts/install-claude.sh --nested DIR # into DIR/.claude/skills
+scripts/install-claude.sh --standalone # into ai-skills/.claude/skills
+scripts/install-claude.sh --user       # into ~/.claude/skills
 ```
 
-The validator checks source skill metadata, required sections, README/VERSION coverage, and Codex/Cursor routing coverage. It does not inspect the installed `~/.claude/skills` mirror.
+It mirrors every `skills/<name>/` (folder name and `SKILL.md` preserved) as an
+absolute symlink, so repo edits and `git pull` flow through. Resulting layout:
+
+```text
+<workspace-root>/.claude/skills/
+  debugging/          -> ai-skills/skills/debugging/
+  code-review/        -> ai-skills/skills/code-review/
+  grpc-contract-review/ -> ai-skills/skills/grpc-contract-review/
+```
+
+The installer prunes stale mirror entries (symlinks pointing at deleted or renamed
+skills), leaves unrelated libraries untouched, then runs `scripts/validate-skills.sh`.
+The validator checks source skill metadata, required sections, README/VERSION
+coverage, and Codex/Cursor routing coverage — it does not inspect the installed
+`.claude/skills` mirror. New or removed skills take effect in the next Claude Code
+session. Smoke-test the installer with `scripts/test-install-claude.sh`.
 
 ## Subagents
 

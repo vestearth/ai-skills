@@ -59,6 +59,17 @@ These skills connect the reusable behavior layer to the durable memory layer.
 | `knowledge-source-review` | Reviewing notes for sources, freshness, publication safety, broken links, or drift from current repository evidence |
 | `self-learning` | Propose-only loop: gather feedback, triage to one of five outcomes, delegate, and propose a change for approval |
 
+## Tech Lead OS Bridge / Productivity Layer
+
+These skills improve session quality and skill-library hygiene without declaring
+the full v4 Tech Lead OS complete.
+
+| Skill | Use when |
+| --- | --- |
+| `skill-authoring-review` | Creating, editing, reviewing, or pruning ai-skills guidance, frontmatter, routing, or behavior contracts |
+| `decision-grilling` | Stress-testing a plan, design, architecture choice, rollout, or implementation approach before work begins |
+| `session-handoff` | Compacting current work into a handoff for another agent, session, reviewer, or future continuation |
+
 ## Recommended project layout
 
 ```text
@@ -147,8 +158,6 @@ The thinking layer for the `devops` agent: GHCR + GitHub Actions + k3s + Kustomi
 | --- | --- |
 | `games-labs-api-review` | Reviewing Games Labs API, gateway, mobile, missions, wallet, VIP, store, or provider-facing changes |
 | `seamless-provider-review` | Reviewing seamless game provider integrations, callbacks, signatures, launch URLs, or round APIs |
-| `backend-interview-review` | Evaluating backend interview answers, take-homes, system design, debugging, or production-readiness judgment |
-| `frontend-interview-review` | Evaluating frontend interview answers, UI exercises, accessibility, performance, API integration, or product judgment |
 | `sprint-planning` | Turning goals, backlog items, incidents, or stakeholder requests into bounded sprint scope and verification plans |
 
 ## Compatibility Skills
@@ -199,6 +208,28 @@ edit a matching file and confirm the rule appears in Cursor's active context.
 An operator who runs several agents and keeps Cursor as an intentionally
 un-wired oracle lane (see knowledge-base ADR-0002) should simply not run this.
 
+### Claude Code setup
+
+Claude Code discovers skills from `<workspace-root>/.claude/skills/` (and the
+per-user `~/.claude/skills/`), but never reads this repo's `skills/` on its own.
+Use the installer to mirror every skill folder there as an absolute symlink, so
+repo edits and `git pull` flow through without re-copying. Do not hand-symlink
+folder by folder — that is how the mirror drifts when skills are added or removed.
+
+```bash
+# Default — you open the PARENT folder that contains ai-skills/ as the Claude
+# Code workspace (the recommended layout). Symlinks into <parent>/.claude/skills:
+scripts/install-claude.sh
+# or target an explicit parent / the user library:
+scripts/install-claude.sh --nested /path/to/project-root
+scripts/install-claude.sh --standalone   # into ai-skills/.claude/skills
+scripts/install-claude.sh --user         # into ~/.claude/skills
+```
+
+The installer also prunes stale mirror entries (symlinks pointing at deleted or
+renamed skills), leaves unrelated libraries untouched, and runs the validator.
+New or removed skills take effect in the next Claude Code session.
+
 ## Quality checks
 
 Run the local validator before release or adapter sync:
@@ -212,10 +243,11 @@ alignment, skill coverage across README / VERSION / root `AGENTS.md` / Codex /
 Cursor adapters, Games Labs playbook coverage across every routing surface, and
 that the paths a `SKILL.md` points at resolve to real files.
 
-Smoke-test the Cursor installer (nested and standalone layouts) with:
+Smoke-test the installers with:
 
 ```bash
-scripts/test-install-cursor.sh
+scripts/test-install-cursor.sh   # Cursor: nested + standalone layouts
+scripts/test-install-claude.sh   # Claude: sync + prune + idempotent
 ```
 
 Both run in CI on pushes to `main` and on pull requests via

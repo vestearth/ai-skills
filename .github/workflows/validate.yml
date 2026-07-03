@@ -16,6 +16,8 @@ jobs:
         run: bash scripts/validate-skills.sh
       - name: Smoke-test the Cursor installer
         run: bash scripts/test-install-cursor.sh
+      - name: Smoke-test the Claude installer
+        run: bash scripts/test-install-claude.sh
       - name: Whitespace and conflict-marker check (PR)
         if: github.event_name == 'pull_request'
         run: git diff --check "origin/${{ github.base_ref }}...HEAD"

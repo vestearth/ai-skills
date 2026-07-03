@@ -17,6 +17,9 @@ Use reusable guidance from `ai-skills/`.
 Suggested routing:
 
 - Before code/file/dependency/scaffold changes -> minimal-change-review
+- Creating, editing, or pruning ai-skills guidance -> skill-authoring-review
+- Stress-testing a plan, design, rollout, or implementation approach -> decision-grilling
+- Compacting current work for another agent, session, reviewer, or continuation -> session-handoff
 - Before completion, fix, merge, deploy, or handoff claims -> verification-loop
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> context-discipline
@@ -47,7 +50,5 @@ Suggested routing:
 - Datadog dashboards/monitors/telemetry -> datadog-observability
 - Games Labs API changes -> games-labs-api-review
 - Seamless provider callbacks/signatures -> seamless-provider-review
-- Backend interview evaluation -> backend-interview-review
-- Frontend interview evaluation -> frontend-interview-review
 - Sprint or backlog planning -> sprint-planning
 - Other provider integrations -> vendor-integration

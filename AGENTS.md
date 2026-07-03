@@ -41,6 +41,9 @@ When gathering context in large or unfamiliar repositories, apply:
 
 Recommended skills:
 - minimal-change-review
+- skill-authoring-review
+- decision-grilling
+- session-handoff
 - verification-loop
 - search-first
 - context-discipline
@@ -72,8 +75,6 @@ Recommended skills:
 - gitops-deploy-review
 - incident-response
 - secrets-management
-- backend-interview-review
-- frontend-interview-review
 - sprint-planning
 
 Recommended Games Labs playbooks:
