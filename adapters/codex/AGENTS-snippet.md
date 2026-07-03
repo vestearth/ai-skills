@@ -20,6 +20,11 @@ Suggested routing:
 - Creating, editing, or pruning ai-skills guidance -> skill-authoring-review
 - Stress-testing a plan, design, rollout, or implementation approach -> decision-grilling
 - Compacting current work for another agent, session, reviewer, or continuation -> session-handoff
+- Sweeping a finished diff for AI-generated slop before commit or handoff -> deslop
+- Snapshotting working state before context compaction -> compact-guard
+- Repeated permission prompts that should become allow/deny rules -> permission-tuner
+- Auditing MCP servers for token overhead, redundancy, or usage -> mcp-audit
+- Orienting in an unfamiliar code area with a one-screen map -> module-map
 - Before completion, fix, merge, deploy, or handoff claims -> verification-loop
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> context-discipline

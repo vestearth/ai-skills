@@ -23,6 +23,11 @@ Use reusable guidance from `ai-skills/`.
 - Creating, editing, or pruning ai-skills guidance -> `ai-skills/skills/skill-authoring-review/SKILL.md`
 - Stress-testing a plan, design, rollout, or implementation approach -> `ai-skills/skills/decision-grilling/SKILL.md`
 - Compacting current work for another agent, session, reviewer, or continuation -> `ai-skills/skills/session-handoff/SKILL.md`
+- Sweeping a finished diff for AI-generated slop before commit or handoff -> `ai-skills/skills/deslop/SKILL.md`
+- Snapshotting working state before context compaction -> `ai-skills/skills/compact-guard/SKILL.md`
+- Repeated permission prompts that should become allow/deny rules -> `ai-skills/skills/permission-tuner/SKILL.md`
+- Auditing MCP servers for token overhead, redundancy, or usage -> `ai-skills/skills/mcp-audit/SKILL.md`
+- Orienting in an unfamiliar code area with a one-screen map -> `ai-skills/skills/module-map/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims -> `ai-skills/skills/verification-loop/SKILL.md`
 - Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
 - Large, stale, or tool-derived context -> `ai-skills/skills/context-discipline/SKILL.md`

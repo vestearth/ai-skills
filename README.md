@@ -69,6 +69,11 @@ the full v4 Tech Lead OS complete.
 | `skill-authoring-review` | Creating, editing, reviewing, or pruning ai-skills guidance, frontmatter, routing, or behavior contracts |
 | `decision-grilling` | Stress-testing a plan, design, architecture choice, rollout, or implementation approach before work begins |
 | `session-handoff` | Compacting current work into a handoff for another agent, session, reviewer, or future continuation |
+| `deslop` | Sweeping a finished diff or branch for AI-generated slop before commit, review, or handoff |
+| `compact-guard` | Snapshotting critical working state before context compaction and restoring it after |
+| `permission-tuner` | Turning repeated permission prompts into proposed risk-tiered allow/deny rules |
+| `mcp-audit` | Auditing connected MCP servers for tool-count overhead, redundancy, and actual usage |
+| `module-map` | Orienting fast in an unfamiliar code area with a one-screen map of entry points, modules, flow, and coupling |
 
 ## Recommended project layout
 

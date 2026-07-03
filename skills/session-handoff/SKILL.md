@@ -38,7 +38,8 @@ Produce a compact, source-aware handoff that lets the next agent continue withou
 4. Separate verified facts from assumptions, TODOs, and blocked items.
 5. Redact secrets, credentials, PII, internal tokens, and sensitive payloads.
 6. If the content is durable project knowledge, recommend `knowledge-capture` instead of hiding it in a handoff.
-7. Keep the handoff short enough to paste into a new session.
+7. End with a resume command: one paste-ready instruction or command the next agent can run immediately to continue.
+8. Keep the handoff short enough to paste into a new session.
 
 ## Output Format
 
@@ -49,6 +50,7 @@ Produce a compact, source-aware handoff that lets the next agent continue withou
 - Verification and evidence
 - Next actions
 - Risks or blockers
+- Resume command (paste-ready first action)
 
 ## Anti-patterns
 

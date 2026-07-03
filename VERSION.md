@@ -68,6 +68,11 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | `skill-authoring-review` | complete |
 | `decision-grilling` | complete |
 | `session-handoff` | complete |
+| `deslop` | complete |
+| `compact-guard` | complete |
+| `permission-tuner` | complete |
+| `mcp-audit` | complete |
+| `module-map` | complete |
 
 Future v4 mentoring backlog: extract teach concepts into knowledge-base
 templates and mentoring guidance, but do not add a teach skill in this layer.

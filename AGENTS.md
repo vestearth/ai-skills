@@ -44,6 +44,11 @@ Recommended skills:
 - skill-authoring-review
 - decision-grilling
 - session-handoff
+- deslop
+- compact-guard
+- permission-tuner
+- mcp-audit
+- module-map
 - verification-loop
 - search-first
 - context-discipline
