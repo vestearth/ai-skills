@@ -1,6 +1,6 @@
 ---
 name: incident-response
-description: Use during a production incident, outage, or degradation to triage, contain, decide on rollback, write or follow a runbook, and run the post-incident review.
+description: Use when a production incident, outage, or degradation needs triage, containment, rollback decisions, runbook execution, or post-incident review.
 ---
 
 # Incident Response
@@ -8,6 +8,7 @@ description: Use during a production incident, outage, or degradation to triage,
 ## Use When
 
 - A production incident, outage, latency spike, error surge, or partial degradation is active or suspected.
+- The user uses short Thai incident-style prompts such as "ล่มไหม", "ต้อง rollback ไหม", "หยุด deploy ไหม", or "prod/staging พังหรือเปล่า" while live users, staging gates, or release traffic may be affected.
 - Deciding whether to roll back, fail over, scale, or hold during a live problem.
 - Writing or following a runbook for a known failure mode.
 - Running a post-incident review after the system has recovered.

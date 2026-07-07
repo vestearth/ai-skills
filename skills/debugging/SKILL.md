@@ -1,6 +1,6 @@
 ---
 name: debugging
-description: Use for bugs, failed tests, logs, crashes, incorrect behavior.
+description: Use when investigating bugs, failed tests, logs, crashes, incorrect behavior, or short operator prompts such as "พังจากไหน", "อันนี้จากไหน", or "แปลกไหม".
 ---
 
 # Debugging Skill
@@ -8,6 +8,7 @@ description: Use for bugs, failed tests, logs, crashes, incorrect behavior.
 ## Use When
 
 - Investigating bugs, failed tests, crashes, logs, incorrect behavior, or production symptoms.
+- The user uses short Thai debugging/source-tracing prompts such as "พังจากไหน", "อันนี้จากไหน", "ทำไมพัง", or "แปลกไหม" with an error, log, screenshot, route, code snippet, or observed behavior.
 - A root cause is unknown or only suspected.
 - Code, docs, logs, and observed behavior disagree.
 

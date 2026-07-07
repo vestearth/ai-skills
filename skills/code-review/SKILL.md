@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Use for pull request reviews, implementation reviews, merge readiness checks, or AI handoff reviews.
+description: Use when reviewing pull requests, implementation diffs, merge readiness, AI handoffs, or short review prompts such as "รีวิวอีกรอบ", "ผ่านไหม", or "approve ได้ไหม".
 ---
 
 # Code Review Skill
@@ -11,6 +11,7 @@ Review production impact before style.
 
 - Reviewing pull requests, implementation diffs, merge readiness, or AI handoff work.
 - The user asks for a review without requesting implementation.
+- The user uses short Thai review prompts such as "รีวิวอีกรอบ", "ดูให้หน่อยว่าผ่านไหม", or "approve ได้ไหม" while a diff, branch, PR, task artifact, or implementation is under review.
 - You need to decide whether a change is safe to approve, request changes, or escalate.
 
 ## Do Not Use When

@@ -1,6 +1,6 @@
 ---
 name: search-first
-description: Use when starting implementation, debugging, refactoring, review, or repository discovery in an unfamiliar area.
+description: Use when starting implementation, debugging, refactoring, review, repository discovery, or source-location prompts such as "route นี้อยู่ไฟล์ไหน".
 ---
 
 # Search First
@@ -15,6 +15,7 @@ Discover the existing system before changing it.
 - Reviewing or refactoring code with unclear callers or dependencies.
 - Investigating API routes, protobuf, events, database tables, configs, tests, fixtures, CI, or deployment references.
 - Working with shared libraries, provider integrations, or cross-service contracts.
+- The user uses short Thai source-location prompts such as "source อยู่ไหน", "ใครเป็น owner", or "route นี้อยู่ไฟล์ไหน" and the owning code path is not already known.
 
 ## Do Not Use When
 

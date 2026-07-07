@@ -1,6 +1,6 @@
 ---
 name: release-checklist
-description: Use before deployment, rollout, release approval, or production change windows.
+description: Use when preparing deployment, rollout, release approval, production change windows, rollback notes, or short readiness prompts such as "deploy ได้ไหม".
 ---
 
 # Release Checklist
@@ -8,6 +8,7 @@ description: Use before deployment, rollout, release approval, or production cha
 ## Use When
 
 - Preparing deployment, rollout, release approval, production change windows, or rollback notes.
+- The user uses short Thai readiness prompts such as "deploy ได้ไหม", "ปล่อยได้ไหม", "approve release ได้ไหม", or "ต้องเช็คอะไรก่อนปล่อย".
 - Confirming whether a change is ready to ship.
 - Creating smoke tests or post-release verification steps.
 

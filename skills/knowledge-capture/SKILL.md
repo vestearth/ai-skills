@@ -1,6 +1,6 @@
 ---
 name: knowledge-capture
-description: Use after work reveals durable decisions, lessons, project understanding, flows, or reusable knowledge that should be captured in knowledge-base.
+description: Use when completed work reveals durable decisions, lessons, project understanding, flows, or reusable knowledge that should be captured in knowledge-base.
 ---
 
 # Knowledge Capture
@@ -13,6 +13,7 @@ Extract durable knowledge from completed work into a note or patch for `knowledg
 - A repeated question or investigation should become easier next time.
 - A handoff, incident, review, implementation, or debugging session creates knowledge beyond the immediate code change.
 - The user asks to capture, remember, document, or add something to the knowledge base.
+- The user uses short Thai memory prompts such as "จำไว้", "บันทึกไว้", "เก็บเป็น knowledge", or "รอบหน้าจะได้ไม่ต้องไล่ใหม่" after verified work.
 
 ## Do Not Use When
 
