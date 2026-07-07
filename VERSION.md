@@ -105,14 +105,14 @@ Reusable behaviors for querying, capturing, promoting, and source-reviewing dura
 
 ## V2.0 Completion
 
-Current target completion: 14 / 14 skills
+Current target completion: 15 / 15 skills
 
 | Layer | Present | Planned | Status |
 | --- | ---: | ---: | --- |
 | Foundation Skills | 4 | 0 | complete |
 | Architecture Skills | 4 | 0 | complete |
 | Platform Skills | 3 | 0 | complete |
-| Earth Skills | 3 | 0 | complete |
+| Earth Skills | 4 | 0 | complete |
 
 ## Foundation Skills
 
@@ -169,6 +169,7 @@ Tier 2:
 Personal/domain-specific skills for Earth workflows and Games Labs context.
 
 - [x] `games-labs-api-review`
+- [x] `games-labs-implementation-status`
 - [x] `seamless-provider-review`
 - [x] `sprint-planning`
 

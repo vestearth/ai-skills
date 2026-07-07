@@ -1,0 +1,4 @@
+interface:
+  display_name: "Games Labs Implementation Status"
+  short_description: "Reply-first, evidence-backed Games Labs follow-up status checks"
+  default_prompt: "Check Games Labs implementation status from source, tests, and deploy evidence, then draft a reply-first answer."

@@ -69,6 +69,7 @@ Recommended skills:
 - socraticode-discovery
 - tech-lead-review
 - games-labs-api-review
+- games-labs-implementation-status
 - seamless-provider-review
 - grpc-contract-review
 - rabbitmq-event-review

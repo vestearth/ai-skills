@@ -162,6 +162,7 @@ The thinking layer for the `devops` agent: GitHub Actions + ECR/ECS (current Gam
 | Skill | Use when |
 | --- | --- |
 | `games-labs-api-review` | Reviewing Games Labs API, gateway, mobile, missions, wallet, VIP, store, or provider-facing changes |
+| `games-labs-implementation-status` | Answering Games Labs follow-up status questions such as implemented yet, fix before reply, deploy confirmed, or what reply to send |
 | `seamless-provider-review` | Reviewing seamless game provider integrations, callbacks, signatures, launch URLs, or round APIs |
 | `sprint-planning` | Turning goals, backlog items, incidents, or stakeholder requests into bounded sprint scope and verification plans |
 

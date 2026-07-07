@@ -54,6 +54,7 @@ Suggested routing:
 - Go service implementation review -> golang-service-review
 - Datadog dashboards/monitors/telemetry -> datadog-observability
 - Games Labs API changes -> games-labs-api-review
+- Games Labs follow-up status questions such as implemented yet, fix before reply, or deploy confirmed -> games-labs-implementation-status
 - Seamless provider callbacks/signatures -> seamless-provider-review
 - Sprint or backlog planning -> sprint-planning
 - Other provider integrations -> vendor-integration

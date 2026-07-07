@@ -56,6 +56,7 @@ Use reusable guidance from `ai-skills/`.
 - Go service implementation review -> `ai-skills/skills/golang-service-review/SKILL.md`
 - Datadog metrics, logs, traces, dashboards, monitors -> `ai-skills/skills/datadog-observability/SKILL.md`
 - Games Labs API/mobile/gateway changes -> `ai-skills/skills/games-labs-api-review/SKILL.md`
+- Games Labs follow-up status questions such as implemented yet, fix before reply, deploy confirmed, or what reply to send -> `ai-skills/skills/games-labs-implementation-status/SKILL.md`
 - Seamless provider callbacks, signatures, launch URLs -> `ai-skills/skills/seamless-provider-review/SKILL.md`
 - Sprint or backlog planning -> `ai-skills/skills/sprint-planning/SKILL.md`
 
