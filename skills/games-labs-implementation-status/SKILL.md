@@ -1,6 +1,6 @@
 ---
 name: games-labs-implementation-status
-description: Use when answering Games Labs mobile/backend follow-up status questions such as whether a behavior is already implemented, whether code must be fixed before replying, whether QA/staging may be on an old deploy, or what English reply to send back. Trigger on pasted follow-up messages from QA, Dev, Mobile, PM, or short operator prompts like "what should I reply?", "implemented yet?", "ต้องแก้ก่อนตอบไหม", or "is this deployed yet?".
+description: Use when answering Games Labs mobile/backend follow-up status questions such as whether a behavior is already implemented, whether code must be fixed before replying, whether QA/staging may be on an old deploy, or what English reply to send back. Trigger on pasted follow-up messages or questions from the Mobile team, QA, Dev, or PM, and on short operator prompts like "what should I reply?", "implemented yet?", "mobile asked this", "ทีม mobile ถามมา", "ต้องแก้ก่อนตอบไหม", or "is this deployed yet?".
 ---
 
 # Games Labs Implementation Status
@@ -8,6 +8,7 @@ description: Use when answering Games Labs mobile/backend follow-up status quest
 ## Use When
 
 - A Games Labs follow-up message asks whether backend work is already implemented.
+- A question from the Mobile team asks whether backend behavior is already supported, deployed, or safe to reply on.
 - The user wants to know whether to reply now, patch code first, or verify deployment first.
 - QA, Mobile, PM, or Dev report that the app still shows old behavior and the likely branch is code-versus-deploy.
 - The user asks for a short English reply backed by current source, tests, and environment evidence.
