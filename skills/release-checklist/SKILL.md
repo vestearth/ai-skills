@@ -11,11 +11,13 @@ description: Use when preparing deployment, rollout, release approval, productio
 - The user uses short Thai readiness prompts such as "deploy ได้ไหม", "ปล่อยได้ไหม", "approve release ได้ไหม", or "ต้องเช็คอะไรก่อนปล่อย".
 - Confirming whether a change is ready to ship.
 - Creating smoke tests or post-release verification steps.
+- Preparing Games Labs ECS staging or production release checks; pair this with `playbooks/games-labs/ecs-deploy.md`.
 
 ## Do Not Use When
 
 - The task is only code review before merge; prefer `code-review`.
 - The root cause of a failure is unknown; prefer `debugging`.
+- Production is actively degraded, an incident is in progress, or rollback is part of containment; use `incident-response` first.
 - The change is still being designed and lacks release candidates or artifacts.
 
 ## Goal
