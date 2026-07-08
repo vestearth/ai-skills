@@ -1,6 +1,6 @@
 ---
 name: api-contract-review
-description: Use when changing APIs, protobuf contracts, grpc-gateway routes, or frontend/mobile integrations.
+description: Use when changing APIs, protobuf contracts, grpc-gateway routes, or frontend/mobile integrations outside Games Labs or when no narrower domain skill applies.
 ---
 
 # API Contract Review

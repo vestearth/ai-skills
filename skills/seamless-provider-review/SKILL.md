@@ -1,6 +1,6 @@
 ---
 name: seamless-provider-review
-description: Use when reviewing seamless game provider integrations, balance callbacks, payout flows, launch URLs, signatures, staging aliases, or provider round APIs.
+description: Use when reviewing seamless game provider integrations, balance callbacks, payout flows, launch URLs, signatures, staging aliases, provider sample callbacks, error codes, or provider round APIs.
 ---
 
 # Seamless Provider Review
@@ -14,6 +14,7 @@ This skill covers callback *mechanics* (environment, signatures, launch, callbac
 - Reviewing seamless game provider integrations, balance callbacks, payout flows, launch URLs, signatures, staging aliases, or provider round APIs.
 - A provider callback or launch flow depends on external credentials, aliases, signatures, or retry behavior.
 - Provider evidence must be compared against local implementation.
+- A provider sends sample callbacks, headers, signature examples, or error codes that need to be matched against backend behavior.
 
 ## Do Not Use When
 

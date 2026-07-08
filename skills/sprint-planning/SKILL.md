@@ -11,6 +11,7 @@ description: Use when turning goals, backlog items, roadmap themes, incidents, o
 - Turning rough goals into scoped tasks with acceptance criteria.
 - Sequencing work across dependencies, reviewers, releases, or cross-team handoffs.
 - Deciding what to include, defer, split, or escalate.
+- Turning PM or stakeholder requests into bounded task batches, agent-ready work items, or sprint handoff scope while leaving orchestration mechanics to the project tool.
 
 ## Do Not Use When
 

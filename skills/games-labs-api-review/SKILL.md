@@ -29,6 +29,7 @@ Read the playbook that matches the change; do not duplicate its content here.
 - The API is not Games Labs-specific; use `api-contract-review`.
 - The change is only protobuf compatibility; use `grpc-contract-review` first.
 - The task is only a provider callback/signature flow; use `seamless-provider-review`.
+- The task is a short follow-up about whether behavior is already implemented, deployed, or ready to reply on; use `games-labs-implementation-status`.
 
 ## Goal
 
