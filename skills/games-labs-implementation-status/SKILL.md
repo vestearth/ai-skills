@@ -37,7 +37,7 @@ Produce a reply-first, evidence-backed answer that clearly separates what is imp
 ## Process
 
 1. Restate the concrete ask as one of: implemented in code, verified by tests, deployed in environment, or draft the reply.
-2. Find the owning source of truth first: endpoint, handler, service, repository, UI field, or deploy lane. Use `skills/search-first/SKILL.md` and `playbooks/games-labs/mobile-contract-handoff.md` when needed.
+2. Find the owning source of truth first: endpoint, handler, service, repository, UI field, or deploy lane. Use `skills/search-first/SKILL.md` and `playbooks/games-labs/mobile-contract-handoff.md` when needed. For a **mobile/public** "does endpoint return field X" question, the source of truth is the **api-gateway edge**, not the service's own HTTP mux. Missions is fronted by grpc-gateway, so check the **proto response message + the `...ToPB` mapper** for that RPC: a typed-proto RPC exposes only proto-declared fields (a field on the service's mux struct is dropped), while a `google.protobuf.Struct` RPC passes everything through. Only trust the service mux JSON if the route is genuinely mux-only.
 3. Read the current source files before making any status claim. Do not answer from memory or old handoff text alone.
 4. Check the smallest relevant verification evidence: focused test, CI result, or commit history that proves when the behavior changed.
 5. If the ask mentions QA, staging, production, or "still seeing the old behavior", inspect deploy/runtime evidence too. Use `playbooks/games-labs/ecs-deploy.md` when the question is really environment state.
@@ -63,3 +63,4 @@ Produce a reply-first, evidence-backed answer that clearly separates what is imp
 - Giving a long internal analysis block before the sendable reply.
 - Mixing implementation status with broad API redesign or unrelated debugging.
 - Hiding uncertainty when the real answer is "code looks ready, but deploy is unverified".
+- Confirming a mobile/public field from the service's own HTTP mux struct without checking the gateway's typed proto + `...ToPB` mapper — typed-proto RPCs drop undeclared fields even when the service serializes them.
