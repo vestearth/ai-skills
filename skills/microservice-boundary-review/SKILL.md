@@ -1,6 +1,6 @@
 ---
 name: microservice-boundary-review
-description: Use when changing ownership, service boundaries, gRPC contracts, or event flows.
+description: Use when deciding ownership or service boundaries involving gRPC contracts, event flows, cross-service workflows, shared business rules, data ownership, or communication style.
 ---
 
 # Microservice Boundary Review
@@ -15,6 +15,8 @@ description: Use when changing ownership, service boundaries, gRPC contracts, or
 
 - The change is isolated inside one service and ownership is already clear.
 - The task is only API shape review; prefer `api-contract-review` or a domain-specific API skill.
+- The task is protobuf field, gateway mapping, generated artifact, or wire-compatibility detail after the boundary is chosen; use `grpc-contract-review`.
+- The task is event schema, routing key, retry, DLQ, idempotency, or consumer rollout detail after the boundary is chosen; use `rabbitmq-event-review`.
 - The task is broad architecture review beyond service boundaries; prefer `tech-lead-review`.
 
 ## Goal

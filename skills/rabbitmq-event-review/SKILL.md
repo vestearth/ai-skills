@@ -11,6 +11,7 @@ description: Use when changing RabbitMQ publishers, consumers, exchanges, queues
 - Event payload shape, routing key, exchange, queue, binding, retry, or dead-letter behavior changes.
 - A new asynchronous workflow is introduced between services.
 - A consumer needs idempotency, ordering, replay, or failure-handling review.
+- Games Labs mission, progress, reward, or status behavior depends on RabbitMQ events; pair this with `playbooks/games-labs/missions-events.md`.
 
 ## Do Not Use When
 

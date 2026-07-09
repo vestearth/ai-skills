@@ -1,6 +1,6 @@
 ---
 name: golang-service-review
-description: Use when reviewing Go service implementation quality, handlers, repositories, migrations, context propagation, errors, tests, module hygiene, or production readiness.
+description: Use when reviewing Go service implementation quality, handlers, workers, consumers, background jobs, repositories, migrations, context propagation, errors, tests, module hygiene, or production readiness.
 ---
 
 # Golang Service Review
@@ -8,6 +8,7 @@ description: Use when reviewing Go service implementation quality, handlers, rep
 ## Use When
 
 - A Go service handler, use case, repository, client, migration, worker, or integration changes.
+- A Go worker, consumer, scheduler, background job, or async processing path changes.
 - The review needs Go-specific checks for context, errors, concurrency, dependencies, tests, or module hygiene.
 - Production readiness depends on build behavior, configuration, logging, or service boundaries.
 
@@ -15,6 +16,7 @@ description: Use when reviewing Go service implementation quality, handlers, rep
 
 - The task is primarily protobuf/gRPC compatibility; use `grpc-contract-review`.
 - The task is mainly dependency policy, Docker, CI, or shared module alignment; use `dependency-guard`.
+- The task is an active bug or production symptom with unknown root cause; start with `debugging`.
 - The task is architecture ownership rather than implementation quality; use `tech-lead-review`.
 
 ## Goal

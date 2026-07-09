@@ -17,6 +17,8 @@ Before discussing implementation details, answer the higher-level questions.
 
 - The task is only an active bug with unknown root cause; prefer `debugging`.
 - The task is only service-boundary ownership; prefer `microservice-boundary-review`.
+- The task is only sprint scope, sequencing, capacity, or delivery planning; prefer `sprint-planning`.
+- The task is to stress-test a plan with focused questions before committing to a direction; prefer `decision-grilling`.
 - The task is only merge readiness; prefer `code-review`.
 
 ## Goal

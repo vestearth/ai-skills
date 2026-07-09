@@ -1,6 +1,6 @@
 ---
 name: socraticode-discovery
-description: Use when starting repository-specific work with SocratiCode, codebase search, symbol lookup, graph analysis, or indexed context.
+description: Use when SocratiCode is the intended discovery tool, index readiness matters, or codebase search, symbol lookup, graph analysis, or indexed context must be verified against current files.
 ---
 
 # SocratiCode Discovery Skill
@@ -9,13 +9,15 @@ Use SocratiCode as a navigation layer, not as the final source of truth.
 
 ## Use When
 
-- Starting repository-specific work with SocratiCode, codebase search, symbol lookup, graph analysis, or indexed context.
+- The user or project instructions explicitly call for SocratiCode, codebase search, symbol lookup, graph analysis, or indexed context.
+- SocratiCode index readiness, capability, routing, or project coverage must be checked.
 - You need help locating candidate files, symbols, dependencies, callers, or related code.
 - Prior summaries or memory need to be verified against the actual repository.
 
 ## Do Not Use When
 
 - The task is fully self-contained and does not depend on repository structure.
+- General repository discovery can be handled with direct search and file inspection; use `search-first`.
 - SocratiCode is unavailable and direct repository inspection is enough; state the fallback explicitly.
 - The user asks for a final code claim without direct file verification.
 
@@ -26,15 +28,15 @@ Use indexed discovery to navigate quickly, then verify all repository-specific c
 ## Required Inputs
 
 - User request or target concept.
-- Primary project path and fallback project path.
+- Project path from project instructions, workspace context, or current repository root.
 - Relevant files, symbols, tests, build output, CI, logs, or runtime evidence after discovery.
 
 ## Process
 
-1. Check index readiness with `codebase_status` using primary `projectPath: "d:\\llm"`.
-   - If the call fails, hangs, times out, or is disconnected, retry with `projectPath: "/Users/earth/Documents/GitHub"` (local Docker SocratiCode on this machine — Qdrant + Ollama via `npx -y socraticode`).
-   - If MCP is unusable, retry via local `npx -y socraticode` with the same projectPath order.
-   - Only after both paths fail on MCP and CLI, fall back to direct repository inspection and say so explicitly.
+1. Check index readiness with `codebase_status` using the project path from project instructions, workspace context, or the current repository root.
+   - If multiple indexed project paths are plausible, try the most specific path first and record any fallback path used.
+   - If MCP is unusable, retry through the configured SocratiCode CLI when available.
+   - Only after the configured MCP and CLI paths fail, fall back to direct repository inspection and say so explicitly.
 2. When the task is about SocratiCode readiness, capability, or routing, add the smallest read-only baseline:
    - `codebase_health` to verify Docker, Qdrant, Ollama, and embedding model health.
    - `codebase_list_projects` to verify which project paths are actually indexed.

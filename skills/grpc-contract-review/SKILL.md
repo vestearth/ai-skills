@@ -11,6 +11,7 @@ description: Use when changing protobuf messages, gRPC services, grpc-gateway ma
 - A gRPC request, response, service, method, enum, or status changes.
 - grpc-gateway HTTP mappings or generated protobuf artifacts change.
 - Mobile, web, backend, or partner clients depend on the contract.
+- A public or mobile field is missing, renamed, or shaped differently than expected and the route is served through gRPC/protobuf or grpc-gateway.
 
 ## Do Not Use When
 
@@ -56,3 +57,4 @@ Protect wire compatibility and client rollout safety while keeping protobuf cont
 - Adding enum values without checking client default/fallback behavior.
 - Updating generated code by hand.
 - Reviewing service code while ignoring the `.proto` source of truth.
+- Confirming a public response shape from a service struct or mapper without checking the protobuf message and gateway mapping that clients actually receive.
