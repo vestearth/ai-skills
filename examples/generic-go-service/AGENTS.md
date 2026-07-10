@@ -33,6 +33,7 @@ Use the smallest relevant skill:
 - Bugs, logs, failed tests, crashes: `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness: `ai-skills/skills/code-review/SKILL.md`
 - ClickHouse tables, ingestion, queries, retention, or event storage: `ai-skills/skills/clickhouse-io/SKILL.md`
+- Creating or reorganizing a Go project, module, command, service, worker, or package layout: `ai-skills/skills/golang-project-structure/SKILL.md`
 - Go service implementation review: `ai-skills/skills/golang-service-review/SKILL.md`
 - gRPC/protobuf/gateway contract changes: `ai-skills/skills/grpc-contract-review/SKILL.md`
 - RabbitMQ events, routing, retries, DLQs: `ai-skills/skills/rabbitmq-event-review/SKILL.md`

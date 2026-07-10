@@ -53,6 +53,7 @@ Use reusable guidance from `ai-skills/`.
 - gRPC, protobuf, grpc-gateway, generated artifacts -> `ai-skills/skills/grpc-contract-review/SKILL.md`
 - RabbitMQ events, routing keys, queues, retries, DLQs -> `ai-skills/skills/rabbitmq-event-review/SKILL.md`
 - SocratiCode or indexed codebase discovery -> `ai-skills/skills/socraticode-discovery/SKILL.md`
+- Creating or reorganizing a Go project, module, command, service, worker, or package layout -> `ai-skills/skills/golang-project-structure/SKILL.md`
 - Go service implementation review -> `ai-skills/skills/golang-service-review/SKILL.md`
 - Datadog metrics, logs, traces, dashboards, monitors -> `ai-skills/skills/datadog-observability/SKILL.md`
 - Games Labs API/mobile/gateway changes -> `ai-skills/skills/games-labs-api-review/SKILL.md`

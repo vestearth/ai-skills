@@ -1,0 +1,4 @@
+interface:
+  display_name: "Go Project Structure"
+  short_description: "Design lean, idiomatic Go project layouts"
+  default_prompt: "Use $golang-project-structure to design the smallest suitable layout for this Go project."

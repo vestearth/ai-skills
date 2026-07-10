@@ -51,6 +51,7 @@ Suggested routing:
 - Architecture review -> tech-lead-review
 - gRPC/protobuf/gateway contract changes -> grpc-contract-review
 - RabbitMQ event or async flow changes -> rabbitmq-event-review
+- Creating or reorganizing a Go project, module, command, service, worker, or package layout -> golang-project-structure
 - Go service implementation review -> golang-service-review
 - Datadog dashboards/monitors/telemetry -> datadog-observability
 - Games Labs API changes -> games-labs-api-review

@@ -73,6 +73,7 @@ Recommended skills:
 - seamless-provider-review
 - grpc-contract-review
 - rabbitmq-event-review
+- golang-project-structure
 - golang-service-review
 - datadog-observability
 - container-build-review
