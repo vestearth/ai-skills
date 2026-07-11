@@ -60,6 +60,7 @@ Recommended skills:
 - self-learning
 - debugging
 - code-review
+- frontend-ui-review
 - clickhouse-io
 - api-contract-review
 - dependency-guard

@@ -36,6 +36,7 @@ Suggested routing:
 - Turning feedback, corrections, or lessons into a proposed skill/rule/knowledge change -> self-learning
 - Bugs -> debugging
 - Code review -> code-review
+- Figma-to-code implementation or frontend visual/state/responsive/accessibility review -> frontend-ui-review
 - ClickHouse tables, ingestion, queries, retention, or event storage -> clickhouse-io
 - API changes -> api-contract-review
 - Dependency changes -> dependency-guard

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend UI Review"
+  short_description: "Review Figma-to-code UI fidelity and quality"
+  default_prompt: "Use $frontend-ui-review to review this frontend implementation against its Figma design and project design system."

@@ -143,6 +143,7 @@ These apply before choosing a larger implementation path.
 | Skill | Use when |
 | --- | --- |
 | `golang-project-structure` | Creating or reorganizing a Go project, choosing package/module boundaries, executable layout, dependency direction, or locations for application and operational code |
+| `frontend-ui-review` | Implementing or reviewing frontend pages and components against Figma, project design systems, responsive requirements, interaction states, or accessibility expectations |
 | `clickhouse-io` | Designing, reviewing, or debugging ClickHouse tables, ingestion, analytics queries, retention, or event storage |
 
 ### Delivery / Infra

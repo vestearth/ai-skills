@@ -145,6 +145,7 @@ Tools, runtime, and service implementation review.
 Reusable specialized technical skills outside the v2.0 core completion count.
 
 - [x] `golang-project-structure`
+- [x] `frontend-ui-review`
 - [x] `clickhouse-io`
 
 ## Delivery / Infra Skills

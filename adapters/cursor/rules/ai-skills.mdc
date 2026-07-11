@@ -39,6 +39,7 @@ Use reusable guidance from `ai-skills/`.
 - Turning feedback, corrections, or lessons into a proposed skill/rule/knowledge change -> `ai-skills/skills/self-learning/SKILL.md`
 - Bugs, logs, failing tests, crashes -> `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness -> `ai-skills/skills/code-review/SKILL.md`
+- Figma-to-code implementation or frontend visual/state/responsive/accessibility review -> `ai-skills/skills/frontend-ui-review/SKILL.md`
 - ClickHouse tables, ingestion, queries, retention, or event storage -> `ai-skills/skills/clickhouse-io/SKILL.md`
 - Dependency, Docker, CI, shared module, `go.work`, or `replace` changes -> `ai-skills/skills/dependency-guard/SKILL.md`
 - Release, deployment, rollback, or smoke test readiness -> `ai-skills/skills/release-checklist/SKILL.md`
