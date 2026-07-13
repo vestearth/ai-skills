@@ -25,6 +25,7 @@ Suggested routing:
 - Repeated permission prompts that should become allow/deny rules -> permission-tuner
 - Auditing MCP servers for token overhead, redundancy, or usage -> mcp-audit
 - Orienting in an unfamiliar code area with a one-screen map -> module-map
+- Starting a task, delegating a subtask, or task/model mismatch -> model-router
 - Before completion, fix, merge, deploy, or handoff claims -> verification-loop
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> context-discipline
