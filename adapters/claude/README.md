@@ -54,6 +54,12 @@ Current subagents:
   (workflow: `ai-dev-office/workflows/knowledge-capture.md`; never writes the vault
   or commits). Codex/Cursor use the lane-neutral runner
   `ai-dev-office/scripts/knowledge-capture.rb` instead.
+- `scout` — read-only Haiku explorer for file search, codebase exploration, and
+  lookup questions; routed by `skills/model-router`. No Bash by design (the
+  read-only guarantee is tool-level); the main model runs git-history queries.
+- `worker` — Sonnet implementer for edits whose files and approach are already
+  specified; returns BLOCKED instead of interpreting ambiguous requirements;
+  routed by `skills/model-router`.
 
 See `30 ADR/ADR-0006 Claude Subagents Live In ai-skills Adapters` in `knowledge-base`.
 
