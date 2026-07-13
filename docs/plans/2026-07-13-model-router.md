@@ -273,13 +273,13 @@ direction per session.
 
 - [ ] **Step 4: Register the skill in VERSION.md and README.md (plus the three routing surfaces the validator also enforces: `AGENTS.md`, `adapters/codex/AGENTS-snippet.md`, `adapters/cursor/rules/ai-skills.mdc` — mirror how `module-map` is listed in each)**
 
-In `VERSION.md`, find the skill status table containing `| \`module-map\` | complete |` and add this row in alphabetical order:
+In `VERSION.md`, find the skill status table containing `| \`module-map\` | complete |` and add this row directly after it (tables are append-ordered, newest last — not alphabetical):
 
 ```markdown
 | `model-router` | complete |
 ```
 
-In `README.md`, find the skill catalog table containing the `module-map` row and add this row in alphabetical order:
+In `README.md`, find the skill catalog table containing the `module-map` row and add this row directly after it (same append-order convention):
 
 ```markdown
 | `model-router` | Routing each task to the cheapest capable model (scout=Haiku, worker=Sonnet, main model for reasoning) plus /model and /effort advisories to save quota |

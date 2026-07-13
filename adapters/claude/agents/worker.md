@@ -31,6 +31,10 @@ end-to-end following an example the caller points at.
    — failures included.
 4. **Touch only named files** plus files the named change forces (e.g. a
    generated mock). List every file you touched in the report.
+5. **Production policy applies to you.** Edits to Games Labs product/service
+   code require an open TASK- run in `ai-dev-office/runs/` regardless of which
+   model executes them. If the caller asks for such an edit without naming a
+   TASK- run, return BLOCKED asking for it.
 
 ## Output
 
