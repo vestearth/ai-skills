@@ -49,6 +49,7 @@ Recommended skills:
 - permission-tuner
 - mcp-audit
 - module-map
+- model-router
 - verification-loop
 - search-first
 - context-discipline

@@ -28,6 +28,7 @@ Use reusable guidance from `ai-skills/`.
 - Repeated permission prompts that should become allow/deny rules -> `ai-skills/skills/permission-tuner/SKILL.md`
 - Auditing MCP servers for token overhead, redundancy, or usage -> `ai-skills/skills/mcp-audit/SKILL.md`
 - Orienting in an unfamiliar code area with a one-screen map -> `ai-skills/skills/module-map/SKILL.md`
+- Starting a task, delegating a subtask, or task/model mismatch -> `ai-skills/skills/model-router/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims -> `ai-skills/skills/verification-loop/SKILL.md`
 - Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
 - Large, stale, or tool-derived context -> `ai-skills/skills/context-discipline/SKILL.md`
