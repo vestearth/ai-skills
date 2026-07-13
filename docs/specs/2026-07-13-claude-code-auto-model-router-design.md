@@ -34,7 +34,7 @@ All three components are config/markdown. No running code, nothing to maintain b
 
 Reasoning-heavy work (design, unknown-cause debugging, review, cross-service impact) is never delegated — it stays on the main model.
 
-Source of truth is the `ai-skills` repo (new `agents/` directory), symlinked into `GitHub/.claude/agents/` — mirroring the existing skills convention. ai-skills is a meta repo, so no TASK- run is required.
+Source of truth is `ai-skills/adapters/claude/agents/` (the existing subagent convention per knowledge-base ADR-0006, alongside `knowledge-capturer.md`), symlinked into `GitHub/.claude/agents/`. ai-skills is a meta repo, so no TASK- run is required.
 
 ### 2. `model-router` skill (`ai-skills/skills/model-router/`)
 
