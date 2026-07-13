@@ -271,7 +271,7 @@ direction per session.
   `model:` frontmatter and breaks the tiering.
 ```
 
-- [ ] **Step 4: Register the skill in VERSION.md and README.md**
+- [ ] **Step 4: Register the skill in VERSION.md and README.md (plus the three routing surfaces the validator also enforces: `AGENTS.md`, `adapters/codex/AGENTS-snippet.md`, `adapters/cursor/rules/ai-skills.mdc` — mirror how `module-map` is listed in each)**
 
 In `VERSION.md`, find the skill status table containing `| \`module-map\` | complete |` and add this row in alphabetical order:
 
