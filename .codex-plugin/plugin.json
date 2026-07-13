@@ -1,0 +1,18 @@
+{
+  "name": "ai-skills",
+  "version": "0.1.0",
+  "description": "Reusable engineering guidance and review skills for Codex.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Skills",
+    "shortDescription": "Reusable engineering guidance for Codex.",
+    "longDescription": "AI Skills provides reusable review, implementation, debugging, release, and project guidance across the workspace.",
+    "developerName": "Earth Engineering",
+    "category": "Development",
+    "capabilities": [],
+    "defaultPrompt": "Use the smallest relevant AI Skill for this task."
+  }
+}
