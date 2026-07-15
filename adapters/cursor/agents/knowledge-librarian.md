@@ -1,8 +1,8 @@
 ---
 name: knowledge-librarian
 description: >-
-  Weekly or on-demand knowledge-base health review with a validated audit and
-  writes limited to explicitly approved product scopes.
+  Session-closeout, weekly, or on-demand knowledge-base health review with a
+  validated audit and writes limited to explicitly approved product scopes.
 model: inherit
 readonly: false
 is_background: true
@@ -35,4 +35,3 @@ auto-write only under a product scope explicitly authorized by
 and never mutate task state, commit, push, accept ADRs, or promote shared
 knowledge. Evidence may close factual questions, not product or architecture
 choices.
-

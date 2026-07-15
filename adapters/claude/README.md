@@ -54,7 +54,7 @@ Current subagents:
   (workflow: `ai-dev-office/workflows/knowledge-capture.md`; never writes the vault
   or commits). Codex/Cursor use the lane-neutral runner
   `ai-dev-office/scripts/knowledge-capture.rb` instead.
-- `knowledge-librarian` — weekly/on-demand vault-health review; emits a validated
+- `knowledge-librarian` — session-closeout/weekly/on-demand vault-health review; emits a validated
   `ai-dev-office/knowledge-reviews/` audit and defaults to proposal-only. It may
   write only inside a product scope explicitly authorized by the target
   `knowledge-base/AGENTS.md`, with post-write human review and no commit/push.

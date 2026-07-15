@@ -1,6 +1,6 @@
 ---
 name: knowledge-librarian
-description: Weekly or on-demand knowledge-base health review. Produces a validated audit and may auto-write only inside an explicitly approved product scope. Never mutates AI Dev Office task state, commits, pushes, accepts ADRs, or promotes shared knowledge.
+description: Session-closeout, weekly, or on-demand knowledge-base health review. Produces a validated audit and may auto-write only inside an explicitly approved product scope. Never mutates AI Dev Office task state, commits, pushes, accepts ADRs, or promotes shared knowledge.
 tools: Read, Grep, Glob, Bash, Write
 ---
 
@@ -32,4 +32,3 @@ explicitly authorizes the product and target. Record authorization and every
 applied change in the audit, run the vault checker afterward, and never commit
 or push. Factual questions may close from confirmed evidence; product or
 architecture choices remain open for a human.
-
