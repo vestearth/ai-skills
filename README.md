@@ -185,6 +185,9 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
 - Codex: reference this repository from project `AGENTS.md`.
 - Cursor: use `.mdc` rules that route to the matching `skills/<skill>/SKILL.md`.
 - Claude Code: expose each folder under `skills/` as a Claude-compatible skill.
+- Cross-lane named agents such as `knowledge-librarian` keep one behavioral
+  contract in `ai-dev-office/` and thin launch adapters under
+  `adapters/{claude,codex,cursor}/agents/`.
 
 ### Cursor setup
 

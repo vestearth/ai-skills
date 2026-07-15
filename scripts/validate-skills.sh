@@ -176,6 +176,29 @@ for doc in "${adapter_docs[@]}"; do
   done
 done
 
+librarian_agents=(
+  "$ROOT_DIR/adapters/claude/agents/knowledge-librarian.md"
+  "$ROOT_DIR/adapters/codex/agents/knowledge-librarian.toml"
+  "$ROOT_DIR/adapters/cursor/agents/knowledge-librarian.md"
+)
+
+for agent_file in "${librarian_agents[@]}"; do
+  if [ ! -f "$agent_file" ]; then
+    fail "missing Knowledge Librarian adapter: ${agent_file#$ROOT_DIR/}"
+    continue
+  fi
+  for required_ref in \
+    'ai-dev-office/workflows/knowledge-librarian.md' \
+    'ai-dev-office/schemas/knowledge-librarian-output.schema.json' \
+    'ai-skills/skills/knowledge-source-review/SKILL.md' \
+    'knowledge-base/AGENTS.md'
+  do
+    if ! grep -Fq "$required_ref" "$agent_file"; then
+      fail "${agent_file#$ROOT_DIR/}: missing shared contract reference '$required_ref'"
+    fi
+  done
+done
+
 # Cursor adapter rules route to `ai-skills/skills/<skill>/SKILL.md` paths, which
 # resolve from the parent workspace (the nested/recommended layout this team
 # uses). A bad prefix makes every pointer dead but still passes a name-substring
