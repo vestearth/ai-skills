@@ -51,6 +51,7 @@ Recommended skills:
 - module-map
 - model-router
 - verification-loop
+- completion-audit
 - search-first
 - context-discipline
 - change-impact-analysis

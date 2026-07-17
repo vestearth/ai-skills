@@ -75,6 +75,7 @@ the full v4 Tech Lead OS complete.
 | `mcp-audit` | Auditing connected MCP servers for tool-count overhead, redundancy, and actual usage |
 | `module-map` | Orienting fast in an unfamiliar code area with a one-screen map of entry points, modules, flow, and coupling |
 | `model-router` | Routing each task to the cheapest capable model (scout=Haiku, worker=Sonnet, main model for reasoning) plus /model and /effort advisories to save quota |
+| `completion-audit` | Auditing work another agent, handoff, PR, or past session claims is complete — re-run claimed checks against the real diff before accepting |
 
 ## Recommended project layout
 

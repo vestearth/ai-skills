@@ -22,6 +22,7 @@ Verify claims with the strongest practical evidence available before reporting c
 - The task is purely brainstorming.
 - The user asks only for wording, translation, or explanation.
 - No factual, behavioral, system, or completion claim is being made.
+- Auditing a completion report produced by another agent or session; use `completion-audit`.
 
 ## Required Rule
 

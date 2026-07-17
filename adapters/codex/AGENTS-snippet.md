@@ -27,6 +27,7 @@ Suggested routing:
 - Orienting in an unfamiliar code area with a one-screen map -> module-map
 - Starting a task, delegating a subtask, or task/model mismatch -> model-router
 - Before completion, fix, merge, deploy, or handoff claims -> verification-loop
+- Receiving work claimed complete from another agent, handoff, or PR -> completion-audit
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> context-discipline
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> change-impact-analysis
