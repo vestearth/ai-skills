@@ -1,6 +1,6 @@
 ---
 name: model-router
-description: Use when starting any task, delegating subtasks, or when task difficulty does not match the running model - routes work to the cheapest capable model (scout=Haiku exploration, worker=Sonnet scoped edits, main model for reasoning) and advises /model and /effort switches to save quota.
+description: Use when starting any task, delegating subtasks, or when task difficulty does not match the running model - routes work to the cheapest capable model (scout=Haiku exploration, worker=Sonnet scoped edits, reviewer=main-model review lane, auditor=completion audit, main model for reasoning) and advises /model and /effort switches to save quota.
 ---
 
 # Model Router
@@ -40,7 +40,8 @@ user can make the switch.
 | --- | --- | --- |
 | File search, codebase exploration, read-and-summarize, lookup questions | `scout` subagent | Haiku |
 | Edits with files/approach already specified, tests following an existing pattern, rename/mechanical sweeps | `worker` subagent | Sonnet |
-| Design, debugging without a known cause, code review, contract/impact analysis | main model (do it yourself) | opusplan (Opus plan / Sonnet execute) |
+| Design, debugging without a known cause, contract/impact analysis | main model (do it yourself) | opusplan (Opus plan / Sonnet execute) |
+| Code review of a PR/diff/branch and merge verdicts; independent audit of a claimed-done handoff | `reviewer` / `auditor` subagent (fresh context) | opusplan (inherits main model) |
 | Exceptionally hard: incidents, large migrations, multi-service work | advisory: suggest `/model opus` | Opus |
 
 2. Apply the dividing line before delegating to `worker`: if requirement

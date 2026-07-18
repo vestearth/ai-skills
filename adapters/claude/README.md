@@ -64,6 +64,16 @@ Current subagents:
 - `worker` — Sonnet implementer for edits whose files and approach are already
   specified; returns BLOCKED instead of interpreting ambiguous requirements;
   routed by `skills/model-router`.
+- `reviewer` — main-model read-only review lane for PR/diff/branch review and
+  merge-readiness verdicts; routes the diff into `skills/code-review` plus the
+  matching domain overlays; may run read-only git and tests via Bash but never
+  edits files or git state; routed by `skills/model-router` (completes the
+  scout/worker/reviewer triad). No `model:` line — inherits the main session model.
+- `auditor` — main-model independent completion audit of handoffs claimed done
+  by another agent, session, Codex run, or office runner; a harness around
+  `skills/completion-audit` that re-runs claimed checks against the real diff and
+  requires re-observed evidence per accepted claim; read-only, never edits files
+  or git state. No `model:` line — inherits the main session model.
 
 See `30 ADR/ADR-0006 Claude Subagents Live In ai-skills Adapters` in `knowledge-base`.
 
