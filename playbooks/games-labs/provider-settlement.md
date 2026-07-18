@@ -2,7 +2,7 @@
 
 Use this playbook when reviewing, debugging, or planning game provider settlement flows across Games Labs services.
 
-This playbook is domain-specific. For provider callback mechanics, use `skills/seamless-provider-review/SKILL.md`. For service boundaries, use `skills/microservice-boundary-review/SKILL.md`.
+This playbook is domain-specific. For provider callback mechanics, use `skills/vendor-integration/SKILL.md`. For service boundaries, use `skills/microservice-boundary-review/SKILL.md`.
 
 ## Use When
 

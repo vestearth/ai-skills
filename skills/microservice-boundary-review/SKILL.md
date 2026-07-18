@@ -15,7 +15,7 @@ description: Use when deciding ownership or service boundaries involving gRPC co
 
 - The change is isolated inside one service and ownership is already clear.
 - The task is only API shape review; prefer `api-contract-review` or a domain-specific API skill.
-- The task is protobuf field, gateway mapping, generated artifact, or wire-compatibility detail after the boundary is chosen; use `grpc-contract-review`.
+- The task is protobuf field, gateway mapping, generated artifact, or wire-compatibility detail after the boundary is chosen; use `api-contract-review`.
 - The task is event schema, routing key, retry, DLQ, idempotency, or consumer rollout detail after the boundary is chosen; use `rabbitmq-event-review`.
 - The task is broad architecture review beyond service boundaries; prefer `tech-lead-review`.
 
@@ -33,7 +33,7 @@ Keep data, business rules, and workflows owned by clear services with stable com
 
 1. Map ownership — name the owning service for each axis: the data, the business rule, and the workflow (they may be different services). If ownership of any axis is shared or unclear, stop and resolve it before designing the boundary.
 2. Choose the communication style by need:
-   - The caller needs an immediate, consistent answer → gRPC (synchronous). Defer protobuf message/field and wire-compatibility details to `grpc-contract-review`.
+   - The caller needs an immediate, consistent answer → gRPC (synchronous). Defer protobuf message/field and wire-compatibility details to `api-contract-review`.
    - The reaction can be eventually consistent or fanned out, and the producer must not block on consumers → event messaging. Defer schema, routing keys, retries, and delivery semantics to `rabbitmq-event-review`.
    - The path is external or client-facing and aggregates/exposes a service → API Gateway.
 3. Check boundary health for each cross-service call — ownership clarity, contract stability, failure handling, retry behavior, and observability.

@@ -5,10 +5,10 @@ Labs services: `.github/workflows/staging.yml` / `prod.yml`, `ecs/task-definitio
 `ecs/env.names`, `ecs/build-env-json.sh`, or inter-service URL wiring.
 
 This playbook is domain-specific. For generic pipeline review (permissions,
-supply chain, fail-loud, artifact identity), use `skills/cicd-pipeline-review/SKILL.md`.
-For the Dockerfile itself, use `skills/container-build-review/SKILL.md`. The
+supply chain, fail-loud, artifact identity) and the Dockerfile/image build itself,
+use `skills/cicd-pipeline-review/SKILL.md`. The
 legacy Contabo/k3s lane is decommissioned (2026-07-03) — `skills/k8s-deploy-review`
-and `skills/gitops-deploy-review` no longer apply to Games Labs deploys.
+(which also covers ArgoCD/GitOps) no longer applies to Games Labs deploys.
 
 ## Topology (verify before relying)
 

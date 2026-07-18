@@ -38,7 +38,7 @@ Use the smallest relevant skill:
 - Code/file/dependency/scaffold changes: `ai-skills/skills/minimal-change-review/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims: `ai-skills/skills/verification-loop/SKILL.md`
 - Unfamiliar repository area: `ai-skills/skills/search-first/SKILL.md`
-- Large, stale, or tool-derived context: `ai-skills/skills/context-discipline/SKILL.md`
+- Large, stale, or tool-derived context: `ai-skills/skills/search-first/SKILL.md`
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths: `ai-skills/skills/change-impact-analysis/SKILL.md`
 - Project memory, decisions, architecture notes, lessons, or flow maps: `ai-skills/skills/knowledge-query/SKILL.md`
 - Durable knowledge capture after completed work: `ai-skills/skills/knowledge-capture/SKILL.md`
@@ -54,8 +54,8 @@ Use the smallest relevant skill:
 - Provider settlement, round lifecycle, settled amount, turnover, duplicate callbacks, or reconciliation: `ai-skills/playbooks/games-labs/provider-settlement.md`
 - Missions event progress, `player.activity.v1`, daily mission status, force-complete, RabbitMQ routing, or restore/quote handoff: `ai-skills/playbooks/games-labs/missions-events.md`
 - ECS deploy workflows (`staging.yml`/`prod.yml`), `ecs/task-definition.json`, `ecs/env.names`, inter-service Cloud Map URLs, or ECS rollback: `ai-skills/playbooks/games-labs/ecs-deploy.md`
-- Seamless provider callbacks, signatures, launch URLs, balance, payout, rounds: `ai-skills/skills/seamless-provider-review/SKILL.md`
-- gRPC/protobuf/gateway contract changes: `ai-skills/skills/grpc-contract-review/SKILL.md`
+- Seamless provider callbacks, signatures, launch URLs, balance, payout, rounds: `ai-skills/skills/vendor-integration/SKILL.md`
+- gRPC/protobuf/gateway contract changes: `ai-skills/skills/api-contract-review/SKILL.md`
 - RabbitMQ events, routing, retries, DLQs: `ai-skills/skills/rabbitmq-event-review/SKILL.md`
 - Go service implementation review: `ai-skills/skills/golang-service-review/SKILL.md`
 - Dependency, Docker, CI, shared-lib, Go modules: `ai-skills/skills/dependency-guard/SKILL.md`

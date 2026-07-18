@@ -21,7 +21,7 @@ absolute symlink, so repo edits and `git pull` flow through. Resulting layout:
 <workspace-root>/.claude/skills/
   debugging/          -> ai-skills/skills/debugging/
   code-review/        -> ai-skills/skills/code-review/
-  grpc-contract-review/ -> ai-skills/skills/grpc-contract-review/
+  api-contract-review/ -> ai-skills/skills/api-contract-review/
 ```
 
 The installer prunes stale mirror entries (symlinks pointing at deleted or renamed
@@ -99,5 +99,3 @@ Use compatibility skills only when no more specific v2 skill applies.
 Prefer:
 
 - `games-labs-api-review` before `api-contract-review` for Games Labs API work.
-- `grpc-contract-review` before `api-contract-review` for protobuf/gRPC/gateway work.
-- `seamless-provider-review` before `vendor-integration` for seamless game provider work.

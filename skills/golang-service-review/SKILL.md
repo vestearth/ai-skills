@@ -14,7 +14,7 @@ description: Use when reviewing Go service implementation quality, handlers, wor
 
 ## Do Not Use When
 
-- The task is primarily protobuf/gRPC compatibility; use `grpc-contract-review`.
+- The task is primarily protobuf/gRPC compatibility; use `api-contract-review`.
 - The task is mainly dependency policy, Docker, CI, or shared module alignment; use `dependency-guard`.
 - The task is an active bug or production symptom with unknown root cause; start with `debugging`.
 - The task is architecture ownership rather than implementation quality; use `tech-lead-review`.

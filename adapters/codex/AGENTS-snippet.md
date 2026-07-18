@@ -21,15 +21,15 @@ Suggested routing:
 - Stress-testing a plan, design, rollout, or implementation approach -> decision-grilling
 - Compacting current work for another agent, session, reviewer, or continuation -> session-handoff
 - Sweeping a finished diff for AI-generated slop before commit or handoff -> deslop
-- Snapshotting working state before context compaction -> compact-guard
+- Snapshotting working state before context compaction -> session-handoff
 - Repeated permission prompts that should become allow/deny rules -> permission-tuner
 - Auditing MCP servers for token overhead, redundancy, or usage -> mcp-audit
-- Orienting in an unfamiliar code area with a one-screen map -> module-map
+- Orienting in an unfamiliar code area with a one-screen map -> search-first
 - Starting a task, delegating a subtask, or task/model mismatch -> model-router
 - Before completion, fix, merge, deploy, or handoff claims -> verification-loop
 - Receiving work claimed complete from another agent, handoff, or PR -> completion-audit
 - Unfamiliar repository area -> search-first
-- Large, stale, or tool-derived context -> context-discipline
+- Large, stale, or tool-derived context -> search-first
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> change-impact-analysis
 - Project memory, decisions, architecture notes, lessons, or flow maps -> knowledge-query
 - Durable knowledge capture after completed work -> knowledge-capture
@@ -45,20 +45,20 @@ Suggested routing:
 - Service ownership changes -> microservice-boundary-review
 - Deployment, rollout, or release readiness -> release-checklist
 - CI/CD pipeline or GitHub Actions workflow changes -> cicd-pipeline-review
-- Dockerfile, base image, or container build changes -> container-build-review
-- ArgoCD, GitOps sync, or declared image version changes -> gitops-deploy-review
+- Dockerfile, base image, or container build changes -> cicd-pipeline-review
+- ArgoCD, GitOps sync, or declared image version changes -> k8s-deploy-review
 - Kubernetes / k3s / Kustomize manifest changes -> k8s-deploy-review
 - Secrets, credentials, tokens, or kubeconfig handling -> secrets-management
 - Production incident, outage, degradation, or rollback decision -> incident-response
 - Repository discovery -> socraticode-discovery
 - Architecture review -> tech-lead-review
-- gRPC/protobuf/gateway contract changes -> grpc-contract-review
+- gRPC/protobuf/gateway contract changes -> api-contract-review
 - RabbitMQ event or async flow changes -> rabbitmq-event-review
 - Creating or reorganizing a Go project, module, command, service, worker, or package layout -> golang-project-structure
 - Go service implementation review -> golang-service-review
 - Datadog dashboards/monitors/telemetry -> datadog-observability
 - Games Labs API changes -> games-labs-api-review
 - Games Labs follow-up status questions such as implemented yet, fix before reply, or deploy confirmed -> games-labs-implementation-status
-- Seamless provider callbacks/signatures -> seamless-provider-review
+- Seamless provider callbacks/signatures -> vendor-integration
 - Sprint or backlog planning -> sprint-planning
 - Other provider integrations -> vendor-integration

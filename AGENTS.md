@@ -36,8 +36,7 @@ Before final answers, handoffs, merge claims, or fix claims, apply:
 When gathering context in large or unfamiliar repositories, apply:
 
 - `rules/context-discipline/RULE.md`
-- `skills/search-first/SKILL.md`
-- `skills/context-discipline/SKILL.md` when context budget matters
+- `skills/search-first/SKILL.md` (also covers context-budget discipline and one-screen module-map orientation)
 
 Recommended skills:
 - minimal-change-review
@@ -45,15 +44,12 @@ Recommended skills:
 - decision-grilling
 - session-handoff
 - deslop
-- compact-guard
 - permission-tuner
 - mcp-audit
-- module-map
 - model-router
 - verification-loop
 - completion-audit
 - search-first
-- context-discipline
 - change-impact-analysis
 - knowledge-query
 - knowledge-capture
@@ -73,16 +69,12 @@ Recommended skills:
 - tech-lead-review
 - games-labs-api-review
 - games-labs-implementation-status
-- seamless-provider-review
-- grpc-contract-review
 - rabbitmq-event-review
 - golang-project-structure
 - golang-service-review
 - datadog-observability
-- container-build-review
 - cicd-pipeline-review
 - k8s-deploy-review
-- gitops-deploy-review
 - incident-response
 - secrets-management
 - sprint-planning

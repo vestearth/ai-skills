@@ -17,7 +17,7 @@ Use the most specific contract skill.
 ## Routing
 
 - Games Labs API, mobile, gateway, missions, wallet, VIP, store, or provider-facing flow -> `ai-skills/skills/games-labs-api-review/SKILL.md`
-- gRPC, protobuf, grpc-gateway, generated artifacts, field numbers, or enum compatibility -> `ai-skills/skills/grpc-contract-review/SKILL.md`
+- gRPC, protobuf, grpc-gateway, generated artifacts, field numbers, or enum compatibility -> `ai-skills/skills/api-contract-review/SKILL.md`
 - Generic API/proto/mobile/web contract changes -> `ai-skills/skills/api-contract-review/SKILL.md`
 
 ## Rules

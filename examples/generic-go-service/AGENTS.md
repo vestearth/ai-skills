@@ -24,7 +24,7 @@ Use the smallest relevant skill:
 - Code/file/dependency/scaffold changes: `ai-skills/skills/minimal-change-review/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims: `ai-skills/skills/verification-loop/SKILL.md`
 - Unfamiliar repository area: `ai-skills/skills/search-first/SKILL.md`
-- Large, stale, or tool-derived context: `ai-skills/skills/context-discipline/SKILL.md`
+- Large, stale, or tool-derived context: `ai-skills/skills/search-first/SKILL.md`
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths: `ai-skills/skills/change-impact-analysis/SKILL.md`
 - Project memory, decisions, architecture notes, lessons, or flow maps: `ai-skills/skills/knowledge-query/SKILL.md`
 - Durable knowledge capture after completed work: `ai-skills/skills/knowledge-capture/SKILL.md`
@@ -35,7 +35,7 @@ Use the smallest relevant skill:
 - ClickHouse tables, ingestion, queries, retention, or event storage: `ai-skills/skills/clickhouse-io/SKILL.md`
 - Creating or reorganizing a Go project, module, command, service, worker, or package layout: `ai-skills/skills/golang-project-structure/SKILL.md`
 - Go service implementation review: `ai-skills/skills/golang-service-review/SKILL.md`
-- gRPC/protobuf/gateway contract changes: `ai-skills/skills/grpc-contract-review/SKILL.md`
+- gRPC/protobuf/gateway contract changes: `ai-skills/skills/api-contract-review/SKILL.md`
 - RabbitMQ events, routing, retries, DLQs: `ai-skills/skills/rabbitmq-event-review/SKILL.md`
 - Dependency, Docker, CI, Go modules: `ai-skills/skills/dependency-guard/SKILL.md`
 - Datadog metrics, logs, traces, monitors: `ai-skills/skills/datadog-observability/SKILL.md`

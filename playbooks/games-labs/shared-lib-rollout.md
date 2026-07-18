@@ -2,7 +2,7 @@
 
 Use this playbook when checking or planning `shared-lib` adoption across Games Labs repositories.
 
-This playbook is domain-specific. For generic dependency review, use `skills/dependency-guard/SKILL.md`. For protobuf/gRPC contract compatibility, use `skills/grpc-contract-review/SKILL.md`.
+This playbook is domain-specific. For generic dependency review, use `skills/dependency-guard/SKILL.md`. For protobuf/gRPC contract compatibility, use `skills/api-contract-review/SKILL.md`.
 
 ## Use When
 

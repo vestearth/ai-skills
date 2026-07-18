@@ -36,10 +36,10 @@ Current target completion: complete
 
 | Area | Status |
 | --- | --- |
-| Container build review | complete |
+| Container build review (now part of CI/CD pipeline review) | complete |
 | CI/CD pipeline review | complete |
 | Kubernetes deploy review | complete |
-| GitOps deploy review | complete |
+| GitOps deploy review (now part of Kubernetes deploy review) | complete |
 | Incident response | complete |
 | Secrets management | complete |
 
@@ -67,14 +67,16 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | --- | --- |
 | `skill-authoring-review` | complete |
 | `decision-grilling` | complete |
-| `session-handoff` | complete |
+| `session-handoff` | complete (absorbed compact-guard: pre-compaction snapshot/restore) |
 | `deslop` | complete |
-| `compact-guard` | complete |
 | `permission-tuner` | complete |
 | `mcp-audit` | complete |
-| `module-map` | complete |
 | `model-router` | complete |
 | `completion-audit` | complete |
+
+The former compact-guard and module-map skills were consolidated away: compact-guard
+into `session-handoff` (pre-compaction snapshot/restore) and module-map into
+`search-first` (one-screen module-map orientation).
 
 Future v4 mentoring backlog: extract teach concepts into knowledge-base
 templates and mentoring guidance, but do not add a teach skill in this layer.
@@ -85,8 +87,7 @@ Reusable baseline guardrails for checking reuse, evidence, verification, context
 
 - [x] `minimal-change-review`
 - [x] `verification-loop`
-- [x] `search-first`
-- [x] `context-discipline`
+- [x] `search-first` (absorbed the former context-discipline skill; the authoritative principle stays in `rules/context-discipline/RULE.md`)
 - [x] `change-impact-analysis`
 - [x] `rules/reuse-before-build/RULE.md`
 - [x] `rules/minimal-change/RULE.md`
@@ -107,14 +108,15 @@ Reusable behaviors for querying, capturing, promoting, and source-reviewing dura
 
 ## V2.0 Completion
 
-Current target completion: 15 / 15 skills
+Current target completion: 13 / 13 skills (was 15; two skills later consolidated
+into compatibility skills — see notes below)
 
 | Layer | Present | Planned | Status |
 | --- | ---: | ---: | --- |
 | Foundation Skills | 4 | 0 | complete |
-| Architecture Skills | 4 | 0 | complete |
+| Architecture Skills | 3 | 0 | complete |
 | Platform Skills | 3 | 0 | complete |
-| Earth Skills | 4 | 0 | complete |
+| Earth Skills | 3 | 0 | complete |
 
 ## Foundation Skills
 
@@ -131,8 +133,10 @@ System design, ownership, and service-boundary judgment.
 
 - [x] `tech-lead-review`
 - [x] `microservice-boundary-review`
-- [x] `grpc-contract-review`
 - [x] `rabbitmq-event-review`
+
+The former grpc-contract-review skill was consolidated into `api-contract-review`,
+which now covers protobuf/gRPC/gateway and wire compatibility.
 
 ## Platform Skills
 
@@ -158,13 +162,11 @@ reason with, the way code-review backs the reviewer agent.
 
 Tier 1:
 
-- [x] `container-build-review`
-- [x] `cicd-pipeline-review`
-- [x] `k8s-deploy-review`
+- [x] `cicd-pipeline-review` (absorbed the former container-build-review: Dockerfile/image build, base images, build secrets, image hygiene)
+- [x] `k8s-deploy-review` (absorbed the former gitops-deploy-review: ArgoCD Applications, sync policies, git-as-source-of-truth)
 
 Tier 2:
 
-- [x] `gitops-deploy-review`
 - [x] `incident-response`
 - [x] `secrets-management`
 
@@ -174,8 +176,10 @@ Personal/domain-specific skills for Earth workflows and Games Labs context.
 
 - [x] `games-labs-api-review`
 - [x] `games-labs-implementation-status`
-- [x] `seamless-provider-review`
 - [x] `sprint-planning`
+
+The former seamless-provider-review skill was consolidated into `vendor-integration`,
+which now covers seamless game provider callbacks, signatures, launch URLs, and round APIs.
 
 ## Compatibility Skills
 

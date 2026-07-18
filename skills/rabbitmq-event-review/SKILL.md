@@ -15,7 +15,7 @@ description: Use when changing RabbitMQ publishers, consumers, exchanges, queues
 
 ## Do Not Use When
 
-- The change is synchronous gRPC or HTTP only; use `grpc-contract-review` or `api-contract-review`.
+- The change is synchronous gRPC or HTTP only; use `api-contract-review`.
 - The task is only infrastructure deployment without event behavior; use `release-checklist` or `datadog-observability` as appropriate.
 - The event is an implementation detail with no cross-service consumer.
 

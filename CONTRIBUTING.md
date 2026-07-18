@@ -104,4 +104,3 @@ When a new domain-specific skill overlaps with an older broad skill, route the s
 
 Examples:
 - Use `games-labs-api-review` before `api-contract-review` for Games Labs API work.
-- Use `seamless-provider-review` before `vendor-integration` for seamless game provider callbacks, signatures, launch URLs, or round APIs.

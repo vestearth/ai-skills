@@ -24,15 +24,15 @@ Use reusable guidance from `ai-skills/`.
 - Stress-testing a plan, design, rollout, or implementation approach -> `ai-skills/skills/decision-grilling/SKILL.md`
 - Compacting current work for another agent, session, reviewer, or continuation -> `ai-skills/skills/session-handoff/SKILL.md`
 - Sweeping a finished diff for AI-generated slop before commit or handoff -> `ai-skills/skills/deslop/SKILL.md`
-- Snapshotting working state before context compaction -> `ai-skills/skills/compact-guard/SKILL.md`
+- Snapshotting working state before context compaction -> `ai-skills/skills/session-handoff/SKILL.md`
 - Repeated permission prompts that should become allow/deny rules -> `ai-skills/skills/permission-tuner/SKILL.md`
 - Auditing MCP servers for token overhead, redundancy, or usage -> `ai-skills/skills/mcp-audit/SKILL.md`
-- Orienting in an unfamiliar code area with a one-screen map -> `ai-skills/skills/module-map/SKILL.md`
+- Orienting in an unfamiliar code area with a one-screen map -> `ai-skills/skills/search-first/SKILL.md`
 - Starting a task, delegating a subtask, or task/model mismatch -> `ai-skills/skills/model-router/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims -> `ai-skills/skills/verification-loop/SKILL.md`
 - Receiving work claimed complete from another agent, handoff, or PR -> `ai-skills/skills/completion-audit/SKILL.md`
 - Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
-- Large, stale, or tool-derived context -> `ai-skills/skills/context-discipline/SKILL.md`
+- Large, stale, or tool-derived context -> `ai-skills/skills/search-first/SKILL.md`
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> `ai-skills/skills/change-impact-analysis/SKILL.md`
 - Project memory, decisions, architecture notes, lessons, or flow maps -> `ai-skills/skills/knowledge-query/SKILL.md`
 - Durable knowledge capture after completed work -> `ai-skills/skills/knowledge-capture/SKILL.md`
@@ -46,14 +46,14 @@ Use reusable guidance from `ai-skills/`.
 - Dependency, Docker, CI, shared module, `go.work`, or `replace` changes -> `ai-skills/skills/dependency-guard/SKILL.md`
 - Release, deployment, rollback, or smoke test readiness -> `ai-skills/skills/release-checklist/SKILL.md`
 - CI/CD pipeline or GitHub Actions workflow changes -> `ai-skills/skills/cicd-pipeline-review/SKILL.md`
-- Dockerfile, base image, or container build changes -> `ai-skills/skills/container-build-review/SKILL.md`
-- ArgoCD, GitOps sync, or declared image version changes -> `ai-skills/skills/gitops-deploy-review/SKILL.md`
+- Dockerfile, base image, or container build changes -> `ai-skills/skills/cicd-pipeline-review/SKILL.md`
+- ArgoCD, GitOps sync, or declared image version changes -> `ai-skills/skills/k8s-deploy-review/SKILL.md`
 - Kubernetes / k3s / Kustomize manifest changes -> `ai-skills/skills/k8s-deploy-review/SKILL.md`
 - Secrets, credentials, tokens, or kubeconfig handling -> `ai-skills/skills/secrets-management/SKILL.md`
 - Production incident, outage, degradation, or rollback decision -> `ai-skills/skills/incident-response/SKILL.md`
 - Architecture, ownership, scalability, cross-team risk -> `ai-skills/skills/tech-lead-review/SKILL.md`
 - Service ownership or microservice boundary changes -> `ai-skills/skills/microservice-boundary-review/SKILL.md`
-- gRPC, protobuf, grpc-gateway, generated artifacts -> `ai-skills/skills/grpc-contract-review/SKILL.md`
+- gRPC, protobuf, grpc-gateway, generated artifacts -> `ai-skills/skills/api-contract-review/SKILL.md`
 - RabbitMQ events, routing keys, queues, retries, DLQs -> `ai-skills/skills/rabbitmq-event-review/SKILL.md`
 - SocratiCode or indexed codebase discovery -> `ai-skills/skills/socraticode-discovery/SKILL.md`
 - Creating or reorganizing a Go project, module, command, service, worker, or package layout -> `ai-skills/skills/golang-project-structure/SKILL.md`
@@ -61,7 +61,7 @@ Use reusable guidance from `ai-skills/`.
 - Datadog metrics, logs, traces, dashboards, monitors -> `ai-skills/skills/datadog-observability/SKILL.md`
 - Games Labs API/mobile/gateway changes -> `ai-skills/skills/games-labs-api-review/SKILL.md`
 - Games Labs follow-up status questions such as implemented yet, fix before reply, deploy confirmed, or what reply to send -> `ai-skills/skills/games-labs-implementation-status/SKILL.md`
-- Seamless provider callbacks, signatures, launch URLs -> `ai-skills/skills/seamless-provider-review/SKILL.md`
+- Seamless provider callbacks, signatures, launch URLs -> `ai-skills/skills/vendor-integration/SKILL.md`
 - Sprint or backlog planning -> `ai-skills/skills/sprint-planning/SKILL.md`
 
 Compatibility fallback:

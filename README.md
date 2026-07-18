@@ -68,12 +68,10 @@ the full v4 Tech Lead OS complete.
 | --- | --- |
 | `skill-authoring-review` | Creating, editing, reviewing, or pruning ai-skills guidance, frontmatter, routing, or behavior contracts |
 | `decision-grilling` | Stress-testing a plan, design, architecture choice, rollout, or implementation approach before work begins |
-| `session-handoff` | Compacting current work into a handoff for another agent, session, reviewer, or future continuation |
+| `session-handoff` | Compacting current work into a handoff for another agent, session, reviewer, or future continuation — including snapshotting critical working state before context compaction and restoring it after |
 | `deslop` | Sweeping a finished diff or branch for AI-generated slop before commit, review, or handoff |
-| `compact-guard` | Snapshotting critical working state before context compaction and restoring it after |
 | `permission-tuner` | Turning repeated permission prompts into proposed risk-tiered allow/deny rules |
 | `mcp-audit` | Auditing connected MCP servers for tool-count overhead, redundancy, and actual usage |
-| `module-map` | Orienting fast in an unfamiliar code area with a one-screen map of entry points, modules, flow, and coupling |
 | `model-router` | Routing each task to the cheapest capable model (scout=Haiku, worker=Sonnet, main model for reasoning) plus /model and /effort advisories to save quota |
 | `completion-audit` | Auditing work another agent, handoff, PR, or past session claims is complete — re-run claimed checks against the real diff before accepting |
 
@@ -104,8 +102,7 @@ These apply before choosing a larger implementation path.
 | --- | --- |
 | `minimal-change-review` | Before modifying code, creating files, adding dependencies, scaffolding features, or checking for overbuilt implementations |
 | `verification-loop` | Before final answers, fix claims, merge/deploy readiness, release notes, or handoff claims |
-| `search-first` | Starting implementation, debugging, refactoring, review, or repository discovery in an unfamiliar area |
-| `context-discipline` | Repository context is large, stale, tool-derived, or likely to overload the session |
+| `search-first` | Starting implementation, debugging, refactoring, review, or repository discovery in an unfamiliar area; when repository context is large, stale, tool-derived, or likely to overload the session; or orienting fast with a one-screen module map of entry points, modules, flow, and coupling |
 | `change-impact-analysis` | Changing shared code, contracts, schemas, generated code, service behavior, runtime config, or high-risk production paths |
 | `rules/reuse-before-build/RULE.md` | Checking need, existing code, standard library, platform/native features, existing dependencies, then smallest new code |
 | `rules/minimal-change/RULE.md` | Keeping edits scoped to the smallest safe change |
@@ -129,7 +126,6 @@ These apply before choosing a larger implementation path.
 | --- | --- |
 | `tech-lead-review` | Evaluating architecture, ownership, cross-team impact, risk, scalability, or maintainability |
 | `microservice-boundary-review` | Changing service ownership, service boundaries, gRPC contracts, or event flows |
-| `grpc-contract-review` | Changing protobuf, gRPC services, grpc-gateway mappings, generated artifacts, or wire compatibility |
 | `rabbitmq-event-review` | Changing RabbitMQ publishers, consumers, event schemas, routing keys, retries, DLQs, or async service flows |
 
 ### Platform
@@ -154,10 +150,8 @@ The thinking layer for the `devops` agent: GitHub Actions + ECR/ECS (current Gam
 
 | Skill | Use when |
 | --- | --- |
-| `container-build-review` | Changing Dockerfiles, multi-stage builds, base images, build secrets, or image reproducibility/hygiene |
-| `cicd-pipeline-review` | Changing GitHub Actions / CI/CD workflows, build-push-deploy jobs, action versions, workflow permissions, or pipeline secrets |
-| `k8s-deploy-review` | Changing Kubernetes/k3s manifests, Kustomize overlays, probes, resource limits, rollout strategy, or image references |
-| `gitops-deploy-review` | Changing ArgoCD Applications, sync policies, declared image versions, or reconciling git-as-source-of-truth against live cluster state |
+| `cicd-pipeline-review` | Changing GitHub Actions / CI/CD workflows, build-push-deploy jobs, action versions, workflow permissions, pipeline secrets, Dockerfiles, multi-stage builds, base images, build secrets, or image reproducibility/hygiene |
+| `k8s-deploy-review` | Changing Kubernetes/k3s manifests, Kustomize overlays, probes, resource limits, rollout strategy, image references, ArgoCD Applications, sync policies, declared image versions, or reconciling git-as-source-of-truth against live cluster state |
 | `incident-response` | Triage, containment, rollback decision, runbook, and post-incident review during a production incident or degradation |
 | `secrets-management` | Provisioning, rotating, scoping secrets/tokens/kubeconfig and keeping plaintext out of git, logs, and image layers |
 
@@ -167,7 +161,6 @@ The thinking layer for the `devops` agent: GitHub Actions + ECR/ECS (current Gam
 | --- | --- |
 | `games-labs-api-review` | Reviewing Games Labs API, gateway, mobile, missions, wallet, VIP, store, or provider-facing changes |
 | `games-labs-implementation-status` | Answering Games Labs follow-up status questions such as implemented yet, fix before reply, deploy confirmed, or what reply to send |
-| `seamless-provider-review` | Reviewing seamless game provider integrations, callbacks, signatures, launch URLs, or round APIs |
 | `sprint-planning` | Turning goals, backlog items, incidents, or stakeholder requests into bounded sprint scope and verification plans |
 
 ## Compatibility Skills
@@ -176,8 +169,8 @@ These remain available for v1 compatibility and broader routing, but they are no
 
 | Skill | Use when |
 | --- | --- |
-| `api-contract-review` | Changing APIs, protobuf contracts, grpc-gateway routes, or frontend/mobile integrations outside a more specific domain skill |
-| `vendor-integration` | Integrating third-party APIs, callbacks, provider platforms, or payment/game vendors outside a more specific domain skill |
+| `api-contract-review` | Changing APIs, protobuf contracts, gRPC services, grpc-gateway routes/mappings, generated artifacts, wire compatibility, or frontend/mobile integrations outside a more specific domain skill |
+| `vendor-integration` | Integrating third-party APIs, callbacks, provider platforms, payment/game vendors, or seamless game provider integrations (balance callbacks, payout flows, launch URLs, signatures, round APIs) outside a more specific domain skill |
 
 ## Adapter strategy
 

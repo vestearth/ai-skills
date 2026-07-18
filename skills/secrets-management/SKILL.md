@@ -16,7 +16,7 @@ description: Use when handling secrets, credentials, tokens, or kubeconfig acros
 
 - The concern is which secrets a release verified, not how they are managed; prefer `release-checklist`.
 - The concern is workflow permissions/OIDC mechanics in a pipeline broadly; prefer `cicd-pipeline-review` (use this skill for the credential lifecycle itself).
-- The concern is build-time secret mounting in a Dockerfile; prefer `container-build-review`.
+- The concern is build-time secret mounting in a Dockerfile; prefer `cicd-pipeline-review`.
 
 ## Required Inputs
 
