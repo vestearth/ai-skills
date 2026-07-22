@@ -1,0 +1,37 @@
+schema_version: 1
+
+# Named-agent installation matrix. Skills and Cursor rules keep their existing
+# installers; this manifest owns only launchable agent adapters.
+installations:
+  - agent: auditor
+    lane: claude
+    source: adapters/claude/agents/auditor.md
+    destination: .claude/agents/auditor.md
+  - agent: knowledge-capturer
+    lane: claude
+    source: adapters/claude/agents/knowledge-capturer.md
+    destination: .claude/agents/knowledge-capturer.md
+  - agent: knowledge-librarian
+    lane: claude
+    source: adapters/claude/agents/knowledge-librarian.md
+    destination: .claude/agents/knowledge-librarian.md
+  - agent: reviewer
+    lane: claude
+    source: adapters/claude/agents/reviewer.md
+    destination: .claude/agents/reviewer.md
+  - agent: scout
+    lane: claude
+    source: adapters/claude/agents/scout.md
+    destination: .claude/agents/scout.md
+  - agent: worker
+    lane: claude
+    source: adapters/claude/agents/worker.md
+    destination: .claude/agents/worker.md
+  - agent: knowledge-librarian
+    lane: codex
+    source: adapters/codex/agents/knowledge-librarian.toml
+    destination: .codex/agents/knowledge-librarian.toml
+  - agent: knowledge-librarian
+    lane: cursor
+    source: adapters/cursor/agents/knowledge-librarian.md
+    destination: .cursor/agents/knowledge-librarian.md

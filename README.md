@@ -183,6 +183,25 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
   contract in `ai-dev-office/` and thin launch adapters under
   `adapters/{claude,codex,cursor}/agents/`.
 
+### Named-agent setup
+
+Named-agent wiring is declared once in `adapters/agents-manifest.yaml`. Install
+all supported lane adapters into the parent workspace, or install/check one lane:
+
+The manifest tools require Ruby 2.4+ with its standard `yaml` library.
+
+```bash
+scripts/install-agents.sh --all
+scripts/install-agents.sh --lane claude
+scripts/install-agents.sh --lane codex --check
+scripts/install-agents.sh --lane cursor --target /path/to/workspace
+```
+
+The installer uses absolute symlinks, prunes only stale links owned by this
+repository, preserves unrelated workspace agents, and supports a non-writing
+`--check` mode. Installation proves adapter wiring; it does not claim that a
+lane can launch successfully when credentials or runtime support are unavailable.
+
 ### Cursor setup
 
 Cursor only auto-loads `.mdc` rules from `<workspace-root>/.cursor/rules/` — it
@@ -254,9 +273,10 @@ Smoke-test the installers with:
 ```bash
 scripts/test-install-cursor.sh   # Cursor: nested + standalone layouts
 scripts/test-install-claude.sh   # Claude: sync + prune + idempotent
+scripts/test-install-agents.sh   # Named agents: manifest + prune + check + repair
 ```
 
-Both run in CI on pushes to `main` and on pull requests via
+All installer smoke tests run in CI on pushes to `main` and on pull requests via
 `.github/workflows/validate.yml`.
 
 ## Adoption workflow

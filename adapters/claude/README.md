@@ -36,11 +36,11 @@ session. Smoke-test the installer with `scripts/test-install-claude.sh`.
 Claude Code subagents (`.claude/agents/<name>.md`) are a Claude-lane wiring artifact
 — a lane that activates a task, distinct from ai-dev-office role personas (behavior)
 and from skills (task triggers). Their source of truth lives here, under
-`adapters/claude/agents/`, and is wired into a workspace by an absolute symlink,
-mirroring how `skills/` is mirrored into `.claude/skills/`:
+`adapters/claude/agents/`, and is wired from the shared named-agent manifest:
 
 ```bash
-ln -sfn "$PWD/adapters/claude/agents/<name>.md" "<workspace>/.claude/agents/<name>.md"
+scripts/install-agents.sh --lane claude --target <workspace>
+scripts/install-agents.sh --lane claude --target <workspace> --check
 ```
 
 Subagent bodies reference repo paths relative to the **workspace root** (the dir

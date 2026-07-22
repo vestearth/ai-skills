@@ -176,11 +176,35 @@ for doc in "${adapter_docs[@]}"; do
   done
 done
 
-librarian_agents=(
-  "$ROOT_DIR/adapters/claude/agents/knowledge-librarian.md"
-  "$ROOT_DIR/adapters/codex/agents/knowledge-librarian.toml"
-  "$ROOT_DIR/adapters/cursor/agents/knowledge-librarian.md"
-)
+agent_manifest="$ROOT_DIR/adapters/agents-manifest.yaml"
+librarian_agents=()
+
+if [ ! -f "$agent_manifest" ]; then
+  fail "missing named-agent manifest: adapters/agents-manifest.yaml"
+elif ! command -v ruby >/dev/null 2>&1; then
+  fail "ruby with the standard yaml library is required to validate adapters/agents-manifest.yaml"
+elif ! ruby "$ROOT_DIR/scripts/validate-agent-manifest.rb" "$agent_manifest" >/dev/null 2>&1; then
+  fail "adapters/agents-manifest.yaml: invalid manifest structure"
+else
+  while IFS=$'\t' read -r agent lane source destination; do
+    source_path="$ROOT_DIR/$source"
+    if [ ! -f "$source_path" ]; then
+      fail "adapters/agents-manifest.yaml: missing source '$source'"
+      continue
+    fi
+    case "$lane:$source:$destination" in
+      claude:adapters/claude/agents/*.md:.claude/agents/*.md|codex:adapters/codex/agents/*.toml:.codex/agents/*.toml|cursor:adapters/cursor/agents/*.md:.cursor/agents/*.md) ;;
+      *) fail "adapters/agents-manifest.yaml: invalid lane/source/destination for '$agent'" ;;
+    esac
+    if [ "$agent" = "knowledge-librarian" ]; then
+      librarian_agents+=("$source_path")
+    fi
+  done < <(ruby "$ROOT_DIR/scripts/validate-agent-manifest.rb" "$agent_manifest" all)
+fi
+
+if [ "${#librarian_agents[@]}" -ne 3 ]; then
+  fail "adapters/agents-manifest.yaml: expected Knowledge Librarian in exactly three lanes"
+fi
 
 for agent_file in "${librarian_agents[@]}"; do
   if [ ! -f "$agent_file" ]; then
