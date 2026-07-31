@@ -99,6 +99,12 @@ Reusable baseline guardrails for checking reuse, evidence, verification, context
 - [x] `rules/test-integrity/RULE.md`
 - [x] `rules/schema-change-needs-migration/RULE.md`
 
+Enforcement lane (Claude only — text guidance cannot stop a tool call):
+
+- [x] `adapters/claude/hooks/guard-env-write.sh` (PreToolUse on the file-edit tools)
+- [x] `adapters/claude/hooks/guard-env-bash.sh` (PreToolUse on the shell tool, 48-case table)
+- [x] `scripts/install-claude-hooks.sh` + `scripts/test-install-claude-hooks.sh`
+
 ## Knowledge Operation Skills
 
 Reusable behaviors for querying, capturing, promoting, and source-reviewing durable knowledge in `knowledge-base/`.

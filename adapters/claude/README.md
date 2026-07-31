@@ -77,6 +77,46 @@ Current subagents:
 
 See `30 ADR/ADR-0006 Claude Subagents Live In ai-skills Adapters` in `knowledge-base`.
 
+## Hooks
+
+Skills, rules, and adapters are all *text an agent may ignore*. Claude Code
+hooks are the only lane in this repo that can actually stop a tool call, so the
+hook scripts live here as source of truth and are mirrored into a workspace:
+
+```bash
+scripts/install-claude-hooks.sh              # nested: into <parent-of-ai-skills>/.claude/hooks
+scripts/install-claude-hooks.sh --nested DIR
+scripts/install-claude-hooks.sh --standalone
+scripts/install-claude-hooks.sh --user
+```
+
+It symlinks each `adapters/claude/hooks/*.sh` into the target `.claude/hooks/`,
+prunes stale links, runs the hook tests, and reports which hooks are not yet
+referenced by `settings.json`. It deliberately **does not edit settings.json** —
+which matchers to enable is operator policy, so the script prints the snippet
+instead. Smoke-test with `scripts/test-install-claude-hooks.sh`.
+
+Current hooks (both PreToolUse, both `exit 2` to block, enforcing
+`rules/no-secrets-in-repo/RULE.md`):
+
+- `guard-env-write.sh` — matcher `Edit|Write|MultiEdit|NotebookEdit`. Blocks
+  edits to real `.env` files by basename; templates (`.env.example`, `.sample`,
+  `.template`, `.dist`) are allowed.
+- `guard-env-bash.sh` — matcher `Bash`. Parses `.tool_input.command`: scrubs
+  heredoc bodies (data, not shell — unless the command feeds a shell), tokenizes
+  to find a real `.env`, then decides whether a write is aimed at it. Fails
+  **closed** if `jq` is missing or the payload is unparseable.
+  `tests/run-env-guard-tests.sh` runs its 48-case table.
+
+**Scope, stated honestly:** pattern matching over a Turing-complete shell cannot
+be sound against an agent actively evading it — a script file that writes `.env`
+from inside still passes. These hooks are a hard stop for accidental and casual
+writes, which is the realistic failure mode; they are not a security boundary,
+and they bind the Claude lane only (Codex and Cursor do not read
+`.claude/settings.json`). The first version of `guard-env-bash.sh` passed its own
+32-case suite while carrying four critical bypasses — change it only with the
+case table, and add a case for every bypass found.
+
 ## Rules
 
 1. Preserve each `SKILL.md` exactly when installing.

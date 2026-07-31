@@ -258,6 +258,26 @@ The installer also prunes stale mirror entries (symlinks pointing at deleted or
 renamed skills), leaves unrelated libraries untouched, and runs the validator.
 New or removed skills take effect in the next Claude Code session.
 
+### Claude hooks (enforcement lane)
+
+Skills and rules are guidance an agent may ignore. Claude Code hooks can
+actually stop a tool call, so the hook scripts ship under
+`adapters/claude/hooks/` and install the same way:
+
+```bash
+scripts/install-claude-hooks.sh
+scripts/install-claude-hooks.sh --nested /path/to/project-root
+scripts/install-claude-hooks.sh --standalone
+scripts/install-claude-hooks.sh --user
+```
+
+It symlinks the hooks, prunes stale links, runs their case-table tests, and
+reports any hook not yet referenced by `settings.json` — it never edits
+`settings.json` itself. Currently ships `guard-env-write.sh` and
+`guard-env-bash.sh`, which enforce `rules/no-secrets-in-repo/RULE.md` at the
+tool layer for the Claude lane only. See `adapters/claude/README.md` for scope
+limits before relying on them.
+
 ## Quality checks
 
 Run the local validator before release or adapter sync:

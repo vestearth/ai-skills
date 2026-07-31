@@ -1,0 +1,50 @@
+2	echo "TOKEN=abc" >> .env
+2	echo X > .env
+2	echo X >/srv/app/.env
+2	echo X > ".env.local"
+2	cat tmp | tee .env
+2	tee -a .env < in
+2	sed -i "s/A/B/" .env
+2	sed -i.bak s/A/B/ .env.production
+2	perl -i -pe s/a/b/ .env
+2	cp .env.example .env
+2	mv /tmp/x .env
+2	rm -f .env
+2	dd of=.env if=/tmp/x
+2	cd svc && echo A=1 >> .env && go build ./...
+0	cat .env
+0	cat .env 2>/dev/null
+0	grep -c KEY .env
+0	source .env && go run .
+0	docker run --env-file=.env img
+0	echo X >> .env.example
+0	cp .env.example .env.sample
+0	echo X >> .envrc
+0	rm -rf node_modules
+0	echo hi > out.txt
+0	git status --short
+0	go test ./... > /tmp/test.log 2>&1
+0	python3 - <<'PY'\ns = "never run: echo X >> .env"\nprint(s)\nPY
+0	cat <<EOF > notes.md\ndo not use sed -i .env\nEOF
+0	jq -n '{a:1}' <<'JSON'\nignore: cp x .env\nJSON
+2	cat > .env <<'EOF'\nA=1\nEOF
+2	bash <<'EOF'\necho A=1 >> .env\nEOF
+2	sh -c 'echo A=1 >> .env'
+2	env bash <<'EOF'\nprintf X > .env\nEOF
+2	/bin/bash <<'EOF'\nprintf X > .env\nEOF
+2	true | bash <<'EOF'\nprintf X > .env\nEOF
+2	echo X >| .env
+2	echo X > .e''nv
+2	f=.env; echo X > "$f"
+2	git restore .env
+2	git checkout -- .env
+2	python3 -c 'open(".env","w").write("X=1")'
+2	rsync -a source/ .env
+2	tar -xf backup.tar -C .env
+2	find . -name .env -delete
+2	rm -f .env*
+2	awk 'BEGIN{print "X=1"}' > .env
+2	printf 'A=1\n' | dd of=.env
+0	shasum <<'EOF'\ndocs: never run echo X > .env\nEOF
+0	git commit -F - <<'MSG'\nprose: a bash JSON merge is a bad way to touch it\nmentions cp/mv/rm and a .env file in passing\nMSG
+0	python3 - <<'PY'\n# doc: "run bash carefully"; never rm .env by hand\nPY
