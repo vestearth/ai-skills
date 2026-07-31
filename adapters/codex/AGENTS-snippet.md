@@ -14,6 +14,24 @@ Use reusable guidance from `ai-skills/`.
 4. Prefer domain-specific skills before compatibility skills.
 5. After changing this routing snippet, run `scripts/validate-skills.sh` in `ai-skills/`.
 
+## Guardrail Rules
+
+Rules are behavior contracts, not routing targets: they apply whenever their
+trigger appears, including when a skill is already in use.
+
+- Before editing code, files, dependencies, or scaffolding -> `ai-skills/rules/minimal-change/RULE.md`
+- Before adding code, dependencies, or abstractions -> `ai-skills/rules/reuse-before-build/RULE.md`
+- Before creating any new file, helper, config, or fixture -> `ai-skills/rules/search-before-create/RULE.md`
+- Before any claim about repository behavior, risk, or root cause -> `ai-skills/rules/evidence-required/RULE.md`
+- Before completion, fix, merge, deploy, or handoff claims -> `ai-skills/rules/verify-before-final/RULE.md`
+- While gathering repository context -> `ai-skills/rules/context-discipline/RULE.md`
+- Before writing or committing any file that could carry a credential, including `.env` and `.env.*` -> `ai-skills/rules/no-secrets-in-repo/RULE.md`
+- When fixing a bug or making a failing test, lint, or CI check pass -> `ai-skills/rules/test-integrity/RULE.md`
+- Before changing a model, entity, DDL file, index, constraint, or stored enum -> `ai-skills/rules/schema-change-needs-migration/RULE.md`
+
+The last three are prohibitions. They hold even when the user did not mention them
+and even when the change is otherwise in scope.
+
 Suggested routing:
 
 - Before code/file/dependency/scaffold changes -> minimal-change-review

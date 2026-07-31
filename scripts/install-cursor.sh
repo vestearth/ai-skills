@@ -80,7 +80,7 @@ for f in "$SRC_DIR"/*.mdc; do
     ln -sfn "$f" "$dest"
   else
     # Standalone: rewrite the backtick-anchored prefix to the workspace-root form.
-    sed 's#`ai-skills/skills/#`skills/#g' "$f" > "$dest"
+    sed -e 's#`ai-skills/skills/#`skills/#g' -e 's#`ai-skills/rules/#`rules/#g' "$f" > "$dest"
   fi
   installed=$((installed + 1))
 done

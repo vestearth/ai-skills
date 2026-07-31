@@ -110,6 +110,9 @@ These apply before choosing a larger implementation path.
 | `rules/evidence-required/RULE.md` | Requiring source, command, test, CI, log, or runtime evidence for codebase claims |
 | `rules/verify-before-final/RULE.md` | Requiring relevant verification before completion, fix, merge, deploy, or handoff claims |
 | `rules/context-discipline/RULE.md` | Gathering targeted context without dumping broad repository state |
+| `rules/no-secrets-in-repo/RULE.md` | Writing or committing any file that could carry a credential value, including `.env` and `.env.*`, fixtures, manifests, and docs |
+| `rules/test-integrity/RULE.md` | Fixing a bug, or making a failing test, lint, or CI check pass — requires a regression test and forbids weakening checks to reach green |
+| `rules/schema-change-needs-migration/RULE.md` | Changing a model, entity, DDL file, index, constraint, or stored enum — requires a migration in the same change, plus deploy order and rollback |
 
 ### Foundation
 

@@ -83,7 +83,7 @@ templates and mentoring guidance, but do not add a teach skill in this layer.
 
 ## Operating Guardrails
 
-Reusable baseline guardrails for checking reuse, evidence, verification, context, and impact before building.
+Reusable baseline guardrails for checking reuse, evidence, verification, context, and impact before building, plus the credential, test-integrity, and schema-migration prohibitions that hold unconditionally.
 
 - [x] `minimal-change-review`
 - [x] `verification-loop`
@@ -95,6 +95,9 @@ Reusable baseline guardrails for checking reuse, evidence, verification, context
 - [x] `rules/evidence-required/RULE.md`
 - [x] `rules/verify-before-final/RULE.md`
 - [x] `rules/context-discipline/RULE.md`
+- [x] `rules/no-secrets-in-repo/RULE.md`
+- [x] `rules/test-integrity/RULE.md`
+- [x] `rules/schema-change-needs-migration/RULE.md`
 
 ## Knowledge Operation Skills
 

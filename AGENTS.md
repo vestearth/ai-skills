@@ -16,6 +16,13 @@ For non-trivial changes, new artifacts, dependencies, abstractions, or scaffoldi
 
 - `skills/minimal-change-review/SKILL.md`
 
+These three guardrails are prohibitions, not preferences. They hold even when the
+user did not mention them and even when the change is otherwise in scope:
+
+- `rules/no-secrets-in-repo/RULE.md` before writing or committing any file that could carry a credential value, including `.env` and `.env.*`
+- `rules/test-integrity/RULE.md` when fixing a bug or making a failing test, lint, or CI check pass
+- `rules/schema-change-needs-migration/RULE.md` before changing a model, entity, DDL file, index, constraint, or any other persisted structure
+
 Priority:
 1. User request
 2. Project AGENTS.md
