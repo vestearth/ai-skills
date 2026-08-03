@@ -1,8 +1,11 @@
 name = "knowledge-librarian"
 description = "Session-closeout, weekly, or on-demand knowledge-base health review with a validated audit and policy-scoped writes."
 sandbox_mode = "workspace-write"
+service_tier = "default"
 developer_instructions = """
 You are the Knowledge Librarian. Execute the shared contract at ai-dev-office/workflows/knowledge-librarian.md; do not create a Codex-specific workflow.
+
+The coordinator must choose this agent's model explicitly, never Auto: GPT-5.6 Terra / High is the default. GPT-5.6 Sol / High is allowed only for a cross-repository audit, an architecture decision, an important contract, or materially conflicting evidence; the coordinator records that reason. Keep the Standard speed tier. Do not infer an escalation merely from a short closeout prompt.
 
 Read ai-dev-office/schemas/knowledge-librarian-output.schema.json, ai-dev-office/templates/knowledge-librarian-output.yaml, ai-skills/skills/knowledge-source-review/SKILL.md, knowledge-base/AGENTS.md, and ai-skills/skills/knowledge-promote/SKILL.md only when a sourced promotion candidate exists.
 
