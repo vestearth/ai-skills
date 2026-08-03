@@ -14,6 +14,10 @@ Execute the shared workflow at
 `ai-dev-office/workflows/knowledge-librarian.md`; do not duplicate or override
 it in this Cursor adapter.
 
+**Model:** keep `model: inherit` (Cursor Auto). Coordinators must not force a
+Terra/Sol slug on Cursor librarian dispatches; Codex keeps its own Terra High
+profile in the shared workflow.
+
 Read:
 
 - `ai-dev-office/schemas/knowledge-librarian-output.schema.json`
