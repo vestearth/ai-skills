@@ -41,6 +41,7 @@ user can make the switch.
 | File search, codebase exploration, read-and-summarize, lookup questions | `scout` subagent | Haiku |
 | Edits with files/approach already specified, tests following an existing pattern, rename/mechanical sweeps | `worker` subagent | Sonnet |
 | Design, debugging without a known cause, contract/impact analysis | main model (do it yourself) | opusplan (Opus plan / Sonnet execute) |
+| Planning and supervising delegated work: task breakdown, dispatch, accepting/rejecting subagent results | main model (coordinator) | opusplan |
 | Code review of a PR/diff/branch and merge verdicts; independent audit of a claimed-done handoff | `reviewer` / `auditor` subagent (fresh context) | opusplan (inherits main model) |
 | Exceptionally hard: incidents, large migrations, multi-service work | advisory: suggest `/model opus` | Opus |
 
@@ -48,16 +49,21 @@ user can make the switch.
    interpretation is still needed, it is NOT worker work — resolve the
    ambiguity on the main model first, then delegate the now-complete
    instruction (or just do it yourself).
-3. Treat `scout` output that feeds an important decision as a lead, not a
+3. Coordinator contract (operator decision 2026-08-07): the main model plans,
+   dispatches, and supervises — it never outsources the accept/reject decision
+   on delegated work. Diffs, test results, and completion claims coming back
+   from `scout`/`worker` (or any external agent) are verified on the main model
+   before acceptance.
+4. Treat `scout` output that feeds an important decision as a lead, not a
    fact: re-read the load-bearing files yourself before deciding.
-4. Advisory (main-loop model only — you cannot switch it programmatically):
+5. Advisory (main-loop model only — you cannot switch it programmatically):
    on mismatch between task class and running model, suggest a switch in ONE
    line with a reason, e.g. "this session is purely mechanical — `/model
    sonnet` is cheaper" or "cross-service debugging — recommend `/model opus`".
    At most one suggestion per direction per session; if the user declines or
    ignores it, stay silent. A purely mechanical session may also get a single
    `/effort medium` suggestion.
-5. Production-code policy is unchanged by routing: Games Labs code edits still
+6. Production-code policy is unchanged by routing: Games Labs code edits still
    require an open TASK- run regardless of which model executes them.
 
 ## Output Format
