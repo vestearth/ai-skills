@@ -115,7 +115,7 @@ if [ "$unwired" -gt 0 ]; then
   cat <<EOF
 
 $unwired hook(s) are installed but not referenced by $SETTINGS.
-Add a PreToolUse entry per hook, for example:
+Add an entry per hook on the event it listens to, for example:
 
   "hooks": {
     "PreToolUse": [
@@ -130,6 +130,13 @@ Add a PreToolUse entry per hook, for example:
         "hooks": [{ "type": "command",
                     "command": "$DEST_DIR/guard-env-bash.sh",
                     "timeout": 10 }]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [{ "type": "command",
+                    "command": "$DEST_DIR/skill-routing.sh",
+                    "timeout": 5 }]
       }
     ]
   }

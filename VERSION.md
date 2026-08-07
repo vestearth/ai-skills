@@ -105,6 +105,11 @@ Enforcement lane (Claude only — text guidance cannot stop a tool call):
 - [x] `adapters/claude/hooks/guard-env-bash.sh` (PreToolUse on the shell tool, 48-case table)
 - [x] `scripts/install-claude-hooks.sh` + `scripts/test-install-claude-hooks.sh`
 
+Routing lane (Claude only — advisory, never blocks):
+
+- [x] `adapters/claude/hooks/skill-routing.sh` (UserPromptSubmit, keyword-matched
+      skill table + core reminder)
+
 ## Knowledge Operation Skills
 
 Reusable behaviors for querying, capturing, promoting, and source-reviewing durable knowledge in `knowledge-base/`.

@@ -96,7 +96,7 @@ referenced by `settings.json`. It deliberately **does not edit settings.json** �
 which matchers to enable is operator policy, so the script prints the snippet
 instead. Smoke-test with `scripts/test-install-claude-hooks.sh`.
 
-Current hooks (both PreToolUse, both `exit 2` to block, enforcing
+Enforcement hooks (both PreToolUse, both `exit 2` to block, enforcing
 `rules/no-secrets-in-repo/RULE.md`):
 
 - `guard-env-write.sh` — matcher `Edit|Write|MultiEdit|NotebookEdit`. Blocks
@@ -107,6 +107,17 @@ Current hooks (both PreToolUse, both `exit 2` to block, enforcing
   to find a real `.env`, then decides whether a write is aimed at it. Fails
   **closed** if `jq` is missing or the payload is unparseable.
   `tests/run-env-guard-tests.sh` runs its 48-case table.
+
+Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
+
+- `skill-routing.sh` — injects a 3-line core reminder plus the skills whose
+  keywords match the submitted prompt (cap 6), via
+  `hookSpecificOutput.additionalContext`. Exists because ai-skills are
+  description-matched only: transcript counts showed roughly one skill
+  invocation per session, all of them review-shaped, while `search-first`,
+  `debugging`, and `verification-loop` never fired. Skips slash commands, which
+  carry their own instructions. The keyword table lives inline in the script —
+  add a row when you add a skill.
 
 **Scope, stated honestly:** pattern matching over a Turing-complete shell cannot
 be sound against an agent actively evading it — a script file that writes `.env`

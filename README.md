@@ -275,7 +275,9 @@ It symlinks the hooks, prunes stale links, runs their case-table tests, and
 reports any hook not yet referenced by `settings.json` — it never edits
 `settings.json` itself. Currently ships `guard-env-write.sh` and
 `guard-env-bash.sh`, which enforce `rules/no-secrets-in-repo/RULE.md` at the
-tool layer for the Claude lane only. See `adapters/claude/README.md` for scope
+tool layer for the Claude lane only, plus `skill-routing.sh`, an advisory
+UserPromptSubmit hook that surfaces keyword-matched skills so routing does not
+depend on description matching alone. See `adapters/claude/README.md` for scope
 limits before relying on them.
 
 ## Quality checks
