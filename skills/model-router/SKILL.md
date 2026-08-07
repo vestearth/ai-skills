@@ -41,7 +41,7 @@ user can make the switch.
 | File search, codebase exploration, read-and-summarize, lookup questions | `scout` subagent | Haiku |
 | Edits with files/approach already specified, tests following an existing pattern, rename/mechanical sweeps | `worker` subagent | Sonnet |
 | Design, debugging without a known cause, contract/impact analysis | main model (do it yourself) | opusplan (Opus plan / Sonnet execute) |
-| Planning and supervising delegated work: task breakdown, dispatch, accepting/rejecting subagent results | main model (coordinator) | opusplan |
+| Planning and supervising delegated work: task breakdown, dispatch, and sign-off on returned results | main model (coordinator) | opusplan |
 | Code review of a PR/diff/branch and merge verdicts; independent audit of a claimed-done handoff | `reviewer` / `auditor` subagent (fresh context) | opusplan (inherits main model) |
 | Exceptionally hard: incidents, large migrations, multi-service work | advisory: suggest `/model opus` | Opus |
 
@@ -49,11 +49,13 @@ user can make the switch.
    interpretation is still needed, it is NOT worker work — resolve the
    ambiguity on the main model first, then delegate the now-complete
    instruction (or just do it yourself).
-3. Coordinator contract (operator decision 2026-08-07): the main model plans,
-   dispatches, and supervises — it never outsources the accept/reject decision
-   on delegated work. Diffs, test results, and completion claims coming back
-   from `scout`/`worker` (or any external agent) are verified on the main model
-   before acceptance.
+3. Coordinator contract (operator decision 2026-08-07): the main model is the
+   foreman — it plans, dispatches, and signs off. Subagent work is welcome, but
+   "done" is a claim, not a result: before accepting it, the main model itself
+   inspects the actual diff and the actual test output from `scout`/`worker`
+   (or any external agent). If the evidence holds, accept and move on; if not,
+   send it back. Never skip the inspection because the subagent sounded
+   confident, and never hand the sign-off itself to another subagent.
 4. Treat `scout` output that feeds an important decision as a lead, not a
    fact: re-read the load-bearing files yourself before deciding.
 5. Advisory (main-loop model only — you cannot switch it programmatically):
