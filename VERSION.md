@@ -107,8 +107,8 @@ Enforcement lane (Claude only — text guidance cannot stop a tool call):
 
 Routing lane (Claude only — advisory, never blocks):
 
-- [x] `adapters/claude/hooks/skill-routing.sh` (UserPromptSubmit, keyword-matched
-      skill table + core reminder)
+- [x] `adapters/claude/hooks/skill-routing.sh` (UserPromptSubmit, always-on
+      intent core block + keyword-matched domain table)
 
 ## Knowledge Operation Skills
 

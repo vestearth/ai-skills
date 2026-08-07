@@ -110,14 +110,23 @@ Enforcement hooks (both PreToolUse, both `exit 2` to block, enforcing
 
 Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
 
-- `skill-routing.sh` — injects a 3-line core reminder plus the skills whose
-  keywords match the submitted prompt (cap 6), via
-  `hookSpecificOutput.additionalContext`. Exists because ai-skills are
-  description-matched only: transcript counts showed roughly one skill
-  invocation per session, all of them review-shaped, while `search-first`,
-  `debugging`, and `verification-loop` never fired. Skips slash commands, which
-  carry their own instructions. The keyword table lives inline in the script —
-  add a row when you add a skill.
+- `skill-routing.sh` — injects, via `hookSpecificOutput.additionalContext`, two
+  lanes split by how a skill is actually triggered:
+  - **Core block (always shown):** the intent-routed skills (`search-first`,
+    `debugging`, `verification-loop`, `code-review`, ...) — the model judges
+    applicability itself. Keyword rows for these were measured at 1/14 hits on
+    natural Thai phrasing ("ผ่านไหม", "พร้อมขึ้นยัง"), because Thai expresses
+    one intent in unbounded surface forms; adding keywords never converges.
+  - **Keyword table (cap 6 matches/prompt):** domain skills anchored to stable
+    English technical nouns (proto, argocd, clickhouse, ...) — measured 17/17.
+    Six borderline skills sit in both lanes deliberately.
+
+  Exists because ai-skills are description-matched only: transcript counts
+  showed roughly one skill invocation per session, all of them review-shaped,
+  while `search-first`, `debugging`, and `verification-loop` never fired.
+  Skips slash commands, which carry their own instructions. Both lanes live
+  inline in the script — a new skill gets a table row (domain), a core-block
+  line (intent), or neither (operator-invoked; list in the script comment).
 
 **Scope, stated honestly:** pattern matching over a Turing-complete shell cannot
 be sound against an agent actively evading it — a script file that writes `.env`
