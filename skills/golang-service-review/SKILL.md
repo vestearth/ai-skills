@@ -37,7 +37,7 @@ Review Go service changes for correctness, maintainability, operational safety, 
 3. Check errors and logging: errors are wrapped with useful context, mapped correctly at boundaries, and logged once at the right layer.
 4. Check data integrity: transactions, locking, idempotency, migrations, and rollback behavior match the business rule.
 5. Check dependencies: no accidental `replace`, `go.work`, mutable Docker dependency graph, or hidden local-only behavior.
-6. Check tests: table tests or focused integration tests cover success, business errors, system errors, and regression risk.
+6. Check tests: table tests or focused integration tests cover success, business errors, system errors, and regression risk. A mock database driver asserts the statement and arguments but never reaches a server, so parameter typing, array/numeric binding, constraints, and migrations need a real database.
 7. Verify with the smallest relevant `go test` or build command and record exact output.
 
 ## Output Format
