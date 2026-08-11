@@ -63,3 +63,4 @@ Prevent false completion claims by comparing expected outcomes against concrete 
 - Claiming broad test coverage from one targeted test.
 - Omitting failed, skipped, or unavailable verification.
 - Treating intent, memory, or unrelated passing checks as proof.
+- Accepting a mock or stub as proof of behavior only the real dependency can exhibit.

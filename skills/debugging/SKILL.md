@@ -33,10 +33,11 @@ Identify the root cause from evidence, propose the smallest safe fix, and verify
 1. Define the exact symptom.
 2. Collect evidence from source, tests, logs, CI, or runtime output.
 3. List candidate causes.
-4. Eliminate impossible causes with evidence.
-5. Identify the root cause.
-6. Propose or implement the minimal fix.
-7. Verify the fix against the original symptom.
+4. When the behavior works in one environment and not another, diff that environment's rendered configuration before instrumenting code. A dependency built only when its variable is set turns a missing variable into a normal-looking business error.
+5. Eliminate impossible causes with evidence.
+6. Identify the root cause.
+7. Propose or implement the minimal fix.
+8. Verify the fix against the original symptom.
 
 ## Output Format
 
@@ -52,4 +53,5 @@ Identify the root cause from evidence, propose the smallest safe fix, and verify
 - Guessing from memory before inspecting evidence.
 - Fixing multiple unrelated issues while debugging one symptom.
 - Treating a passing unrelated test as proof.
+- Reading the absence of a log line as evidence without first confirming that line can reach the log sink and that the code path actually runs.
 - Stopping at a workaround without naming the root cause.
