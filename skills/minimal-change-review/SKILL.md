@@ -56,10 +56,23 @@ For each answer:
 - Stop expanding once the task is satisfied.
 - Preserve tests, contracts, security, accessibility, data safety, and compatibility.
 
+"Nothing exists to reuse" is the claim that authorizes new code, and it is a
+negative claim: it must not exceed the searches actually run. Name the queries,
+paths, and manifests checked; one failed grep supports "not found by that
+query", not "does not exist". When a canonical evidence ledger exists for the
+task, the search or static-check commands can be recorded and cited as
+`evidence_refs` with their task id
+([../../docs/specs/2026-08-15-evidence-integration.md](../../docs/specs/2026-08-15-evidence-integration.md);
+ai-dev-office owns that schema, this repo only consumes it). Where no ledger
+exists — the normal case — list the same commands inline. Either way the
+justification for new code is the search coverage, never the absence of a
+ledger.
+
 ## Output Format
 
 - Decision: reuse, small edit, or new code required
-- Evidence checked: files, commands, docs, or dependency references
+- Evidence checked: files, commands, docs, or dependency references (`evidence_refs: ev-NNN (task-id)` when a ledger exists)
+- Search coverage: what was searched, when the decision rests on finding nothing
 - Minimal change: what should be changed and what should stay untouched
 - Verification: tests or checks required before completion
 
@@ -70,3 +83,4 @@ For each answer:
 - Copying an external project wholesale when a local rule is enough.
 - Renaming, moving, or reformatting unrelated code.
 - Treating "small" as "untested" or "unsafe."
+- Justifying new code with "nothing exists" after a single narrow search.
