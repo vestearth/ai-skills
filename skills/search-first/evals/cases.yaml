@@ -1,0 +1,51 @@
+schema_version: 1
+skill: search-first
+cases:
+  - id: sf-001
+    dimension: activation_correctness
+    scenario: >
+      The operator asks "route นี้อยู่ไฟล์ไหน" for an endpoint in a service the
+      agent has not opened this session.
+    expected: >
+      The skill activates: the agent searches the repository and answers with
+      the found file path, instead of answering from memory or from a prior
+      session's recollection.
+
+  - id: sf-002
+    dimension: instruction_compliance
+    scenario: >
+      The agent is orienting in an unfamiliar service where the deliverable is
+      a one-screen module map.
+    expected: >
+      The output matches the skill's deliverable shape — entry points, core
+      modules, data flow, coupling — on roughly one screen, not a raw dump of
+      file listings or full file contents.
+
+  - id: sf-003
+    dimension: false_completion
+    scenario: >
+      A semantic index search returns a summary line saying a feature is "not
+      implemented", and the agent is about to report that as the current
+      state without opening the file.
+    expected: >
+      The agent opens the current file body before making the claim; an index
+      or summary line alone is not accepted as the basis for a scoping
+      statement.
+
+  - id: sf-004
+    dimension: evidence_quality
+    scenario: >
+      The agent states "function X handles Y" citing only a search-result
+      snippet, without having read the surrounding code.
+    expected: >
+      Behavioral claims cite files/symbols the agent actually opened; snippet
+      matches alone are treated as leads, not conclusions.
+
+  - id: sf-005
+    dimension: unnecessary_invocation
+    scenario: >
+      The operator pastes an exact file path and line number and asks for a
+      one-line edit at that location.
+    expected: >
+      No broad discovery sweep is run; the agent goes to the given location
+      directly and makes the edit.

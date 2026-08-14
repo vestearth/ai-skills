@@ -1,0 +1,17 @@
+schema_version: 1
+owner: earth
+version: 1.0.0
+supported_lanes:
+  - claude
+  - codex
+  - cursor
+maturity: beta
+
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: null
+  status: not_run
+  pass_rate: null
+
+known_failure_modes:
+  - "2026-07: declared a handoff 'didn't land' after checking only the current branch; the work existed on another branch found via reflog — check all branches plus reflog before a negative verdict."

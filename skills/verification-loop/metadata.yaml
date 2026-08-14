@@ -1,0 +1,17 @@
+schema_version: 1
+owner: earth
+version: 1.0.0
+supported_lanes:
+  - claude
+  - codex
+  - cursor
+maturity: beta
+
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: null
+  status: not_run
+  pass_rate: null
+
+known_failure_modes:
+  - "2026-08: mock-layer verification accepted as proof — sqlmock and a psql literal check both passed while the real driver failed on a NULLIF bind type; driver-level claims must be verified through the real driver/runtime."

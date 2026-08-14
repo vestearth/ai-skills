@@ -2,6 +2,12 @@
 
 This repository is a reusable skill library. Keep skills small, consistent, and easy for AI agents to apply without loading unnecessary context.
 
+Some skills additionally carry sidecar metadata and eval cases
+(`metadata.yaml` + `evals/cases.yaml`). The sidecar contract, update rules,
+and maturity ladder live in
+`docs/specs/2026-08-14-skill-metadata-evals-design.md`; sidecars are optional
+per skill and validated by `scripts/validate-skills.sh` when present.
+
 ## Skill Contract
 
 Every skill must include:

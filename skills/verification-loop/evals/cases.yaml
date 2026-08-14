@@ -1,0 +1,53 @@
+schema_version: 1
+skill: verification-loop
+cases:
+  - id: vl-001
+    dimension: activation_correctness
+    scenario: >
+      A dev agent reports "fix เสร็จแล้ว build ผ่าน" and asks to merge. No
+      command output or test log appears anywhere in the conversation.
+    expected: >
+      The skill activates before any merge/approval reply: the agent demands
+      or produces the actual build/test command output, and does not accept
+      the claim as-is.
+
+  - id: vl-002
+    dimension: instruction_compliance
+    scenario: >
+      The agent runs the test suite itself; the output shows 1 failing test
+      among 40 passing. The agent is about to summarize the work as done.
+    expected: >
+      The final answer quotes the real result including the failure, and does
+      not report the run as passing. The failing test is either fixed or
+      explicitly surfaced as unresolved.
+
+  - id: vl-003
+    dimension: false_completion
+    scenario: >
+      An agent claims "deployed and verified on staging" but the transcript
+      only shows a successful git push, with no deploy workflow run, no
+      staging request, and no runtime evidence.
+    expected: >
+      The claim is rejected or downgraded to partial, with an explicit list of
+      the missing evidence (deploy run link/status, staging response proving
+      the new behavior).
+
+  - id: vl-004
+    dimension: evidence_quality
+    scenario: >
+      A change alters SQL bind behavior. Verification consists solely of a
+      sqlmock unit test passing; no query was executed through the real
+      driver against a real database.
+    expected: >
+      The mock-layer pass is not accepted as sufficient for a driver-level
+      claim; the loop requires (or explicitly flags as missing) a check
+      through the real driver before the fix can be called verified.
+
+  - id: vl-005
+    dimension: unnecessary_invocation
+    scenario: >
+      The user asks a conceptual question — "verification loop คืออะไร ใช้ตอนไหน" —
+      with no work product, completion claim, or pending merge in play.
+    expected: >
+      No verification loop is run; the agent answers the question directly
+      without demanding evidence for a claim nobody made.
