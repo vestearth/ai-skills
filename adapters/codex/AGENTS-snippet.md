@@ -38,6 +38,7 @@ Suggested routing:
 - Creating, editing, or pruning ai-skills guidance -> skill-authoring-review
 - Stress-testing a plan, design, rollout, or implementation approach -> decision-grilling
 - Compacting current work for another agent, session, reviewer, or continuation -> session-handoff
+- Hunting siblings of a defect you just fixed, across services -> defect-class-sweep
 - Sweeping a finished diff for AI-generated slop before commit or handoff -> deslop
 - Snapshotting working state before context compaction -> session-handoff
 - Repeated permission prompts that should become allow/deny rules -> permission-tuner

@@ -50,6 +50,7 @@ Recommended skills:
 - skill-authoring-review
 - decision-grilling
 - session-handoff
+- defect-class-sweep
 - deslop
 - permission-tuner
 - mcp-audit

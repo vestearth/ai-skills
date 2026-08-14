@@ -68,6 +68,7 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | `skill-authoring-review` | complete |
 | `decision-grilling` | complete |
 | `session-handoff` | complete (absorbed compact-guard: pre-compaction snapshot/restore) |
+| `defect-class-sweep` | complete |
 | `deslop` | complete |
 | `permission-tuner` | complete |
 | `mcp-audit` | complete |
