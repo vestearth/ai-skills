@@ -37,16 +37,32 @@ Identify the root cause from evidence, propose the smallest safe fix, and verify
 5. Eliminate impossible causes with evidence.
 6. Identify the root cause.
 7. Propose or implement the minimal fix.
-8. Verify the fix against the original symptom.
+8. Verify the fix against the original symptom: the reproduction that failed before must be re-run after, and the "fixed" claim must not cover more than that re-run showed.
+
+## Canonical Evidence
+
+Two checks carry a debugging conclusion: the reproduction of the symptom and
+the post-fix re-run of that same reproduction. Inside an ai-dev-office task,
+run both through the office evidence wrapper and cite the returned `ev-NNN`
+ids (with their task id) beside Evidence and Verification
+([../../docs/specs/2026-08-15-evidence-integration.md](../../docs/specs/2026-08-15-evidence-integration.md);
+ai-dev-office owns that schema, this repo only consumes it) — the before/after
+pair is what turns a root-cause story into a demonstrated one.
+
+Outside such a task there is no ledger, which is the normal case: capture the
+same before/after commands and their real output inline. Missing canonical
+evidence never permits declaring a root cause or a fix without a reproduction.
+A stale record — `repo_sha` is provenance, not liveness — proves nothing about
+the current tree; re-run it.
 
 ## Output Format
 
 - Symptoms
-- Evidence
+- Evidence (reproduction command and real output; `evidence_refs: ev-NNN (task-id)` when a ledger exists)
 - Candidate causes
 - Root cause
 - Fix
-- Verification
+- Verification: the re-run after the fix, and what it did not cover
 
 ## Anti-patterns
 
@@ -55,3 +71,5 @@ Identify the root cause from evidence, propose the smallest safe fix, and verify
 - Treating a passing unrelated test as proof.
 - Reading the absence of a log line as evidence without first confirming that line can reach the log sink and that the code path actually runs.
 - Stopping at a workaround without naming the root cause.
+- Declaring the symptom fixed without re-running the reproduction that demonstrated it.
+- Generalizing "fixed" beyond the case the re-run actually covered.

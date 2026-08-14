@@ -51,7 +51,18 @@ Required checks:
 - Compare implementation against acceptance criteria.
 - Check whether the change is within scope.
 - Check tests, build output, or CI evidence when available.
+- Check that each claim in the PR or handoff description is covered by evidence of at least that scope; a claim broader than the checks that ran is `needs_evidence`, not `approved`.
 - Do not approve from summaries alone.
+
+Evidence citations: when the change comes from an ai-dev-office task, its role
+output may cite `ev-NNN` ids in `evidence_refs`
+([../../docs/specs/2026-08-15-evidence-integration.md](../../docs/specs/2026-08-15-evidence-integration.md);
+ai-dev-office owns that schema, this repo only consumes it). Read them as the
+author's stated verification, resolved in that task's ledger — ids are
+task-scoped, and `repo_sha` is provenance, not proof the record describes this
+diff. A citation never replaces reading the changed files. When there is no
+ledger (the normal case), review on repo, tests, and CI evidence exactly as
+before; its absence is not a reason to withhold or to grant approval.
 
 ## Output Format
 
@@ -78,3 +89,4 @@ Then include one verdict:
 - Inventing issues from memory
 - Rewriting implementation during review
 - Treating generated code as automatically correct
+- Approving on a cited evidence list without checking what those commands covered
