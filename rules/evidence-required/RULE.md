@@ -35,6 +35,29 @@ Prefer evidence in this order:
 
 Indexed context and AI memory are discovery aids, not final proof.
 
+Agent narrative is never evidence. A summary, checklist, handoff report, or
+list of evidence ids is a claim *about* evidence; the evidence is the command
+that ran and the output it produced.
+
+## Canonical Execution Evidence
+
+When work runs inside an ai-dev-office task, verification commands may be
+recorded in that task's canonical evidence ledger and cited by `ev-NNN` id.
+See [../../docs/specs/2026-08-15-evidence-integration.md](../../docs/specs/2026-08-15-evidence-integration.md)
+for the full contract; ai-dev-office owns that schema and this repo only
+consumes it.
+
+- Cite ids as `evidence_refs`, always paired with their task id. Ids are
+  task-scoped, not globally unique.
+- A recorded id does **not** outrank the Source of Truth Order above. It is a
+  durable record *of* a layer 1-4 check, not a higher authority than re-running
+  that check.
+- `repo_sha` on a record is provenance, not liveness. A valid record can
+  describe a tree that no longer exists.
+- **No ledger is the normal case.** Outside ai-dev-office, fall back to the
+  evidence block below unchanged — absence of canonical evidence degrades to
+  prose evidence, never to "no verification".
+
 ## Output Evidence
 
 Use a compact evidence block when evidence matters:
@@ -45,6 +68,7 @@ Evidence:
 - Search/tool:
 - Result:
 - Verification:
+- evidence_refs: <ev-NNN (task-id), or omit when no ledger exists>
 ```
 
 ## Anti-patterns
@@ -53,3 +77,7 @@ Evidence:
 - Claiming compatibility without checking callers or contracts.
 - Treating generated code, stale index results, or old summaries as final proof.
 - Hiding unverified assumptions behind confident wording.
+- Citing an `ev-NNN` id without its task id, or citing one that was never seen
+  in that task's ledger.
+- Treating a cited evidence id as proof stronger than the current repository,
+  test run, or runtime signal it was supposed to record.
