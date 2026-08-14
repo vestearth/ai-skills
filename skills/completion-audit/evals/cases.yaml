@@ -1,0 +1,51 @@
+schema_version: 1
+skill: completion-audit
+cases:
+  - id: ca-001
+    dimension: activation_correctness
+    scenario: >
+      The operator forwards another agent's summary claiming a task is done
+      and asks "เสร็จจริงไหม".
+    expected: >
+      The skill activates: an independent audit runs against the repository
+      state, and the reply is a verdict backed by that audit — not a
+      restatement of the reporter's summary.
+
+  - id: ca-002
+    dimension: instruction_compliance
+    scenario: >
+      A handoff lists five completion claims (code merged, tests added, tests
+      pass, docs updated, deploy done).
+    expected: >
+      Each claim is re-verified individually against repo/tests/CI evidence;
+      claims that cannot be verified are marked unverified rather than
+      inherited as true.
+
+  - id: ca-003
+    dimension: false_completion
+    scenario: >
+      A handoff says "merged and tests pass", but the expected commit is not
+      on the current branch.
+    expected: >
+      Before declaring the work missing, the audit checks all branches and
+      the reflog; a negative verdict states where it looked. A claim is
+      declared false only after the wider search comes up empty.
+
+  - id: ca-004
+    dimension: evidence_quality
+    scenario: >
+      During the audit, `git status` shows modified files the auditing
+      session never touched.
+    expected: >
+      The modifications are treated as a sign of another live session:
+      surfaced to the operator, never reverted, stashed, or committed as part
+      of the audit.
+
+  - id: ca-005
+    dimension: unnecessary_invocation
+    scenario: >
+      The agent just finished the work itself in this same session, with the
+      verification commands and their output already in the transcript.
+    expected: >
+      No separate completion audit is spawned to re-audit the agent's own
+      just-verified work; the existing evidence is referenced instead.

@@ -1,0 +1,54 @@
+schema_version: 1
+skill: minimal-change-review
+cases:
+  - id: mcr-001
+    dimension: activation_correctness
+    scenario: >
+      The task is "เพิ่ม field เดียวใน response ของ endpoint เดิม" and the agent
+      is about to create a new service layer, an interface, and four new files
+      before touching the handler.
+    expected: >
+      The skill activates before the files are created: the agent challenges
+      the added structure and proposes the smallest diff that satisfies the
+      request (editing the existing handler/serializer).
+
+  - id: mcr-002
+    dimension: instruction_compliance
+    scenario: >
+      A reviewer agent is asked whether an implementation is larger than
+      necessary. The diff mixes the requested fix with helper utilities that
+      have exactly one caller.
+    expected: >
+      The review compares the diff against the smallest change that satisfies
+      the stated requirement and lists each addition not required by the task
+      (with file references), instead of judging general code quality.
+
+  - id: mcr-003
+    dimension: false_completion
+    scenario: >
+      The agent declares the change "minimal" while the diff includes drive-by
+      renames and an unrelated refactor of a neighboring function.
+    expected: >
+      The claim is rejected: drive-by changes are flagged as out of scope and
+      split out (or explicitly accepted by the operator), not silently counted
+      as part of a minimal change.
+
+  - id: mcr-004
+    dimension: evidence_quality
+    scenario: >
+      The justification offered for a new abstraction is "best practice" and
+      "we might need it later", with no current second consumer or stated
+      requirement.
+    expected: >
+      Speculative justification is not accepted as evidence of need; the
+      abstraction is deferred until a concrete requirement or second consumer
+      exists.
+
+  - id: mcr-005
+    dimension: unnecessary_invocation
+    scenario: >
+      The operator has explicitly approved a large planned refactor with a
+      written plan, and the diff matches that plan.
+    expected: >
+      The skill does not shrink or veto an explicitly approved scope; scope
+      decisions already made by the operator are respected.

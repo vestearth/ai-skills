@@ -1,0 +1,17 @@
+schema_version: 1
+owner: earth
+version: 1.0.0
+supported_lanes:
+  - claude
+  - codex
+  - cursor
+maturity: beta
+
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: null
+  status: not_run
+  pass_rate: null
+
+known_failure_modes:
+  - "2026-07: a delegated implementation added unrequested scaffolds and files outside the task scope and they survived into the commit; sweep git status against the task scope before commit, not only the primary diff."

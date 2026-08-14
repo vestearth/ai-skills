@@ -147,6 +147,25 @@ if [ -f "$ROOT_DIR/README.md" ]; then
   done
 fi
 
+# Optional per-skill sidecars (metadata.yaml + evals/cases.yaml) follow the v1
+# contract in docs/specs/2026-08-14-skill-metadata-evals-design.md. The Ruby
+# helper prints one problem per line; exit != 0 means the scan itself broke.
+if command -v ruby >/dev/null 2>&1; then
+  metadata_problems="$(ruby "$ROOT_DIR/scripts/validate-skill-metadata.rb" "$ROOT_DIR")"
+  metadata_exit=$?
+  if [ "$metadata_exit" -ne 0 ]; then
+    fail "scripts/validate-skill-metadata.rb: scan failed (exit $metadata_exit)"
+  fi
+  while IFS= read -r problem; do
+    [ -z "$problem" ] && continue
+    fail "$problem"
+  done <<EOF
+$metadata_problems
+EOF
+else
+  fail "ruby with the standard yaml library is required to validate skill metadata sidecars"
+fi
+
 # Root AGENTS.md routes agents to skills, so it must stay in sync with the skill
 # set and the Codex/Cursor adapters (which the loop below already enforces).
 # Otherwise a new skill silently never reaches the Codex lane via root routing.
