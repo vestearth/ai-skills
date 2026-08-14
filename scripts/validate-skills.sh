@@ -139,6 +139,32 @@ while IFS= read -r skill_file; do
   done < <(grep -oE 'references/[A-Za-z0-9._/-]+\.(md|sh)' "$skill_file" | sort -u)
 done < <(find "$SKILLS_DIR" -type f -name 'SKILL.md' | sort)
 
+# Canonical evidence id grammar (ai-dev-office owns the schema; see
+# docs/specs/2026-08-15-evidence-integration.md). The only part of that contract
+# this repo can check is the id spelling in its own guidance: `ev-` plus a
+# zero-padded sequence of at least three digits. We deliberately do NOT try to
+# resolve ids — the ledgers live in another repo, under task directories this
+# repo cannot see, so a "dangling id" check here would be fiction. `ev-NNN` and
+# `ev-id` are the documented placeholders and are allowed literally.
+while IFS= read -r doc; do
+  while IFS= read -r token; do
+    case "$token" in
+      ev-NNN|ev-id) continue ;;
+    esac
+    if ! printf '%s' "$token" | grep -qxE 'ev-[0-9]{3,}'; then
+      fail "${doc#$ROOT_DIR/}: malformed evidence id '$token' (expected ev-NNN with at least 3 digits, or the ev-NNN/ev-id placeholder)"
+    fi
+  done < <(grep -oE '\bev-[A-Za-z0-9]+' "$doc" | sort -u)
+done < <(
+  evidence_scan_dirs=()
+  for d in "$SKILLS_DIR" "$ROOT_DIR/rules" "$ROOT_DIR/docs/specs"; do
+    [ -d "$d" ] && evidence_scan_dirs+=("$d")
+  done
+  if [ "${#evidence_scan_dirs[@]}" -gt 0 ]; then
+    find "${evidence_scan_dirs[@]}" -type f -name '*.md' | sort
+  fi
+)
+
 if [ -f "$ROOT_DIR/README.md" ]; then
   for skill_name in "${skill_names[@]}"; do
     if ! grep -q "\`$skill_name\`" "$ROOT_DIR/README.md"; then

@@ -138,6 +138,15 @@ dangling-id detection, and hash recomputation are the office validator's job.
 ai-skills validates only what it owns — skill structure and the sidecar
 contract from `docs/specs/2026-08-14-skill-metadata-evals-design.md`.
 
+The one exception is the **id spelling**, which is a stable, machine-checkable
+part of the upstream grammar and is entirely local to this repo's own text:
+`scripts/validate-skills.sh` scans `skills/**/*.md`, `rules/**/*.md`, and
+`docs/specs/*.md` and fails on an evidence id that is not `ev-` plus at least
+three digits. `ev-NNN` and `ev-id` are the documented placeholders and are
+allowed literally. This catches under-padded or mis-punctuated ids in guidance
+an agent would otherwise copy; it asserts nothing about whether any id exists.
+(The check is self-applying, so this page cannot spell a counter-example out.)
+
 ## Scope of the change
 
 Updated surfaces only: `skills/verification-loop`, `skills/completion-audit`,
