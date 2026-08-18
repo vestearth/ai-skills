@@ -74,6 +74,7 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | `mcp-audit` | complete |
 | `model-router` | complete |
 | `completion-audit` | complete |
+| `remove-ai-marks` | complete |
 
 The former compact-guard and module-map skills were consolidated away: compact-guard
 into `session-handoff` (pre-compaction snapshot/restore) and module-map into

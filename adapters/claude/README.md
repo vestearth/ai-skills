@@ -108,6 +108,27 @@ Enforcement hooks (both PreToolUse, both `exit 2` to block, enforcing
   **closed** if `jq` is missing or the payload is unparseable.
   `tests/run-env-guard-tests.sh` runs its 48-case table.
 
+Hygiene hook (PostToolUse, mutating — never blocks, always `exit 0`):
+
+- `clean-invisible-unicode.sh` — matcher `Edit|Write|MultiEdit|NotebookEdit`.
+  Strips invisible Unicode in place from every text file an agent writes, so
+  zero-width and bidi characters cannot ride into a commit unnoticed. It does
+  **not** reimplement the codepoint policy: it shells out to
+  watermarks-remover's own `clean_text.py` (located via
+  `WATERMARKS_REMOVER_DIR`, default `$HOME/Documents/GitHub/watermarks-remover`),
+  which is context-sensitive about load-bearing invisibles — emoji ZWJ glue,
+  variation selectors, complete flag tag sequences, and script joiners survive;
+  ZWSP, BOM, bidi overrides, and soft hyphen do not. A hand-rolled list in bash
+  would mangle the first group, which is why this hook has no policy of its own.
+  Runs with `--no-normalize-spaces`: visible-width spaces (NBSP, thin space)
+  carry intent in prose and are left to an explicit `remove-ai-marks` run.
+  Skips `tests/`, `fixtures/`, `testdata/` (fixtures encode marks on purpose),
+  binaries, and files over 2 MB. Missing runtime, refusal, or any error exits 0
+  silently — hygiene must never cost a tool call. Reports what it removed to the
+  model via `hookSpecificOutput.additionalContext`, because the file on disk no
+  longer matches what the tool wrote. `tests/run-invisible-unicode-tests.sh`
+  runs its 12-case table.
+
 Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
 
 - `skill-routing.sh` — injects, via `hookSpecificOutput.additionalContext`, two

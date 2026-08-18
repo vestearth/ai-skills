@@ -47,6 +47,7 @@ Suggested routing:
 - Starting a task, delegating a subtask, or task/model mismatch -> model-router
 - Before completion, fix, merge, deploy, or handoff claims -> verification-loop
 - Receiving work claimed complete from another agent, handoff, or PR -> completion-audit
+- Stripping AI provenance marks or metadata from content we own before publishing -> remove-ai-marks
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> search-first
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> change-impact-analysis

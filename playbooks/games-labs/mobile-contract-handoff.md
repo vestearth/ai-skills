@@ -16,7 +16,8 @@ This playbook is domain-specific. For generic API compatibility review, use `ski
 
 Verify repository evidence before answering:
 
-- Page/composable/client code that consumes the API.
+- Page/composable/client code that consumes the API. Treat `Games-Lab-Android/` as
+  **read-only reference** — read and compare, never edit (see root `AGENTS.md`).
 - Service handler, usecase, repository, and protobuf contract.
 - `api-gateway` route and generated grpc-gateway behavior when HTTP is involved.
 - Existing Postman/docs examples when the user asks about handoff text.
@@ -55,3 +56,6 @@ Include:
 - Answering from a previous task summary without reading current `.proto`, handler, gateway, and client code.
 - Requiring mobile/web to duplicate backend business rules from raw flags.
 - Relying on response message text for UX routing.
+- Editing `Games-Lab-Android/` while comparing client/API workflows. That repo is
+  a read-only reference; missing client work belongs to the human Android lane,
+  not an agent patch.

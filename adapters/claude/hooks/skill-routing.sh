@@ -71,6 +71,7 @@ microservice-boundary-review~ownership / service ไหนควรถือ log
 tech-lead-review~architecture, cross-team impact, long-term maintainability~architecture|สถาปัตย|scalab|maintainab|long term|ระยะยาว
 decision-grilling~stress-test แผน/design ก่อนลงมือ~ควรใช้|ตัดสินใจ|trade off|เลือกแบบไหน|approach ไหน|ดีกว่ากัน
 deslop~กวาด AI slop ออกจาก diff ก่อน commit/handoff~slop|cleanup|ก่อน commit|tidy|เก็บกวาด
+remove-ai-marks~ลบ AI provenance (invisible unicode / C2PA / EXIF) จากไฟล์ที่เราเป็นเจ้าของ~watermark|ลายน้ำ|c2pa|content credentials|exif| xmp |invisible unicode|zero width|synthid|ai provenance
 sprint-planning~แปลง goal/backlog เป็น scope + acceptance criteria~sprint|backlog|roadmap|วางแผน|แผนงาน
 knowledge-query~งานนี้อาจพึ่งความรู้/ADR/บทเรียนเดิม~เคยทำ|ที่ผ่านมา|prior decision| adr |knowledge base
 skill-authoring-review~แก้/เพิ่ม/ตัด skill ใน ai-skills~ai skills| skill |สกิล

@@ -93,10 +93,13 @@ done
 echo "Synced $installed hook(s) into ${DEST_DIR} (pruned $pruned stale link(s))."
 
 echo "Running hook tests against the committed source..."
-"$SRC_DIR/tests/run-env-guard-tests.sh" >/dev/null || {
-  echo "error: hook tests failed — not safe to rely on these hooks" >&2
-  exit 1
-}
+for suite in "$SRC_DIR"/tests/*.sh; do
+  [ -f "$suite" ] || continue
+  "$suite" >/dev/null || {
+    echo "error: hook tests failed in $(basename "$suite") — not safe to rely on these hooks" >&2
+    exit 1
+  }
+done
 echo "Hook tests passed."
 
 # Report wiring without touching the operator's settings.json.

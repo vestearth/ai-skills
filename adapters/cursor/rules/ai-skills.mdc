@@ -50,6 +50,7 @@ and even when the change is otherwise in scope.
 - Starting a task, delegating a subtask, or task/model mismatch -> `ai-skills/skills/model-router/SKILL.md`
 - Completion, fix, merge, deploy, or handoff claims -> `ai-skills/skills/verification-loop/SKILL.md`
 - Receiving work claimed complete from another agent, handoff, or PR -> `ai-skills/skills/completion-audit/SKILL.md`
+- Stripping AI provenance marks or metadata from content we own before publishing -> `ai-skills/skills/remove-ai-marks/SKILL.md`
 - Unfamiliar repository area -> `ai-skills/skills/search-first/SKILL.md`
 - Large, stale, or tool-derived context -> `ai-skills/skills/search-first/SKILL.md`
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> `ai-skills/skills/change-impact-analysis/SKILL.md`

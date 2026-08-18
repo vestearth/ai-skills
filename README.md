@@ -76,6 +76,7 @@ the full v4 Tech Lead OS complete.
 | `mcp-audit` | Auditing connected MCP servers for tool-count overhead, redundancy, and actual usage |
 | `model-router` | Routing each task to the cheapest capable model (scout=Haiku, worker=Sonnet, main model for reasoning) plus /model and /effort advisories to save quota |
 | `completion-audit` | Auditing work another agent, handoff, PR, or past session claims is complete — re-run claimed checks against the real diff before accepting |
+| `remove-ai-marks` | Stripping AI provenance from content we own — invisible Unicode in text, C2PA/EXIF/XMP and generator metadata on images, PDF, DOCX, SVG, HTML, Markdown — via the local watermarks-remover service |
 
 ## Recommended project layout
 
@@ -280,7 +281,9 @@ reports any hook not yet referenced by `settings.json` — it never edits
 tool layer for the Claude lane only, plus `skill-routing.sh`, an advisory
 UserPromptSubmit hook that surfaces an always-on core block of intent-routed
 skills plus keyword-matched domain skills, so routing does not depend on
-description matching alone. See `adapters/claude/README.md` for scope
+description matching alone, plus `clean-invisible-unicode.sh`, a mutating
+PostToolUse hook that strips invisible Unicode from every text file an agent
+writes by delegating to the `remove-ai-marks` cleaner. See `adapters/claude/README.md` for scope
 limits before relying on them.
 
 ## Quality checks

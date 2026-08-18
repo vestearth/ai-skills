@@ -57,6 +57,7 @@ Recommended skills:
 - model-router
 - verification-loop
 - completion-audit
+- remove-ai-marks
 - search-first
 - change-impact-analysis
 - knowledge-query
