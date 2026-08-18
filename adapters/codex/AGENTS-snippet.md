@@ -55,6 +55,7 @@ Suggested routing:
 - Inbox/project note promotion -> knowledge-promote
 - Knowledge-base source, freshness, publication, or drift review -> knowledge-source-review
 - Turning feedback, corrections, or lessons into a proposed skill/rule/knowledge change -> self-learning
+- Recurring weekly work summary or Weekly Review log update -> weekly-report
 - Bugs -> debugging
 - Code review -> code-review
 - Figma-to-code implementation or frontend visual/state/responsive/accessibility review -> frontend-ui-review

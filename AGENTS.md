@@ -64,6 +64,7 @@ Recommended skills:
 - knowledge-promote
 - knowledge-source-review
 - self-learning
+- weekly-report
 - debugging
 - code-review
 - frontend-ui-review

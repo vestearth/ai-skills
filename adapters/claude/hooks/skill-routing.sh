@@ -74,6 +74,7 @@ deslop~กวาด AI slop ออกจาก diff ก่อน commit/handoff~
 sprint-planning~แปลง goal/backlog เป็น scope + acceptance criteria~sprint|backlog|roadmap|วางแผน|แผนงาน
 knowledge-query~งานนี้อาจพึ่งความรู้/ADR/บทเรียนเดิม~เคยทำ|ที่ผ่านมา|prior decision| adr |knowledge base
 skill-authoring-review~แก้/เพิ่ม/ตัด skill ใน ai-skills~ai skills| skill |สกิล
+weekly-report~สรุปงานรายสัปดาห์ + อัพเดท Weekly Review~weekly update|weekly review|สรุปงาน|สัปดาห์นี้|อาทิตย์นี้
 socraticode-discovery~SocratiCode search/symbol/graph + ความสดของ index~socraticode|codebase search|semantic search|index
 datadog-observability~metric/log/trace/dashboard/monitor/SLO~datadog|metric|dashboard|monitor| slo |observab
 TABLE

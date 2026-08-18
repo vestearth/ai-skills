@@ -58,6 +58,7 @@ and even when the change is otherwise in scope.
 - Inbox/project note promotion -> `ai-skills/skills/knowledge-promote/SKILL.md`
 - Knowledge-base source, freshness, publication, or drift review -> `ai-skills/skills/knowledge-source-review/SKILL.md`
 - Turning feedback, corrections, or lessons into a proposed skill/rule/knowledge change -> `ai-skills/skills/self-learning/SKILL.md`
+- Recurring weekly work summary for the team, or a Weekly Review log update -> `ai-skills/skills/weekly-report/SKILL.md`
 - Bugs, logs, failing tests, crashes -> `ai-skills/skills/debugging/SKILL.md`
 - Code review or merge readiness -> `ai-skills/skills/code-review/SKILL.md`
 - Figma-to-code implementation or frontend visual/state/responsive/accessibility review -> `ai-skills/skills/frontend-ui-review/SKILL.md`
