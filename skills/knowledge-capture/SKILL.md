@@ -41,14 +41,39 @@ Use the `Knowledge Base/Promotion Rule.md` Capture Gate before writing: capture 
 4. Choose the write target: `Inbox.md` for raw capture, `10 Projects/` for project knowledge, `20 Flows/` for flow maps, `30 ADR/` for decisions, `40 Lessons/` for reusable lessons, or `50 Concepts/` for concepts.
 5. Add `Related` links to nearby notes.
 6. Add `Source:` or `Sources:` for durable claims.
-7. Keep uncertain freshness, source, or publication issues in `Review Queue.md`.
-8. Run vault link checks when notes are edited.
+7. Record provenance/freshness when it is available (see Freshness At Capture below).
+8. Keep uncertain freshness, source, or publication issues in `Review Queue.md`.
+9. Run vault link checks when notes are edited.
+
+## Freshness At Capture
+
+`Knowledge Base/Provenance And Freshness.md` defines the frontmatter block
+(`freshness`, `verified_at`, `task_id`, `run_id`, `evidence_refs`,
+`repo_origin`, `repo_sha`, `confidence`) and the canonical states: `current`,
+`unknown`, `maybe_stale`, `stale`, `invalid`, `historical`.
+
+- If the captured knowledge came out of a real, recorded check — a task run,
+  a command whose output you saw, a re-read of current source you can name a
+  path/sha for — record that provenance now, while the task/run/evidence and
+  commit are still at hand. Set `freshness: current` only when that check
+  actually happened and `verified_at` is the day it happened, not the day of
+  capture.
+- If there was no such check, do not fabricate one. Leave the block off, or
+  leave `freshness` unset — that reads as `unknown`, which is the correct
+  default and is not a defect.
+- Never invent `task_id`, `run_id`, or `evidence_refs`. These are consumed
+  verbatim from AI Dev Office; a note that cites one without it actually
+  existing there is worse than a note with no provenance at all.
+- Capturing a note about something the vault already has a `stale` or
+  `invalid` entry for is a signal to route to `Review Queue.md`, not to write
+  a second, conflicting `current` claim.
 
 ## Output Format
 
 - Capture decision: capture, update existing note, or skip
 - Target note
 - Sources
+- Freshness recorded (state + evidence, or `unknown` and why)
 - Related links
 - Note text or patch summary
 - Verification
@@ -60,3 +85,5 @@ Use the `Knowledge Base/Promotion Rule.md` Capture Gate before writing: capture 
 - Creating a new note when an existing note should be updated.
 - Promoting raw capture directly into reusable knowledge without reuse pressure.
 - Recording claims without sources.
+- Setting `freshness: current` without an actual check behind `verified_at`.
+- Inventing `task_id`, `run_id`, or `evidence_refs` values that do not correspond to a real office record.
