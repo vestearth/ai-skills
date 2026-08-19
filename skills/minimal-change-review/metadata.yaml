@@ -9,9 +9,9 @@ maturity: beta
 
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: null
-  status: not_run
-  pass_rate: null
+  last_evaluated: 2026-08-19
+  status: partial
+  pass_rate: 0.71
 
 known_failure_modes:
   - "2026-07: a delegated implementation added unrequested scaffolds and files outside the task scope and they survived into the commit; sweep git status against the task scope before commit, not only the primary diff."

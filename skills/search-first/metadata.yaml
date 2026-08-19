@@ -5,13 +5,13 @@ supported_lanes:
   - claude
   - codex
   - cursor
-maturity: beta
+maturity: stable
 
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: null
-  status: not_run
-  pass_rate: null
+  last_evaluated: 2026-08-19
+  status: passing
+  pass_rate: 1.0
 
 known_failure_modes:
   - "2026-08: answered a scoping question from a stale index/summary line instead of the current file body, producing a wrong 'not started' claim; index lines go stale faster than bodies — re-check source before scoping claims."

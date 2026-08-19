@@ -9,9 +9,10 @@ maturity: beta
 
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: null
-  status: not_run
-  pass_rate: null
+  last_evaluated: 2026-08-19
+  status: partial
+  pass_rate: 0.875
 
 known_failure_modes:
   - "2026-07: declared a handoff 'didn't land' after checking only the current branch; the work existed on another branch found via reflog — check all branches plus reflog before a negative verdict."
+  - "2026-08: eval run (ca-004) found no instruction for git status showing files the audit never touched; this exact situation was handled correctly by operator norm during real ai-dev-office merges this project (surfaced, never reverted/stashed/committed) but the skill text never says so — the correct behavior currently lives outside the skill."
