@@ -56,6 +56,31 @@ For each answer:
 - Stop expanding once the task is satisfied.
 - Preserve tests, contracts, security, accessibility, data safety, and compatibility.
 
+## Scope Authority
+
+This review challenges *unreviewed* scope, not scope the operator already
+decided. When the operator has given explicit prior approval for the current
+plan or diff (a written plan, an approved scope statement, an explicit
+go-ahead on the specific change), do not re-litigate or shrink that scope —
+apply minimal-change judgment only to implementation choices made *within*
+the approved scope. Treat operator approval as binding unless it conflicts
+with a hard rule (tests, security, data safety, compatibility); if it does,
+surface the conflict instead of silently overriding the approval.
+
+## Evidence Type Check
+
+An `evidence_refs` citation (or any cited command/log) only supports a claim
+if its command TYPE matches what the claim asserts. Before accepting a
+citation:
+
+- A "reuse options were checked" or "nothing exists" claim needs a search
+  command (grep, find, symbol lookup, dependency listing) — a build, test, or
+  lint run proves nothing about whether an existing helper was looked for.
+- A "verified" or "tests pass" claim needs a test/run command, not a search.
+- If the cited record's command does not match the claim it is backing,
+  reject it as unsupported and require the correct command be run and cited,
+  regardless of whether the reference id itself looks valid.
+
 "Nothing exists to reuse" is the claim that authorizes new code, and it is a
 negative claim: it must not exceed the searches actually run. Name the queries,
 paths, and manifests checked; one failed grep supports "not found by that
