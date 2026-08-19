@@ -1,17 +1,19 @@
 schema_version: 1
 owner: earth
-version: 1.1.0
+version: 1.2.0
 supported_lanes:
   - claude
   - codex
   - cursor
-maturity: beta
+maturity: stable
 
 evaluation:
   case_file: evals/cases.yaml
   last_evaluated: 2026-08-19
-  status: partial
-  pass_rate: 0.71
+  status: passing
+  pass_rate: 1.0
 
 known_failure_modes:
   - "2026-07: a delegated implementation added unrequested scaffolds and files outside the task scope and they survived into the commit; sweep git status against the task scope before commit, not only the primary diff."
+  - "2026-08 (fixed 2026-08-19): mcr-005 — the skill re-litigated scope the operator had already explicitly approved instead of respecting it; closed by the new 'Scope Authority' section in SKILL.md."
+  - "2026-08 (fixed 2026-08-19): mcr-007 — an evidence_refs citation whose command was a build was accepted as proof a search was done; closed by the new 'Evidence Type Check' section in SKILL.md requiring the cited command TYPE to match the claim."

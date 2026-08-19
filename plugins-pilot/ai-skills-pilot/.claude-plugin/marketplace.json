@@ -1,0 +1,18 @@
+{
+  "name": "ai-skills-pilot-dev",
+  "description": "Local/dev marketplace for the ai-skills Agent Plugins 1.0 pilot (issue #18). Evaluation artifact only — not published, not the recommended install path for the full ai-skills library.",
+  "owner": {
+    "name": "earth"
+  },
+  "plugins": [
+    {
+      "name": "ai-skills-pilot",
+      "description": "Pilot Agent Plugins packaging for verification-loop, search-first, and minimal-change-review.",
+      "version": "0.1.0-pilot",
+      "source": "./",
+      "author": {
+        "name": "earth"
+      }
+    }
+  ]
+}
