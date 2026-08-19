@@ -1,0 +1,19 @@
+{
+  "name": "ai-skills-pilot",
+  "description": "Agent Plugins 1.0 pilot packaging for a small set of stable ai-skills core skills (issue vestearth/AI-office-agency#18). NOT the distribution channel for the full ai-skills library — see .codex-plugin/plugin.json for that. Canonical source of truth stays skills/<name>/ in this repo; the skills/ folder here is a set of symlinks into it.",
+  "version": "0.1.0-pilot",
+  "author": {
+    "name": "earth"
+  },
+  "homepage": "https://github.com/vestearth/ai-skills",
+  "repository": "https://github.com/vestearth/ai-skills",
+  "license": "SEE-REPO-LICENSE",
+  "keywords": [
+    "skills",
+    "pilot",
+    "portability",
+    "verification-loop",
+    "search-first",
+    "minimal-change-review"
+  ]
+}
