@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Install or check named-agent adapters declared in adapters/agents-manifest.yaml.
-# This script owns only symlinks that point into this repo's adapters/*/agents/
-# tree; unrelated workspace agents are preserved.
+# This script owns manifest-declared adapter symlinks and copies; unrelated
+# workspace agents are preserved.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -71,7 +71,7 @@ expected_destinations=""
 installed=0
 failures=0
 
-while IFS=$'\t' read -r agent lane source destination; do
+while IFS=$'\t' read -r agent lane source destination mode; do
   [ -n "$agent" ] || continue
   case "$lane:$source:$destination" in
     claude:adapters/claude/agents/*.md:.claude/agents/*.md|codex:adapters/codex/agents/*.toml:.codex/agents/*.toml|cursor:adapters/cursor/agents/*.md:.cursor/agents/*.md) ;;
@@ -88,16 +88,46 @@ while IFS=$'\t' read -r agent lane source destination; do
 
   expected_destinations="${expected_destinations}${destination}"$'\n'
   if [ "$CHECK_ONLY" = true ]; then
-    if [ ! -L "$destination_path" ]; then
-      echo "missing: $destination" >&2
-      failures=$((failures + 1))
-    elif [ "$(readlink "$destination_path")" != "$source_path" ]; then
-      echo "mismatch: $destination does not point to $source" >&2
-      failures=$((failures + 1))
-    else
-      installed=$((installed + 1))
-    fi
+    case "$mode" in
+      symlink)
+        if [ ! -L "$destination_path" ]; then
+          echo "missing: $destination" >&2
+          failures=$((failures + 1))
+        elif [ "$(readlink "$destination_path")" != "$source_path" ]; then
+          echo "mismatch: $destination does not point to $source" >&2
+          failures=$((failures + 1))
+        else
+          installed=$((installed + 1))
+        fi
+        ;;
+      copy)
+        if [ ! -f "$destination_path" ] || [ -L "$destination_path" ]; then
+          echo "missing: $destination" >&2
+          failures=$((failures + 1))
+        elif ! cmp -s "$source_path" "$destination_path"; then
+          echo "mismatch: $destination does not match $source" >&2
+          failures=$((failures + 1))
+        else
+          installed=$((installed + 1))
+        fi
+        ;;
+    esac
   else
+    if [ "$mode" = copy ]; then
+      if [ -L "$destination_path" ]; then
+        existing_target="$(readlink "$destination_path")"
+        if [ "$existing_target" != "$source_path" ]; then
+          echo "collision: $destination is an unmanaged symlink; remove it explicitly before installing" >&2
+          failures=$((failures + 1))
+          continue
+        fi
+        rm -f "$destination_path"
+      fi
+      mkdir -p "$(dirname "$destination_path")"
+      cp "$source_path" "$destination_path"
+      installed=$((installed + 1))
+      continue
+    fi
     if [ -e "$destination_path" ] || [ -L "$destination_path" ]; then
       if [ -L "$destination_path" ]; then
         existing_target="$(readlink "$destination_path")"

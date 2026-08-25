@@ -32,11 +32,13 @@ destinations = {}
 agent_lanes = {}
 installations.each do |entry|
   abort "agent manifest entry must be a map" unless entry.is_a?(Hash)
-  abort "agent manifest entry has unsupported fields" unless (entry.keys - %w[agent lane source destination]).empty?
+  abort "agent manifest entry has unsupported fields" unless (entry.keys - %w[agent lane source destination mode]).empty?
 
   agent, lane, source, destination = %w[agent lane source destination].map { |key| entry[key].to_s }
+  mode = entry.fetch("mode", "symlink").to_s
   abort "agent manifest entry has an empty field" if [agent, lane, source, destination].any?(&:empty?)
   abort "agent manifest entry contains control characters" if [agent, lane, source, destination].any? { |value| value.match?(/[\t\r\n]/) }
+  abort "unsupported install mode for #{lane}/#{agent}: #{mode}" unless %w[symlink copy].include?(mode)
   abort "invalid agent name: #{agent}" unless agent.match?(/\A[a-z0-9][a-z0-9-]*\z/)
 
   layout = layouts[lane]
@@ -60,6 +62,6 @@ if selected_lane
   installations.each do |entry|
     next unless selected_lane == "all" || entry["lane"] == selected_lane
 
-    puts %w[agent lane source destination].map { |key| entry[key] }.join("\t")
+    puts [entry["agent"], entry["lane"], entry["source"], entry["destination"], entry.fetch("mode", "symlink")].join("\t")
   end
 end

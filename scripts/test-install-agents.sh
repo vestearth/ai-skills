@@ -21,18 +21,29 @@ ln -s "$WORK_DIR" "$TARGET/.claude/agents/other-library.md"
 bash "$INSTALLER" --all --target "$TARGET" >/dev/null 2>&1 || fail "all-lane install exited non-zero"
 
 expected_count=0
-while IFS=$'\t' read -r source destination; do
+while IFS=$'\t' read -r source destination mode; do
   [ -n "$source" ] || continue
   expected_count=$((expected_count + 1))
   link="$TARGET/$destination"
-  if [ ! -L "$link" ] || [ ! -e "$link" ]; then
-    fail "$destination should be a resolving symlink"
-  elif [ "$(readlink "$link")" != "$ROOT_DIR/$source" ]; then
-    fail "$destination points to the wrong source"
-  fi
+  case "$mode" in
+    symlink)
+      if [ ! -L "$link" ] || [ ! -e "$link" ]; then
+        fail "$destination should be a resolving symlink"
+      elif [ "$(readlink "$link")" != "$ROOT_DIR/$source" ]; then
+        fail "$destination points to the wrong source"
+      fi
+      ;;
+    copy)
+      if [ ! -f "$link" ] || [ -L "$link" ]; then
+        fail "$destination should be a regular file copy"
+      elif ! cmp -s "$ROOT_DIR/$source" "$link"; then
+        fail "$destination does not match its source"
+      fi
+      ;;
+  esac
 done < <(ruby -ryaml -e '
   data = YAML.safe_load(File.read(ARGV[0]), aliases: true) || {}
-  Array(data["installations"]).each { |entry| puts [entry["source"], entry["destination"]].join("\t") }
+  Array(data["installations"]).each { |entry| puts [entry["source"], entry["destination"], entry.fetch("mode", "symlink")].join("\t") }
 ' "$MANIFEST")
 
 [ "$expected_count" -gt 0 ] || fail "manifest has no installations"
@@ -61,6 +72,7 @@ fi
 bash "$INSTALLER" --all --target "$TARGET" --check >/dev/null 2>&1 || fail "check should pass after install"
 bash "$INSTALLER" --all --target "$TARGET" >/dev/null 2>&1 || fail "idempotent reinstall exited non-zero"
 
+rm "$TARGET/.codex/agents/knowledge-librarian.toml"
 ln -sfn "$WORK_DIR" "$TARGET/.codex/agents/knowledge-librarian.toml"
 if bash "$INSTALLER" --lane codex --target "$TARGET" --check >/dev/null 2>&1; then
   fail "check should fail for a mismatched managed destination"
@@ -69,9 +81,13 @@ if bash "$INSTALLER" --lane codex --target "$TARGET" >/dev/null 2>&1; then
   fail "install should not replace an unmanaged symlink collision"
 fi
 [ "$(readlink "$TARGET/.codex/agents/knowledge-librarian.toml")" = "$WORK_DIR" ] || fail "unmanaged symlink collision was mutated"
-ln -sfn "$ROOT_DIR/adapters/codex/agents/__stale__.toml" "$TARGET/.codex/agents/knowledge-librarian.toml"
-bash "$INSTALLER" --lane codex --target "$TARGET" >/dev/null 2>&1 || fail "lane reinstall should repair an owned stale symlink"
+ln -sfn "$ROOT_DIR/adapters/codex/agents/knowledge-librarian.toml" "$TARGET/.codex/agents/knowledge-librarian.toml"
+bash "$INSTALLER" --lane codex --target "$TARGET" >/dev/null 2>&1 || fail "lane reinstall should convert the owned symlink to a copy"
+[ -f "$TARGET/.codex/agents/knowledge-librarian.toml" ] && [ ! -L "$TARGET/.codex/agents/knowledge-librarian.toml" ] || fail "Codex librarian should be a regular file after reinstall"
 bash "$INSTALLER" --lane codex --target "$TARGET" --check >/dev/null 2>&1 || fail "lane check should pass after repair"
+printf 'stale copy\n' > "$TARGET/.codex/agents/knowledge-librarian.toml"
+bash "$INSTALLER" --lane codex --target "$TARGET" >/dev/null 2>&1 || fail "lane reinstall should refresh the managed copy"
+cmp -s "$ROOT_DIR/adapters/codex/agents/knowledge-librarian.toml" "$TARGET/.codex/agents/knowledge-librarian.toml" || fail "Codex librarian copy was not refreshed"
 
 rm "$TARGET/.claude/agents/auditor.md"
 printf 'user-owned agent\n' > "$TARGET/.claude/agents/auditor.md"

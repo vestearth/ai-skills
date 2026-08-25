@@ -31,6 +31,7 @@ installations:
     lane: codex
     source: adapters/codex/agents/knowledge-librarian.toml
     destination: .codex/agents/knowledge-librarian.toml
+    mode: copy
   - agent: knowledge-librarian
     lane: cursor
     source: adapters/cursor/agents/knowledge-librarian.md

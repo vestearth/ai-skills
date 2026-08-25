@@ -231,7 +231,7 @@ elif ! command -v ruby >/dev/null 2>&1; then
 elif ! ruby "$ROOT_DIR/scripts/validate-agent-manifest.rb" "$agent_manifest" >/dev/null 2>&1; then
   fail "adapters/agents-manifest.yaml: invalid manifest structure"
 else
-  while IFS=$'\t' read -r agent lane source destination; do
+  while IFS=$'\t' read -r agent lane source destination mode; do
     source_path="$ROOT_DIR/$source"
     if [ ! -f "$source_path" ]; then
       fail "adapters/agents-manifest.yaml: missing source '$source'"
@@ -240,6 +240,10 @@ else
     case "$lane:$source:$destination" in
       claude:adapters/claude/agents/*.md:.claude/agents/*.md|codex:adapters/codex/agents/*.toml:.codex/agents/*.toml|cursor:adapters/cursor/agents/*.md:.cursor/agents/*.md) ;;
       *) fail "adapters/agents-manifest.yaml: invalid lane/source/destination for '$agent'" ;;
+    esac
+    case "$mode" in
+      symlink|copy) ;;
+      *) fail "adapters/agents-manifest.yaml: invalid install mode for '$agent'" ;;
     esac
     if [ "$agent" = "knowledge-librarian" ]; then
       librarian_agents+=("$source_path")
