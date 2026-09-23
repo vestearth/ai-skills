@@ -15,7 +15,7 @@ Execute the shared workflow at
 it in this Cursor adapter.
 
 **Model:** keep `model: inherit` (Cursor Auto). Coordinators must not force a
-Terra/Sol slug on Cursor librarian dispatches; Codex keeps its own Terra High
+Codex model slug on Cursor librarian dispatches; Codex keeps its own Luna High
 profile in the shared workflow.
 
 Read:
