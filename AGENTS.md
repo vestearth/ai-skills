@@ -49,6 +49,7 @@ Recommended skills:
 - minimal-change-review
 - skill-authoring-review
 - decision-grilling
+- decision-wayfinding
 - session-handoff
 - defect-class-sweep
 - deslop

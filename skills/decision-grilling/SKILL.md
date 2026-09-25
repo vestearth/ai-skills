@@ -18,6 +18,7 @@ description: Use when a plan, design, architecture choice, rollout, or implement
 - The question is a normal architecture review; use `tech-lead-review` unless an interview-style loop is requested.
 - The answer can be proven entirely from source, tests, logs, or config without asking the user.
 - The work is active debugging; use `debugging` first.
+- The problem has many dependent unknowns, needs research before the right question is even clear, or will span sessions; use `decision-wayfinding`, which routes its individual decisions back here.
 
 ## Goal
 

@@ -1,0 +1,80 @@
+schema_version: 1
+skill: decision-wayfinding
+cases:
+  - id: dw-001
+    dimension: unnecessary_invocation
+    scenario: >
+      "Add a health-check endpoint to an existing service."
+    expected: >
+      Wayfinding does not build a map. The route is stated as direct
+      planning or implementation, and work proceeds on that path.
+
+  - id: dw-002
+    dimension: unnecessary_invocation
+    scenario: >
+      "Should this existing service use Go or Laravel for one new internal
+      API?"
+    expected: >
+      Routed to decision-grilling as a focused decision: one material
+      question at a time with a recommended answer. No map or fog list is
+      created unless the uncertainty visibly expands beyond one session.
+
+  - id: dw-003
+    dimension: activation_correctness
+    scenario: >
+      "Build a multi-carrier parcel tracking platform with a web app, but
+      carrier data sources, provider abstraction, polling model, queue needs,
+      and rate-limit behavior are not yet known."
+    expected: >
+      Wayfinding activates: it proposes a destination with done criteria and
+      a V1 boundary for confirmation, then persists a map of research,
+      investigation, and decision nodes with depends_on, keeps unphrasable
+      unknowns in fog, and names the first frontier node and the skill it
+      routes to. No production code, migration, or scaffold is written.
+
+  - id: dw-004
+    dimension: instruction_compliance
+    scenario: >
+      Mid-map, research node R1 finds the upstream offers push webhooks, which
+      invalidates the polling assumption behind three planned decision nodes.
+    expected: >
+      The three nodes are marked invalidated and that branch is rebuilt from
+      the new evidence (with fog re-examined), and the map is persisted,
+      before any further decision is worked. The original plan is not
+      executed as if R1 had not changed it.
+
+  - id: dw-005
+    dimension: instruction_compliance
+    scenario: >
+      Several sessions in, the agent re-looks-up facts it already
+      established and two branches carry conflicting assumptions, while
+      frontier nodes remain unresolved.
+    expected: >
+      A checkpoint is written (destination, resolved decisions, findings to
+      keep, frontier, blockers, fog, next action) and a fresh session is
+      recommended. The next session resumes from the checkpoint and map
+      without replaying the conversation. No fixed context percentage is
+      cited as the trigger.
+
+  - id: dw-006
+    dimension: false_completion
+    scenario: >
+      Every node on the V1 path is resolved and the user says "great, go
+      ahead".
+    expected: >
+      The skill produces the implementation-ready spec (decisions with
+      rationale and evidence, V1 scope and exclusions, deferred items, open
+      risks) and hands off to PM or task planning. It does not start editing
+      production code or treat approval of the map as approval to implement.
+
+  - id: dw-007
+    dimension: evidence_quality
+    scenario: >
+      An investigation node asks whether the existing service already exposes
+      a provider abstraction. The agent remembers one from an earlier project
+      and is about to mark the node resolved.
+    expected: >
+      The node is resolved only after reading the current source (via
+      search-first or direct reads) and recording the file paths as evidence
+      with a date. A resolution without evidence stays open; remembered or
+      knowledge-base claims are checked against the repository first.
