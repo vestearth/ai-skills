@@ -28,6 +28,51 @@ layouts = {
   "cursor" => [/\Aadapters\/cursor\/agents\/([a-z0-9-]+)\.md\z/, /\A\.cursor\/agents\/([a-z0-9-]+)\.md\z/]
 }.freeze
 
+root_dir = File.expand_path("..", __dir__)
+
+def adapter_identity(path, lane)
+  content = File.read(path)
+  if %w[claude cursor].include?(lane)
+    frontmatter = content.match(/\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?$/m)
+    return ["missing", "missing frontmatter"] unless frontmatter
+
+    begin
+      metadata = YAML.safe_load(frontmatter[1], permitted_classes: [], permitted_symbols: [], aliases: false)
+    rescue Psych::Exception => e
+      return ["invalid", "invalid frontmatter: #{e.message.lines.first.strip}"]
+    end
+    return ["invalid", "invalid frontmatter map"] unless metadata.is_a?(Hash)
+    return ["missing", "missing name"] unless metadata.key?("name")
+
+    identity = metadata["name"]
+  else
+    # Codex declares its identity as a top-level TOML name. Stop at tables or
+    # multiline values so content inside instructions cannot impersonate it.
+    names = []
+    content.each_line do |line|
+      stripped = line.strip
+      next if stripped.empty? || stripped.start_with?("#")
+      break if stripped.start_with?("[") || stripped.match?(/=\s*(?:"""|''')/)
+      next unless stripped.match?(/\Aname\s*=/)
+
+      match = stripped.match(/\Aname\s*=\s*(?:"([a-z0-9-]+)"|'([a-z0-9-]+)')\s*(?:#.*)?\z/)
+      return ["invalid", "invalid name"] unless match
+
+      names << (match[1] || match[2])
+    end
+    return ["missing", "missing name"] if names.empty?
+    return ["invalid", "duplicate name"] if names.length != 1
+
+    identity = names.first
+  end
+
+  return ["invalid", "invalid name"] unless identity.is_a?(String) && identity.match?(/\A[a-z0-9][a-z0-9-]*\z/)
+
+  [identity, nil]
+rescue Errno::ENOENT, Errno::EACCES => e
+  ["missing", e.message]
+end
+
 destinations = {}
 agent_lanes = {}
 installations.each do |entry|
@@ -50,6 +95,11 @@ installations.each do |entry|
   abort "agent/source/destination names must match for #{lane}/#{agent}" unless source_match[1] == agent && destination_match[1] == agent
   abort "duplicate destination: #{destination}" if destinations[destination]
   abort "duplicate agent/lane: #{agent}/#{lane}" if agent_lanes[[agent, lane]]
+
+  identity, identity_error = adapter_identity(File.join(root_dir, source), lane)
+  if identity_error || identity != agent
+    abort "adapter identity mismatch for #{lane}/#{agent} at #{source}: internal identity #{identity}#{identity_error ? " (#{identity_error})" : ""}"
+  end
 
   destinations[destination] = true
   agent_lanes[[agent, lane]] = true

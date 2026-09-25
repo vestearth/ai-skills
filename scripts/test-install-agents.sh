@@ -66,6 +66,57 @@ if ruby "$MANIFEST_VALIDATOR" "$WORK_DIR/duplicate-manifest.yaml" >/dev/null 2>&
   fail "manifest validator accepted a duplicate destination"
 fi
 
+# A correctly named source can still declare a different internal agent.
+FIXTURE_ROOT="$WORK_DIR/identity-fixture"
+mkdir -p "$FIXTURE_ROOT/scripts"
+cp -R "$ROOT_DIR/adapters" "$FIXTURE_ROOT/adapters"
+cp "$MANIFEST_VALIDATOR" "$FIXTURE_ROOT/scripts/validate-agent-manifest.rb"
+FIXTURE_VALIDATOR="$FIXTURE_ROOT/scripts/validate-agent-manifest.rb"
+FIXTURE_MANIFEST="$FIXTURE_ROOT/adapters/agents-manifest.yaml"
+
+check_identity_failure() {
+  local lane="$1" agent="$2" source="$3" identity="$4" output
+  if output="$(ruby "$FIXTURE_VALIDATOR" "$FIXTURE_MANIFEST" all 2>&1)"; then
+    fail "$lane/$agent accepted internal identity $identity"
+  elif [[ "$output" != *"$lane/$agent"* || "$output" != *"$source"* || "$output" != *"$identity"* ]]; then
+    fail "$lane/$agent error omitted lane, agent, source, or internal identity: $output"
+  fi
+}
+
+claude_source="adapters/claude/agents/auditor.md"
+cursor_source="adapters/cursor/agents/knowledge-librarian.md"
+codex_source="adapters/codex/agents/knowledge-librarian.toml"
+
+ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name: auditor$/, "name: reviewer"))' "$FIXTURE_ROOT/$claude_source"
+check_identity_failure claude auditor "$claude_source" reviewer
+cp "$ROOT_DIR/$claude_source" "$FIXTURE_ROOT/$claude_source"
+
+ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name: knowledge-librarian$/, "name: reviewer"))' "$FIXTURE_ROOT/$cursor_source"
+check_identity_failure cursor knowledge-librarian "$cursor_source" reviewer
+cp "$ROOT_DIR/$cursor_source" "$FIXTURE_ROOT/$cursor_source"
+
+ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name = "knowledge-librarian"$/, %q{name = "reviewer"}))' "$FIXTURE_ROOT/$codex_source"
+check_identity_failure codex knowledge-librarian "$codex_source" reviewer
+cp "$ROOT_DIR/$codex_source" "$FIXTURE_ROOT/$codex_source"
+
+for lane_source in "$claude_source" "$cursor_source"; do
+  ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name:.*\n/, ""))' "$FIXTURE_ROOT/$lane_source"
+  if [ "$lane_source" = "$claude_source" ]; then lane=claude; agent=auditor; else lane=cursor; agent=knowledge-librarian; fi
+  check_identity_failure "$lane" "$agent" "$lane_source" missing
+  cp "$ROOT_DIR/$lane_source" "$FIXTURE_ROOT/$lane_source"
+  ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name:.*$/, "name: [unterminated"))' "$FIXTURE_ROOT/$lane_source"
+  check_identity_failure "$lane" "$agent" "$lane_source" invalid
+  cp "$ROOT_DIR/$lane_source" "$FIXTURE_ROOT/$lane_source"
+done
+
+ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name = "knowledge-librarian"$/, "name = 123"))' "$FIXTURE_ROOT/$codex_source"
+check_identity_failure codex knowledge-librarian "$codex_source" invalid
+cp "$ROOT_DIR/$codex_source" "$FIXTURE_ROOT/$codex_source"
+ruby -e 'p = ARGV[0]; File.write(p, File.read(p).sub(/^name = .*\n/, ""))' "$FIXTURE_ROOT/$codex_source"
+check_identity_failure codex knowledge-librarian "$codex_source" missing
+cp "$ROOT_DIR/$codex_source" "$FIXTURE_ROOT/$codex_source"
+ruby "$FIXTURE_VALIDATOR" "$FIXTURE_MANIFEST" all >/dev/null 2>&1 || fail "unmodified adapters should pass identity validation"
+
 [ ! -L "$TARGET/.claude/agents/stale-agent.md" ] || fail "stale managed agent was not pruned"
 [ -L "$TARGET/.claude/agents/other-library.md" ] || fail "unrelated agent symlink should be preserved"
 

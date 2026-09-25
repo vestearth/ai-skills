@@ -197,6 +197,9 @@ Adapters should be thin. Do not duplicate full skill text in tool-specific files
 Named-agent wiring is declared once in `adapters/agents-manifest.yaml`. Install
 all supported lane adapters into the parent workspace, or install/check one lane:
 
+The manifest validator also checks each adapter's declared identity: `name` in
+Claude and Cursor YAML frontmatter, and the top-level `name` in Codex TOML.
+
 The manifest tools require Ruby 2.4+ with its standard `yaml` library.
 
 ```bash
