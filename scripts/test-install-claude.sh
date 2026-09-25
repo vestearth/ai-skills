@@ -47,6 +47,7 @@ ln -s "$WORK_DIR" "$dest/other-library"
 echo "keep me" > "$dest/README-note.txt"
 
 bash "$INSTALLER" --nested "$target" >/dev/null 2>&1 || fail "install exited non-zero"
+LC_ALL=C LANG=C bash "$INSTALLER" --nested "$target" >/dev/null 2>&1 || fail "install failed with C locale"
 
 # --- sync: expected number of resolving skill symlinks ------------------------
 installed="$(find "$dest" -maxdepth 1 -type l -lname "$SRC_DIR/*" 2>/dev/null | wc -l | tr -d ' ')"

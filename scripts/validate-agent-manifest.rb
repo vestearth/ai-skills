@@ -31,7 +31,7 @@ layouts = {
 root_dir = File.expand_path("..", __dir__)
 
 def adapter_identity(path, lane)
-  content = File.read(path)
+  content = File.read(path, encoding: "UTF-8")
   if %w[claude cursor].include?(lane)
     frontmatter = content.match(/\A---[ \t]*\r?\n(.*?)^---[ \t]*\r?$/m)
     return ["missing", "missing frontmatter"] unless frontmatter
