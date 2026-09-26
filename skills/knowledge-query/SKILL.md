@@ -35,6 +35,7 @@ Use `knowledge-base/` as navigation and memory while keeping current source-of-t
 1. Identify whether the task depends on durable memory.
 2. Search existing notes before answering or creating new notes.
 3. Prefer `Knowledge Base/Home.md`, `Knowledge Base/00 MOCs/`, relevant `10 Projects/`, and `20 Flows/` entries as navigation.
+   A note with `kind: retrieval_projection` (a Claude Memory Map or agent reference index) is a fan-out entry point, not an answer source: follow each hook to the child named in `derived_from` and cite the child. If the child is out of reach (a `memory:` entry), report the hook as REVALIDATE / STALE with its date (`Knowledge Base/Retrieval Projections.md`).
 4. Read only the notes needed for the question.
 5. Treat vault notes as context, not stronger evidence than current source files, tests, CI, logs, or production signals.
 6. Classify every note used by its `freshness` field (`Knowledge Base/Provenance And Freshness.md`) before citing it. No block means `unknown`.
@@ -103,3 +104,4 @@ single unqualified statement.
 - Presenting a `stale` or `historical` note as current without qualification.
 - Merging conflicting generations of a claim into one synthesized "current" answer.
 - Treating `unknown` as equivalent to `current` because most notes lack a provenance block.
+- Citing a retrieval projection's hook as the answer, or repeating its 🔴 status marker as current fact, without reading the child it points to.
