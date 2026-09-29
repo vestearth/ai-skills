@@ -72,5 +72,17 @@ check "task-notification emits nothing" $?
 run s4 "ช่วยดูโค้ดหน่อย" | ctx | grep -q 'search-first ก่อนไล่หาไฟล์'
 check "task-notification does not consume the session's first-prompt core block" $?
 
+# --- guardrail rules routing (rules/ is not skills; Claude got none of it) ---
+RULES="minimal-change reuse-before-build search-before-create evidence-required verify-before-final context-discipline"
+first="$(run r1 "ช่วยดูโค้ดหน่อย" | ctx)"
+for r in $RULES; do
+  printf '%s' "$first" | grep -q "ai-skills/rules/$r/RULE.md"
+  check "core block routes rules/$r" $?
+  [ -f "$DIR/../../../../rules/$r/RULE.md" ]
+  check "rules/$r/RULE.md exists in the repo" $?
+done
+[ -z "$(run r1 "ช่วยดูโค้ดต่อ" | ctx)" ]
+check "rules routing is not repeated on later prompts" $?
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 [ "$fail" -eq 0 ]

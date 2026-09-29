@@ -125,7 +125,16 @@ ctx="[ai-skills routing] — ประเมินเองว่า prompt น�
   minimal-change-review ถ้าจะเพิ่มไฟล์/scaffold/abstraction · deslop ก่อน commit/handoff
   golang-project-structure วาง package/layout · decision-grilling ก่อนเลือก approach
   knowledge-query ถ้าอาจมีบทเรียน/ADR เดิม · microservice-boundary-review ใครควร own logic/data
-  games-labs-implementation-status ตอบคำถาม follow-up จาก mobile/QA/PM"
+  games-labs-implementation-status ตอบคำถาม follow-up จาก mobile/QA/PM
+
+[ai-skills rules] — กติกา ไม่ใช่ skill ใช้ทันทีเมื่อเข้าเงื่อนไข แม้กำลังใช้ skill อยู่:
+  ก่อนแก้โค้ด/ไฟล์/dependency → ai-skills/rules/minimal-change/RULE.md
+  ก่อนเพิ่มโค้ด/dependency/abstraction → ai-skills/rules/reuse-before-build/RULE.md
+  ก่อนสร้างไฟล์/helper/config/fixture ใหม่ → ai-skills/rules/search-before-create/RULE.md
+  ก่อนอ้างพฤติกรรม/ความเสี่ยง/root cause ของ repo → ai-skills/rules/evidence-required/RULE.md
+  ก่อนเคลมว่าเสร็จ/fix/merge/deploy/handoff → ai-skills/rules/verify-before-final/RULE.md
+  ระหว่างรวบรวม context → ai-skills/rules/context-discipline/RULE.md
+  (no-secrets-in-repo, test-integrity, schema-change-needs-migration อยู่ใน CLAUDE.md แล้ว)"
 fi
 
 if [ -n "$matches" ]; then

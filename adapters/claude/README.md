@@ -138,6 +138,11 @@ Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
     applicability itself. Keyword rows for these were measured at 1/14 hits on
     natural Thai phrasing ("ผ่านไหม", "พร้อมขึ้นยัง"), because Thai expresses
     one intent in unbounded surface forms; adding keywords never converges.
+  - **Guardrail rules (same cadence, part of the core block):** routes the six
+    `rules/` not already in `CLAUDE.md` (`minimal-change`, `reuse-before-build`,
+    `search-before-create`, `evidence-required`, `verify-before-final`,
+    `context-discipline`) as action-triggered rules, matching the `AGENTS.md`
+    table Codex and Cursor receive. The tests assert each path exists.
   - **Keyword table (cap 6 matches/prompt):** domain skills anchored to stable
     English technical nouns (proto, argocd, clickhouse, ...) — measured 17/17.
     Six borderline skills sit in both lanes deliberately.
