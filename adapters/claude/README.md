@@ -133,7 +133,7 @@ Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
 
 - `skill-routing.sh` — injects, via `hookSpecificOutput.additionalContext`, two
   lanes split by how a skill is actually triggered:
-  - **Core block (always shown):** the intent-routed skills (`search-first`,
+  - **Core block (first prompt of a session, then every 20th):** the intent-routed skills (`search-first`,
     `debugging`, `verification-loop`, `code-review`, ...) — the model judges
     applicability itself. Keyword rows for these were measured at 1/14 hits on
     natural Thai phrasing ("ผ่านไหม", "พร้อมขึ้นยัง"), because Thai expresses
@@ -145,7 +145,12 @@ Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
   Exists because ai-skills are description-matched only: transcript counts
   showed roughly one skill invocation per session, all of them review-shaped,
   while `search-first`, `debugging`, and `verification-loop` never fired.
-  Skips slash commands, which carry their own instructions. Both lanes live
+  Skips slash commands (they carry their own instructions) and
+  `<task-notification` prompts (machine-written subagent notices). Cadence is
+  measured, 2026-09-30 over 1,118 hooked turns: intent-skill calls were 22% on
+  a session's first prompt and 3-6% afterwards, so the core block repeats only
+  every `CORE_EVERY` prompts (state per `session_id` under
+  `${TMPDIR:-/tmp}/ai-skills-routing`; no `session_id` -> every prompt). Both lanes live
   inline in the script — a new skill gets a table row (domain), a core-block
   line (intent), or neither (operator-invoked; list in the script comment).
   `tests/run-skill-routing-tests.sh` runs a match/nomatch table for the rows

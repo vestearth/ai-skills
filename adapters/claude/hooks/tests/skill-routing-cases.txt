@@ -16,3 +16,5 @@ match	knowledge-query	มี ADR เดิมไหม
 match	knowledge-query	ที่ผ่านมาตัดสินใจยังไง
 nomatch	knowledge-query	อัพเดทลง knowledge-base และสรุป
 nomatch	knowledge-query	commit knowledge-base ให้หน่อย
+nomatch	golang-service-review	ดู context ทั้งหมดที่คุยมา
+nomatch	golang-service-review	context ของ session นี้เต็มยัง

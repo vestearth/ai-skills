@@ -33,6 +33,27 @@ prompt="$(printf '%s' "$input" | jq -r '.prompt // empty' 2>/dev/null)" || exit 
 # Slash commands carry their own instructions; a second routing table is noise.
 case "$prompt" in /*) exit 0 ;; esac
 
+# Subagent completion notices are machine-written; measured 10% of hooked turns
+# and ~1 skill call in 117. Their long bodies also trip keyword rows.
+case "$prompt" in "<task-notification"*) exit 0 ;; esac
+
+# Core block cadence: measured intent-skill call rate is 22% on a session's first
+# prompt and 3-6% afterwards, so repeating it every turn is mostly noise. Send it
+# on the first prompt of a session and every CORE_EVERY-th after (a compaction
+# drops the earlier copy). No session_id or unwritable state dir -> every prompt.
+CORE_EVERY=20
+show_core=1
+sid="$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null | tr -cd 'A-Za-z0-9_-')"
+if [ -n "$sid" ]; then
+  state_dir="${SKILL_ROUTING_STATE_DIR:-${TMPDIR:-/tmp}/ai-skills-routing}"
+  if mkdir -p "$state_dir" 2>/dev/null; then
+    n="$(cat "$state_dir/$sid" 2>/dev/null)"; n="${n:-0}"
+    case "$n" in *[!0-9]*) n=0 ;; esac
+    [ $((n % CORE_EVERY)) -ne 0 ] && show_core=0
+    printf '%s' $((n + 1)) > "$state_dir/$sid" 2>/dev/null || show_core=1
+  fi
+fi
+
 # lowercase -> punctuation to space -> collapse runs -> wrap in spaces
 hay=" $(printf '%s' "$prompt" \
   | tr '[:upper:]' '[:lower:]' \
@@ -57,7 +78,7 @@ api-contract-review~proto/gRPC/gateway mapping/field number~proto|grpc|gateway|o
 games-labs-api-review~Games Labs service + mobile-facing API~mission|wallet| vip |store|redemption|coupon|provider|backoffice|games labs|gameslabs
 games-labs-implementation-status~คำถาม follow-up จาก mobile/QA/PM — เช็คโค้ดก่อนตอบ~ทีม mobile|mobile team|ตอบยังไง|ตอบอะไร|implemented yet|qa ถาม|ถามมา
 change-impact-analysis~shared code/contract/schema/config ที่กระทบหลาย service~shared lib|impact|กระทบ|breaking|migration|schema
-golang-service-review~handler/worker/consumer/repo/context ใน Go~handler|worker|consumer|repository|goroutine|context| golang | go service
+golang-service-review~handler/worker/consumer/repo ใน Go~handler|worker|consumer|repository|goroutine| golang | go service
 golang-project-structure~วาง package/cmd/internal layout~โครงสร้าง|project structure|package layout| cmd | internal
 rabbitmq-event-review~publisher/consumer/exchange/routing key/DLQ~rabbitmq|amqp|exchange|queue|routing key|publish|dead letter
 clickhouse-io~ClickHouse table/ingestion/retention/analytics query~clickhouse
@@ -95,6 +116,8 @@ done <<< "$ROUTES"
 
 # Intent-routed skills: always shown, the model judges applicability itself.
 # Thai intent phrasing defeats grep (measured), so these never rely on keywords.
+ctx=""
+if [ "$show_core" -eq 1 ]; then
 ctx="[ai-skills routing] — ประเมินเองว่า prompt นี้เข้าข้อไหน แล้วเรียก skill นั้นก่อนเริ่ม:
   search-first ก่อนไล่หาไฟล์ · debugging ก่อนเสนอ fix · verification-loop ก่อนเคลมว่าเสร็จ
   code-review เมื่อถูกขอให้ดู diff/PR · completion-audit เมื่อรับงานที่คนอื่นบอกว่าเสร็จ
@@ -103,14 +126,18 @@ ctx="[ai-skills routing] — ประเมินเองว่า prompt น�
   golang-project-structure วาง package/layout · decision-grilling ก่อนเลือก approach
   knowledge-query ถ้าอาจมีบทเรียน/ADR เดิม · microservice-boundary-review ใครควร own logic/data
   games-labs-implementation-status ตอบคำถาม follow-up จาก mobile/QA/PM"
+fi
 
 if [ -n "$matches" ]; then
+  [ -z "$ctx" ] && ctx="[ai-skills routing]"
   ctx="${ctx}
 
 domain skill ที่ keyword ตรงกับ prompt นี้:
 ${matches}
 อ่านก่อนเริ่ม ถ้าเข้าเงื่อนไข ห้ามข้ามเพราะ \"งานเล็ก\" — keyword match เป็นแค่ตัวชี้ ไม่ใช่คำสั่ง"
 fi
+
+[ -z "$ctx" ] && exit 0
 
 jq -n --arg c "$ctx" \
   '{hookSpecificOutput: {hookEventName: "UserPromptSubmit", additionalContext: $c}}' \

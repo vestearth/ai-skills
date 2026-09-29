@@ -286,7 +286,7 @@ reports any hook not yet referenced by `settings.json` — it never edits
 `settings.json` itself. Currently ships `guard-env-write.sh` and
 `guard-env-bash.sh`, which enforce `rules/no-secrets-in-repo/RULE.md` at the
 tool layer for the Claude lane only, plus `skill-routing.sh`, an advisory
-UserPromptSubmit hook that surfaces an always-on core block of intent-routed
+UserPromptSubmit hook that surfaces a core block of intent-routed (first prompt per session, then periodically)
 skills plus keyword-matched domain skills, so routing does not depend on
 description matching alone, plus `clean-invisible-unicode.sh`, a mutating
 PostToolUse hook that strips invisible Unicode from every text file an agent
