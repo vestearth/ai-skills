@@ -281,6 +281,20 @@ scripts/install-claude-hooks.sh --standalone
 scripts/install-claude-hooks.sh --user
 ```
 
+To measure whether routing changes actually move skill use, count calls from the
+agents' own transcripts (read-only, stdlib Python; compare a `--until` window with
+a `--since` window around the change):
+
+```bash
+scripts/skill-usage-report.py --since 2026-09-30 --no-replay
+```
+
+It reports Claude (intent-skill call rate overall and by turn position, task-
+notification noise, keyword-row hit rate), Codex (sessions with an ai-skills
+`SKILL.md` read, per month), and Cursor (assistant-side skill paths; low
+confidence). Counts are not a quality judgment; the docstring lists the known
+measurement traps.
+
 It symlinks the hooks, prunes stale links, runs their case-table tests, and
 reports any hook not yet referenced by `settings.json` — it never edits
 `settings.json` itself. Currently ships `guard-env-write.sh` and
