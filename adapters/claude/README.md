@@ -148,6 +148,9 @@ Routing hook (UserPromptSubmit, advisory — never blocks, always `exit 0`):
   Skips slash commands, which carry their own instructions. Both lanes live
   inline in the script — a new skill gets a table row (domain), a core-block
   line (intent), or neither (operator-invoked; list in the script comment).
+  `tests/run-skill-routing-tests.sh` runs a match/nomatch table for the rows
+  that over-fired on ordinary prose (`token` meaning LLM tokens, `skill`,
+  `knowledge base`); add a `nomatch` case whenever a row is narrowed.
 
 **Scope, stated honestly:** pattern matching over a Turing-complete shell cannot
 be sound against an agent actively evading it — a script file that writes `.env`

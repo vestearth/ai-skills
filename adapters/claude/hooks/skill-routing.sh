@@ -63,7 +63,7 @@ rabbitmq-event-review~publisher/consumer/exchange/routing key/DLQ~rabbitmq|amqp|
 clickhouse-io~ClickHouse table/ingestion/retention/analytics query~clickhouse
 k8s-deploy-review~k8s/k3s manifest, ArgoCD, probes, image ref~kubernetes| k8s | k3s |kustomize|argocd|manifest|helm
 cicd-pipeline-review~GitHub Actions, Dockerfile, build-push job~github actions|workflow|dockerfile|build push|pipeline| ci cd
-secrets-management~secret/credential/token/.env/kubeconfig~secret|credential|token| env |kubeconfig|api key|รหัสผ่าน
+secrets-management~secret/credential/token/.env/kubeconfig~secret|credential|access token|bearer token|api token|refresh token|auth token|jwt| env |kubeconfig|api key|รหัสผ่าน
 dependency-guard~go.mod, Dockerfile, CI, shared dependency~go mod|go get|dependency|dependencies|bump|upgrade|package json
 frontend-ui-review~หน้า/component เทียบ Figma + design system~figma|tailwind|component| ui |หน้าจอ|responsive|frontend|css
 vendor-integration~provider callback, payout, launch URL, signature~vendor|callback|seamless|payout|balance| hmac |signature|third party
@@ -74,8 +74,8 @@ decision-wayfinding~ปัญหาใหญ่/ยังไม่ชัด ห�
 deslop~กวาด AI slop ออกจาก diff ก่อน commit/handoff~slop|cleanup|ก่อน commit|tidy|เก็บกวาด
 remove-ai-marks~ลบ AI provenance (invisible unicode / C2PA / EXIF) จากไฟล์ที่เราเป็นเจ้าของ~watermark|ลายน้ำ|c2pa|content credentials|exif| xmp |invisible unicode|zero width|synthid|ai provenance
 sprint-planning~แปลง goal/backlog เป็น scope + acceptance criteria~sprint|backlog|roadmap|วางแผน|แผนงาน
-knowledge-query~งานนี้อาจพึ่งความรู้/ADR/บทเรียนเดิม~เคยทำ|ที่ผ่านมา|prior decision| adr |knowledge base
-skill-authoring-review~แก้/เพิ่ม/ตัด skill ใน ai-skills~ai skills| skill |สกิล
+knowledge-query~งานนี้อาจพึ่งความรู้/ADR/บทเรียนเดิม~เคยทำ|ที่ผ่านมา|prior decision| adr
+skill-authoring-review~แก้/เพิ่ม/ตัด skill ใน ai-skills~ai skills|skill md|skill authoring|สกิล
 weekly-report~สรุปงานรายสัปดาห์ + อัพเดท Weekly Review~weekly update|weekly review|สรุปงาน|สัปดาห์นี้|อาทิตย์นี้
 socraticode-discovery~SocratiCode search/symbol/graph + ความสดของ index~socraticode|codebase search|semantic search|index
 datadog-observability~metric/log/trace/dashboard/monitor/SLO~datadog|metric|dashboard|monitor| slo |observab

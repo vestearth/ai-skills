@@ -1,0 +1,18 @@
+match	secrets-management	rotate the access token ของ service นี้
+match	secrets-management	bearer token หมดอายุแล้ว
+match	secrets-management	ใส่ JWT ใน header
+match	secrets-management	เช็ค kubeconfig ของ cluster
+match	secrets-management	มี secret หลุดใน repo ไหม
+match	secrets-management	ขอ api key ใหม่
+nomatch	secrets-management	ประหยัด token ขึ้นไหม
+nomatch	secrets-management	ใช้ token เท่าไหร่ใน session นี้
+match	skill-authoring-review	แก้ SKILL.md ของ search-first
+match	skill-authoring-review	เพิ่ม skill ใหม่ใน ai-skills
+match	skill-authoring-review	ช่วยดู สกิล นี้หน่อย
+nomatch	skill-authoring-review	ต้องเรียก skill search-first ไหม
+nomatch	skill-authoring-review	skill นี้ยาวไปไหม
+match	knowledge-query	เคยทำเรื่องนี้มาก่อนไหม
+match	knowledge-query	มี ADR เดิมไหม
+match	knowledge-query	ที่ผ่านมาตัดสินใจยังไง
+nomatch	knowledge-query	อัพเดทลง knowledge-base และสรุป
+nomatch	knowledge-query	commit knowledge-base ให้หน่อย
