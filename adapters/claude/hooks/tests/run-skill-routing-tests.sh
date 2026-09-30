@@ -84,5 +84,32 @@ done
 [ -z "$(run r1 "ช่วยดูโค้ดต่อ" | ctx)" ]
 check "rules routing is not repeated on later prompts" $?
 
+# In the nested workspace, root AGENTS.md is Codex/Cursor's rule route. Claude
+# receives six of those rules from this hook and the other three from CLAUDE.md.
+# Check the combined path set so changing either surface cannot silently drift.
+WORKSPACE_AGENTS="${WORKSPACE_AGENTS:-$DIR/../../../../../AGENTS.md}"
+WORKSPACE_CLAUDE="${WORKSPACE_CLAUDE:-$DIR/../../../../../CLAUDE.md}"
+if [ -f "$WORKSPACE_AGENTS" ] && [ -f "$WORKSPACE_CLAUDE" ]; then
+  root_rules="$(sed -n '/^### AI Skills Activation$/,/^Task → skill routing:/p' "$WORKSPACE_AGENTS" \
+    | grep -oE 'ai-skills/rules/[a-z-]+/RULE\.md' | sort -u)"
+  hook_rules="$(sed -n '/^\[ai-skills rules\]/,/^  (no-secrets-in-repo/p' "$HOOK" \
+    | grep -oE 'ai-skills/rules/[a-z-]+/RULE\.md')"
+  claude_rules="$(grep -oE 'ai-skills/rules/[a-z-]+/RULE\.md' "$WORKSPACE_CLAUDE")"
+  routed_rules="$(printf '%s\n%s\n' "$hook_rules" "$claude_rules" | sed '/^$/d' | sort -u)"
+  [ -n "$root_rules" ] && [ "$root_rules" = "$routed_rules" ]
+  check "root AGENTS.md rules equal Claude hook + CLAUDE.md rules" $?
+
+  # Codex truncates project instructions past project_doc_max_bytes (default
+  # 32 KiB) from the END, silently to a reader who skips the CLI warning. The
+  # root file was 35,342 bytes and truncated until trimmed 2026-09-30.
+  agents_bytes="$(wc -c < "$WORKSPACE_AGENTS" | tr -d ' ')"
+  doc_max="${CODEX_PROJECT_DOC_MAX_BYTES:-32768}"
+  [ "$agents_bytes" -le "$doc_max" ]
+  check "root AGENTS.md fits Codex project-doc limit ($agents_bytes <= $doc_max bytes)" $?
+  [ $((doc_max - agents_bytes)) -ge 1024 ] || echo "warn  root AGENTS.md headroom is $((doc_max - agents_bytes)) bytes (<1 KiB): the next addition will be truncated"
+else
+  echo 'skip  workspace rule parity (AGENTS.md or CLAUDE.md unavailable)'
+fi
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 [ "$fail" -eq 0 ]

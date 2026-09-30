@@ -56,9 +56,9 @@ fi
 
 # lowercase -> punctuation to space -> collapse runs -> wrap in spaces
 hay=" $(printf '%s' "$prompt" \
-  | tr '[:upper:]' '[:lower:]' \
-  | tr -c '[:alnum:]\200-\377' ' ' \
-  | tr -s ' ') "
+  | LC_ALL=C tr '[:upper:]' '[:lower:]' \
+  | LC_ALL=C tr -c '[:alnum:]\200-\377' ' ' \
+  | LC_ALL=C tr -s ' ') "
 
 # skill ~ one-line hint ~ extended regex matched against $hay
 #
