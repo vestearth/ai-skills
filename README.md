@@ -287,6 +287,7 @@ a `--since` window around the change):
 
 ```bash
 scripts/skill-usage-report.py --since 2026-09-30 --no-replay
+scripts/skill-usage-report.py --agent codex --codex-usage --since 2026-09-16 --until 2026-09-29
 ```
 
 It reports Claude (intent-skill call rate overall and by turn position, task-
@@ -294,6 +295,11 @@ notification noise, keyword-row hit rate), Codex (sessions with an ai-skills
 `SKILL.md` read, per month), and Cursor (assistant-side skill paths; low
 confidence). Counts are not a quality judgment; the docstring lists the known
 measurement traps.
+The opt-in Codex usage summary reads recorded `token_count` events and reports
+telemetry coverage, first-call and whole-session input/cache/output medians, and
+aggregate cached-input share. It does not attribute tokens to a prompt segment,
+measure elapsed time or price, or score task quality. Compare equal-length UTC
+windows with similar task mixes before and after a routing change.
 
 It symlinks the hooks, prunes stale links, runs their case-table tests, and
 reports any hook not yet referenced by `settings.json` — it never edits

@@ -7,11 +7,14 @@ Read-only. Stdlib only. Needs bash + jq only for the Claude keyword-row replay.
   scripts/skill-usage-report.py --since 2026-09-30    # after the cadence change
   scripts/skill-usage-report.py --until 2026-09-29    # before it
   scripts/skill-usage-report.py --agent claude --no-replay   # skip the slow keyword replay
+  scripts/skill-usage-report.py --agent codex --codex-usage --since 2026-09-16 --until 2026-09-29
 
 --since/--until are inclusive UTC dates (transcript timestamps are UTC; Bangkok
 is UTC+7). Compare two windows to see whether a routing change moved anything. Numbers are
 counts of what happened, not a quality judgment; a skill call is not evidence the
 work was better, and no call is not evidence it was worse.
+--codex-usage summarizes recorded Codex token_count events. It does not attribute
+tokens to AGENTS.md or measure latency, price, or quality.
 
 Known limits (each one bit a real measurement, 2026-09-30):
   * Claude: only main-thread turns count (subagent sidechains are skipped). A turn
@@ -32,6 +35,7 @@ import glob
 import json
 import os
 import re
+import statistics
 import subprocess
 import sys
 
@@ -173,7 +177,73 @@ def report_claude(since, until, replay=True):
 
 # ----------------------------------------------------------------- Codex
 
-def report_codex(since, until):
+def codex_usage_from_trace(path):
+    """Return one session's first-call and final cumulative usage, if recorded."""
+    start, first, final = None, None, None
+    with open(path, errors="ignore") as trace:
+        for line in trace:
+            try:
+                event = json.loads(line)
+            except ValueError:
+                continue
+            if not isinstance(event, dict):
+                continue
+            if event.get("type") == "session_meta":
+                start = event.get("timestamp")
+            payload = event.get("payload")
+            if not isinstance(payload, dict):
+                continue
+            if event.get("type") != "event_msg" or payload.get("type") != "token_count":
+                continue
+            info = payload.get("info")
+            if not isinstance(info, dict):
+                continue
+            last = info.get("last_token_usage")
+            total = info.get("total_token_usage")
+            if not isinstance(last, dict) or not isinstance(total, dict):
+                continue
+            fields = (last.get("input_tokens"), last.get("cached_input_tokens"),
+                      total.get("input_tokens"), total.get("cached_input_tokens"),
+                      total.get("output_tokens"))
+            if any(type(value) is not int or value < 0 for value in fields):
+                continue
+            if fields[1] > fields[0] or fields[3] > fields[2]:
+                continue
+            if first is None:
+                first = last
+            final = total
+    return start, first, final
+
+
+def report_codex_usage(files, since, until):
+    traces = 0
+    usage = []
+    for path in files:
+        start, first, final = codex_usage_from_trace(path)
+        if not start or not in_window(start, since, until):
+            continue
+        traces += 1
+        if first is not None:
+            usage.append((first, final))
+    print("  token telemetry: %d of %d session traces in window" % (len(usage), traces))
+    if not usage:
+        return
+    median = statistics.median_low
+    print("  first recorded call median: input %d, uncached %d, cached %d tokens" % (
+        median([first["input_tokens"] for first, _ in usage]),
+        median([first["input_tokens"] - first["cached_input_tokens"] for first, _ in usage]),
+        median([first["cached_input_tokens"] for first, _ in usage])))
+    print("  session median: input %d, uncached %d, cached %d, output %d tokens" % (
+        median([final["input_tokens"] for _, final in usage]),
+        median([final["input_tokens"] - final["cached_input_tokens"] for _, final in usage]),
+        median([final["cached_input_tokens"] for _, final in usage]),
+        median([final["output_tokens"] for _, final in usage])))
+    total_input = sum(final["input_tokens"] for _, final in usage)
+    total_cached = sum(final["cached_input_tokens"] for _, final in usage)
+    print("  aggregate cached-input share: %s" % pct(total_cached, total_input))
+
+
+def report_codex(since, until, usage=False):
     known = ai_skills()
     files = (glob.glob(os.path.expanduser("~/.codex/sessions/**/*.jsonl"), recursive=True) +
              glob.glob(os.path.expanduser("~/.codex/archived_sessions/**/*.jsonl"), recursive=True))
@@ -207,6 +277,8 @@ def report_codex(since, until):
         print("  %s  sessions %3d  with an ai-skills SKILL.md read %3d (%s)" %
               (m, months[m][0], months[m][1], pct(months[m][1], months[m][0])))
     print("  reads per skill (sessions): %s" % dict(per.most_common(12)))
+    if usage:
+        report_codex_usage(files, since, until)
 
 
 # ---------------------------------------------------------------- Cursor
@@ -246,13 +318,16 @@ def main():
     ap.add_argument("--until", help="inclusive YYYY-MM-DD")
     ap.add_argument("--no-replay", action="store_true",
                     help="skip replaying the hook's keyword rows (~1 min for ~1000 prompts)")
+    ap.add_argument("--codex-usage", action="store_true",
+                    help="summarize recorded Codex input/cache/output tokens")
     a = ap.parse_args()
     if not os.path.isfile(HOOK):
         sys.exit("hook not found: %s" % HOOK)
     print("window: %s .. %s\n" % (a.since or "start", a.until or "now"))
     for name, fn in (("claude", report_claude), ("codex", report_codex), ("cursor", report_cursor)):
         if a.agent in (name, "all"):
-            fn(a.since, a.until, **({"replay": not a.no_replay} if name == "claude" else {}))
+            extra = {"replay": not a.no_replay} if name == "claude" else {"usage": a.codex_usage} if name == "codex" else {}
+            fn(a.since, a.until, **extra)
             print()
 
 

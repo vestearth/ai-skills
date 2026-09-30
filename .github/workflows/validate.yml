@@ -19,6 +19,8 @@ jobs:
         run: ruby --version
       - name: Validate skills, playbooks, and adapters
         run: bash scripts/validate-skills.sh
+      - name: Test skill usage trace parsing
+        run: python3 scripts/test-skill-usage-report.py
       - name: Smoke-test the Cursor installer
         run: bash scripts/test-install-cursor.sh
       - name: Smoke-test the Claude installer
