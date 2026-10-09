@@ -39,9 +39,10 @@ Manage uncertainty as a persistent map, not a conversation: define the destinati
 1. **Route first.** Classify the request before building anything:
    - scope and solution clear -> direct planning or implementation; stop here.
    - few material decisions, answerable in one session -> `decision-grilling`; stop here.
-   - destination or route unclear, multiple unknowns, research required, or multi-session -> continue.
+   - destination or route unclear, AND several dependent unknowns, research that gates decisions, or multi-session work -> continue.
+   Research or a long multi-stage workflow alone is not enough: when the destination and route are clear and research only verifies facts, follow the existing workflow and its own research step.
    This is guidance, not a gate: say which path you chose and why, and let the user override it.
-2. **Define the destination.** Write one outcome sentence and its done criteria: what must be decided, and the boundary of V1. Confirm it with the user before mapping, since every node is judged against it.
+2. **Define the destination.** Write one outcome sentence and its done criteria: what must be decided, and the boundary of V1. Ask the user to confirm it, since every node is judged against it. You may persist a draft map in the same turn with the destination marked `proposed`, but work no node until it is confirmed, and record who confirmed it (an operator-written issue or brief that states the outcome counts; a later approval of other work does not, so never backfill it).
 3. **Build the map.** Create nodes of type `decision`, `research`, `investigation`, or `prototype`, each with a status and `depends_on`. Only create a node when you can phrase it without assuming its answer. Park everything else in fog. Persist the map before working any node.
 4. **Select the frontier.** A node is on the frontier when it is open, all its dependencies are resolved, and no other active path has claimed it. Work one material frontier node at a time. Run nodes in parallel only when they share no dependency and no unresolved assumption.
 5. **Resolve each node with the right tool, not a reimplementation:**
@@ -60,7 +61,7 @@ Manage uncertainty as a persistent map, not a conversation: define the destinati
    - several unrelated branches active at once;
    - the map no longer fitting cleanly in working context.
    A new session starts from the checkpoint and the map, not a transcript replay. Use `session-handoff` for the handoff message itself.
-8. **Stop and hand off when decision-complete.** The map is complete when every node on the path to the destination is `resolved` or explicitly `deferred` with a reason, and no fog item blocks a V1 decision. Produce an implementation-ready spec (decisions with rationale and evidence, V1 scope and exclusions, open risks, deferred items) and hand it to PM or task planning. Do not start the implementation.
+8. **Stop and hand off when decision-complete.** The map is complete when every node on the path to the destination is `resolved` or explicitly `deferred` with a reason, and no fog item blocks a V1 decision. Produce an implementation-ready spec (decisions with rationale and evidence, V1 scope and exclusions, open risks, deferred items) and hand it to PM or task planning. If the target project keeps its own evidence ledger (a research log, ADRs), the spec points that ledger's owner at the findings to transcribe; the map does not become a second ledger. Do not start the implementation.
 
 ## Output Format
 
