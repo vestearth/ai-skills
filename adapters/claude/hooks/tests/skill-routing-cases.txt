@@ -18,3 +18,8 @@ nomatch	knowledge-query	อัพเดทลง knowledge-base และสร�
 nomatch	knowledge-query	commit knowledge-base ให้หน่อย
 nomatch	golang-service-review	ดู context ทั้งหมดที่คุยมา
 nomatch	golang-service-review	context ของ session นี้เต็มยัง
+match	decision-wayfinding	Build a multi-carrier parcel tracking platform with a web app, but carrier data sources, provider abstraction, polling model, queue needs, and rate-limit behavior are not yet known.
+match	decision-wayfinding	the destination is still unclear and there are several unknowns to research first
+nomatch	decision-wayfinding	Add a health-check endpoint to an existing service.
+nomatch	decision-wayfinding	Should this existing service use Go or Laravel for one new internal API?
+nomatch	decision-wayfinding	the test failed with an unknown error

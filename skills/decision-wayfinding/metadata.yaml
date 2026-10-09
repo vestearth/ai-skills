@@ -1,16 +1,16 @@
 schema_version: 1
 owner: earth
-version: 0.1.0
+version: 0.2.0
 supported_lanes:
   - claude
   - codex
   - cursor
-maturity: experimental
+maturity: beta
 
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: null
-  status: not_run
-  pass_rate: null
+  last_evaluated: 2026-10-09
+  status: passing
+  pass_rate: 1.0
 
 known_failure_modes: []

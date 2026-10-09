@@ -14,6 +14,8 @@ destination:
     - "Every decision on the V1 path is resolved or explicitly deferred"
     - "No fog item blocks a V1 decision"
   v1_boundary: "What is in and out of V1, in one or two lines"
+  status: confirmed              # proposed | confirmed; no node is worked while proposed
+  confirmed_by: "operator, 2026-09-26"
 
 nodes:
   - id: D1                       # D decision / R research / I investigation / P prototype
@@ -72,11 +74,13 @@ checkpoint:
     - "D1: adapter package behind one interface (evidence: path/to/source.go)"
   findings_to_keep:
     - "R1: upstream allows 10 req/s per key; 429 carries Retry-After (source: vendor docs URL)"
-  frontier: [R2, I1]
+  frontier: [I1]
+  claimed:                       # open nodes another path owns; not frontier
+    - "R2: research agent B (parallel path)"
   blocked:
     - "D2 waits on R1"
   fog: ["failover across multiple upstreams"]
-  next_action: "Work R2 via external research; then D2 via decision-grilling"
+  next_action: "Work I1 via search-first; R2 stays with agent B"
 ```
 
 Keep only what the next session needs. Tool output, dead ends that taught

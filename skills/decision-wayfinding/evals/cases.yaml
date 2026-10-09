@@ -78,3 +78,18 @@ cases:
       search-first or direct reads) and recording the file paths as evidence
       with a date. A resolution without evidence stays open; remembered or
       knowledge-base claims are checked against the repository first.
+
+  - id: dw-008
+    dimension: unnecessary_invocation
+    scenario: >
+      In a repository with its own staged workflow (brief, research, draft,
+      verification gate), the user asks to start an issue whose destination,
+      format, scope, and acceptance criteria are already written down. Several
+      factual claims still need verifying against sources, and the workflow will
+      take more than one session to run.
+    expected: >
+      No decision map is built. The route is stated as the existing workflow,
+      with claim verification handled by that workflow's own research step;
+      any single evidence-dependent editorial choice is asked as one question
+      with a recommendation. Research or multi-session execution alone does not
+      trigger Wayfinding.

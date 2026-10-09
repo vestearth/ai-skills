@@ -67,7 +67,7 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | --- | --- |
 | `skill-authoring-review` | complete |
 | `decision-grilling` | complete |
-| `decision-wayfinding` | experimental (evals not yet run; dogfood pending) |
+| `decision-wayfinding` | beta (evals 8/8 passing on the claude lane 2026-10-09; dogfood creator-blueprint#5 done; stable waits on a real multi-session dogfood and a second-lane run) |
 | `session-handoff` | complete (absorbed compact-guard: pre-compaction snapshot/restore) |
 | `defect-class-sweep` | complete |
 | `deslop` | complete |
