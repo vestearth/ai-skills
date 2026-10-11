@@ -134,5 +134,7 @@ skill or a successful installation command is not evidence of a model switch.
   of the actual diff, source, and check output.
 - Silently switching models, persisting defaults/global overrides, or repeating
   declined advice.
+- Setting `CLAUDE_CODE_SUBAGENT_MODEL` in Claude Code — it silently overrides
+  every agent's `model:` frontmatter and breaks the scout/worker tiering.
 - Claiming Cursor auto-discovery, model execution, or quota savings from skill
   text, installation exit codes, or recommendations alone.
