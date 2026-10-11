@@ -75,7 +75,7 @@ the full v4 Tech Lead OS complete.
 | `deslop` | Sweeping a finished diff or branch for AI-generated slop before commit, review, or handoff |
 | `permission-tuner` | Turning repeated permission prompts into proposed risk-tiered allow/deny rules |
 | `mcp-audit` | Auditing connected MCP servers for tool-count overhead, redundancy, and actual usage |
-| `model-router` | Routing each task to the cheapest capable model (scout=Haiku, worker=Sonnet, main model for reasoning) plus /model and /effort advisories to save quota |
+| `model-router` | Advising model/effort for Claude Code, Codex, and Cursor with shared complexity/risk rules, runner-specific mappings, and reviewer model checks |
 | `completion-audit` | Auditing work another agent, handoff, PR, or past session claims is complete — re-run claimed checks against the real diff before accepting |
 | `remove-ai-marks` | Stripping AI provenance from content we own — invisible Unicode in text, C2PA/EXIF/XMP and generator metadata on images, PDF, DOCX, SVG, HTML, Markdown — via the local watermarks-remover service |
 
