@@ -1,0 +1,36 @@
+# expected-exit <TAB> hook payload (JSON). Lines starting with # are skipped.
+# Tool names: MCP-only install is mcp__context-mode__*, plugin install is
+# mcp__plugin_context-mode_context-mode__*; the guard must handle both.
+#
+# --- Android writes via each sandbox tool (delegated to guard-android-write.sh)
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"rm -rf Games-Lab-Android/app/src"}}
+2	{"tool_name":"mcp__plugin_context-mode_context-mode__ctx_execute","tool_input":{"language":"shell","code":"cd Games-Lab-Android && git commit -am x"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute_file","tool_input":{"path":"README.md","language":"shell","code":"cp \"$FILE_CONTENT_PATH\" Games-Lab-Android/README.md"}}
+2	{"tool_name":"mcp__context-mode__ctx_batch_execute","tool_input":{"commands":[{"label":"ok","command":"git status"},{"label":"bad","command":"echo x > Games-Lab-Android/a.txt"}],"queries":["x"]}}
+# --- .env writes (delegated to guard-env-bash.sh)
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"echo TOKEN=abc >> .env"}}
+2	{"tool_name":"mcp__context-mode__ctx_batch_execute","tool_input":{"commands":[{"label":"w","command":"sed -i s/A/B/ svc/.env.production"}],"queries":["x"]}}
+# --- non-shell code naming a protected target fails closed
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"python","code":"open('.env','w').write('A=1')"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"javascript","code":"require('fs').rmSync('Games-Lab-Android/app',{recursive:true})"}}
+# --- verification commands must run in native Bash, never the sandbox
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"go test ./... 2>&1 | tail -30"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"cd svc && go build ./cmd/..."}}
+2	{"tool_name":"mcp__context-mode__ctx_batch_execute","tool_input":{"commands":[{"label":"t","command":"npm run build"}],"queries":["error"]}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"npx vitest run"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"ruby ai-dev-office/validate-yaml.rb TASK-EAR-1"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"golangci-lint run ./..."}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"make test"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"python","code":"import subprocess; subprocess.run('go test ./...', shell=True)"}}
+2	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"docker build -t x ."}}
+# --- fail closed on an unparseable payload
+2	not json
+# --- allowed: exploration output belongs in the sandbox
+0	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"gh api repos/o/r/pulls | jq '.[].title'"}}
+0	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"aws logs filter-log-events --log-group-name /ecs/x --limit 50"}}
+0	{"tool_name":"mcp__context-mode__ctx_execute_file","tool_input":{"path":"Games-Lab-Android/app/build.gradle","language":"python","code":"print(len(FILE_CONTENT))"}}
+0	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"cat .env | grep -c KEY"}}
+0	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"shell","code":"grep -rn 'go test' docs/ | head"}}
+0	{"tool_name":"mcp__context-mode__ctx_batch_execute","tool_input":{"commands":[{"label":"log","command":"git log --oneline -50"}],"queries":["fix"]}}
+0	{"tool_name":"mcp__context-mode__ctx_search","tool_input":{"queries":["go test"]}}
+0	{"tool_name":"mcp__context-mode__ctx_execute","tool_input":{"language":"python","code":"print('make sure the build passed')"}}

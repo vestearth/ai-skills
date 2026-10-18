@@ -107,6 +107,17 @@ Enforcement hooks (both PreToolUse, both `exit 2` to block, enforcing
   to find a real `.env`, then decides whether a write is aimed at it. Fails
   **closed** if `jq` is missing or the payload is unparseable.
   `tests/run-env-guard-tests.sh` runs its 48-case table.
+- `guard-ctx-exec.sh`: matcher
+  `mcp__.*context-mode.*__ctx_(execute|execute_file|batch_execute)`.
+  context-mode's sandbox executors take code in `code` / `commands[].command`,
+  so no Bash guard sees it. This hook re-feeds shell code to the delegate
+  guards in `GUARD_CTX_DELEGATES` (colon-separated; the default is the sibling
+  `guard-env-bash.sh`). It fails closed on non-shell code that names a real
+  `.env` or any `GUARD_CTX_PROTECTED` term. It also blocks verification
+  commands (tests, builds, lint, `validate-yaml.rb`, migrations) so their
+  output stays raw in native Bash. Pilot: `ai-dev-office/docs/context-mode-pilot.md`.
+  `tests/run-ctx-exec-guard-tests.sh` runs its case table. Android cases use
+  the workspace's `guard-android-write.sh` and are skipped when it is absent.
 
 Hygiene hook (PostToolUse, mutating — never blocks, always `exit 0`):
 
