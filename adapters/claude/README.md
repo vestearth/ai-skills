@@ -116,8 +116,13 @@ Enforcement hooks (both PreToolUse, both `exit 2` to block, enforcing
   `.env` or any `GUARD_CTX_PROTECTED` term. It also blocks verification
   commands (tests, builds, lint, `validate-yaml.rb`, migrations) so their
   output stays raw in native Bash. Pilot: `ai-dev-office/docs/context-mode-pilot.md`.
-  `tests/run-ctx-exec-guard-tests.sh` runs its case table. Android cases use
-  the workspace's `guard-android-write.sh` and are skipped when it is absent.
+  `tests/run-ctx-exec-guard-tests.sh` runs its case table, including Android
+  cases delegated to the sibling `guard-android-write.sh`.
+- `guard-android-write.sh` — matchers `Edit|Write|MultiEdit|NotebookEdit` and
+  `Bash`. Blocks writes under the read-only `Games-Lab-Android` reference repo
+  (workspace AGENTS.md "Read-Only Reference Repositories"): any file-tool path
+  inside it, and write-shaped Bash commands that name it. Reads stay allowed.
+  `tests/run-android-guard-tests.sh` runs its case table.
 
 Hygiene hook (PostToolUse, mutating — never blocks, always `exit 0`):
 

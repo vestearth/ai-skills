@@ -31,6 +31,8 @@ jobs:
       # it) need the sibling watermarks-remover checkout, so they stay local-only.
       - name: Test the no-secrets env guard
         run: bash adapters/claude/hooks/tests/run-env-guard-tests.sh
+      - name: Test the read-only Android guard
+        run: bash adapters/claude/hooks/tests/run-android-guard-tests.sh
       - name: Test the context-mode sandbox guard
         run: bash adapters/claude/hooks/tests/run-ctx-exec-guard-tests.sh
       - name: Test skill routing

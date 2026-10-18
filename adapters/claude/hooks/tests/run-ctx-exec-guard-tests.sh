@@ -5,9 +5,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HOOK="${GUARD_CTX_EXEC_HOOK:-$DIR/../guard-ctx-exec.sh}"
 CASES="$DIR/ctx-exec-guard-cases.txt"
 
-# guard-android-write.sh is workspace-local (not in this repo). Use the one in
-# the workspace this checkout is nested in; without it, Android cases cannot run.
-ANDROID="${GUARD_ANDROID_HOOK:-$DIR/../../../../../.claude/hooks/guard-android-write.sh}"
+ANDROID="${GUARD_ANDROID_HOOK:-$DIR/../guard-android-write.sh}"
 export GUARD_CTX_DELEGATES="$DIR/../guard-env-bash.sh"
 skip_android=0
 if [ -x "$ANDROID" ]; then

@@ -1,0 +1,25 @@
+# expected<TAB>kind<TAB>value  (kind: path = Edit/Write file_path, cmd = Bash command)
+# --- file tools: any path inside the repo is blocked
+2	path	/Users/x/GitHub/Games-Lab-Android/app/src/Main.kt
+2	path	Games-Lab-Android/build.gradle
+2	path	/Users/x/GitHub/Games-Lab-Android
+2	path	C:\\work\\Games-Lab-Android\\app\\Main.kt
+0	path	/Users/x/GitHub/Games-Labs-Order/main.go
+0	path	/Users/x/GitHub/Games-Lab-Android-notes.md
+# --- Bash: write-shaped commands that name the repo are blocked
+2	cmd	cd Games-Lab-Android && git commit -m x
+2	cmd	git -C Games-Lab-Android push origin main
+2	cmd	echo x > Games-Lab-Android/a.txt
+2	cmd	sed -i s/a/b/ Games-Lab-Android/app/build.gradle
+2	cmd	rm -rf Games-Lab-Android/app/build
+2	cmd	cp a.kt Games-Lab-Android/app/
+2	cmd	cd Games-Lab-Android && ./gradlew assembleDebug
+2	cmd	git -C Games-Lab-Android apply fix.patch
+# --- Bash: reads are allowed
+0	cmd	grep -rn LoginActivity Games-Lab-Android/app/src
+0	cmd	cat Games-Lab-Android/README.md
+0	cmd	git -C Games-Lab-Android log --oneline -5
+0	cmd	ls Games-Lab-Android
+# --- unrelated commands are allowed
+0	cmd	git commit -m x
+0	cmd	echo x > notes.txt
