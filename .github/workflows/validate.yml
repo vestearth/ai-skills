@@ -27,6 +27,16 @@ jobs:
         run: bash scripts/test-install-claude.sh
       - name: Smoke-test the named-agent installer
         run: bash scripts/test-install-agents.sh
+      # run-invisible-unicode-tests.sh and test-install-claude-hooks.sh (which runs
+      # it) need the sibling watermarks-remover checkout, so they stay local-only.
+      - name: Test the no-secrets env guard
+        run: bash adapters/claude/hooks/tests/run-env-guard-tests.sh
+      - name: Test the context-mode sandbox guard
+        run: bash adapters/claude/hooks/tests/run-ctx-exec-guard-tests.sh
+      - name: Test skill routing
+        run: bash adapters/claude/hooks/tests/run-skill-routing-tests.sh
+      - name: Check plugins-pilot sync
+        run: bash scripts/check-plugins-pilot-sync.sh
       - name: Whitespace and conflict-marker check (PR)
         if: github.event_name == 'pull_request'
         run: git diff --check "origin/${{ github.base_ref }}...HEAD"
