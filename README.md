@@ -79,6 +79,23 @@ the full v4 Tech Lead OS complete.
 | `completion-audit` | Auditing work another agent, handoff, PR, or past session claims is complete — re-run claimed checks against the real diff before accepting |
 | `remove-ai-marks` | Stripping AI provenance from content we own — invisible Unicode in text, C2PA/EXIF/XMP and generator metadata on images, PDF, DOCX, SVG, HTML, Markdown — via the local watermarks-remover service |
 
+## SQL and Library Documentation Review
+
+| Skill | Use when |
+| --- | --- |
+| `sql-review` | Reviewing query correctness, plans, indexes, transactions, or migrations; first supported scope is PostgreSQL and Go/pgx |
+| `library-docs-lookup` | An API or version uncertainty needs attributable documentation from an existing provider or official versioned docs |
+
+Both start at beta with behavioral cases. Documentation lookup is optional and
+reports requested versus served versions; Context7 success can serve a different
+version. SQL review reuses the migration rule and does not require Context7.
+Installer/validator success is separate from behavioral replay and fresh-session
+discovery on each lane. See the [implementation plan](docs/plans/2026-10-28-sql-review-library-docs-lookup.md).
+The [verification report](docs/reports/2026-10-28-sql-review-library-docs-lookup.md)
+records passing case replays on all three lanes and the remaining rollout limits.
+Codex plugin consumers need to refresh their cached installation to load the
+updated package; editing this source repository does not update an existing cache.
+
 ## Recommended project layout
 
 ```text

@@ -75,6 +75,8 @@ hay=" $(printf '%s' "$prompt" \
 # Every other new skill gets either a table row or a core-block line.
 ROUTES=$(cat <<'TABLE'
 api-contract-review~proto/gRPC/gateway mapping/field number~proto|grpc|gateway|openapi|swagger|endpoint|field number|contract
+sql-review~SQL correctness/plan/index/transaction — PostgreSQL/pgx; ClickHouse ใช้ clickhouse-io~postgres| pgx | sql |explain|รีวิวคิวรี
+library-docs-lookup~เช็ค API/เอกสารตามเวอร์ชัน; ใช้ provider ที่มีหรือ official docs เมื่อจำเป็น~context7|library documentation|library docs|sdk documentation|api documentation|pinned version|versioned docs|docs lookup|เอกสารไลบรารี|เอกสาร api
 games-labs-api-review~Games Labs service + mobile-facing API~mission|wallet| vip |store|redemption|coupon|provider|backoffice|games labs|gameslabs
 games-labs-implementation-status~คำถาม follow-up จาก mobile/QA/PM — เช็คโค้ดก่อนตอบ~ทีม mobile|mobile team|ตอบยังไง|ตอบอะไร|implemented yet|qa ถาม|ถามมา
 change-impact-analysis~shared code/contract/schema/config ที่กระทบหลาย service~shared lib|impact|กระทบ|breaking|migration|schema
@@ -126,6 +128,7 @@ ctx="[ai-skills routing] — ประเมินเองว่า prompt น�
   golang-project-structure วาง package/layout · decision-grilling ก่อนเลือก approach
   knowledge-query ถ้าอาจมีบทเรียน/ADR เดิม · microservice-boundary-review ใครควร own logic/data
   games-labs-implementation-status ตอบคำถาม follow-up จาก mobile/QA/PM
+  library-docs-lookup ถ้า API/เอกสารของไลบรารีหรือแพลตฟอร์มยังไม่ชัดว่าตรงเวอร์ชัน
 
 [ai-skills rules] — กติกา ไม่ใช่ skill ใช้ทันทีเมื่อเข้าเงื่อนไข แม้กำลังใช้ skill อยู่:
   ก่อนแก้โค้ด/ไฟล์/dependency → ai-skills/rules/minimal-change/RULE.md

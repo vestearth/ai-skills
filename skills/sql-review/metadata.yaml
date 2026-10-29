@@ -1,0 +1,15 @@
+schema_version: 1
+owner: earth
+version: 1.0.0
+supported_lanes:
+  - claude
+  - codex
+  - cursor
+maturity: beta
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: '2026-10-28'
+  status: passing
+  pass_rate: 1.0
+known_failure_modes:
+  - "2026-10: a supplementary live-documentation review rejected an unsafe ANALYZE proposal but asserted that rolled-back DELETE necessarily leaves dead tuples/bloat; a disposable PostgreSQL 17 counterexample disproved that claim. Persistent physical effects still need independent evidence."

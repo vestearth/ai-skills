@@ -84,6 +84,13 @@ into `session-handoff` (pre-compaction snapshot/restore) and module-map into
 Future v4 mentoring backlog: extract teach concepts into knowledge-base
 templates and mentoring guidance, but do not add a teach skill in this layer.
 
+## SQL and Library Documentation Review
+
+| Skill | Status |
+| --- | --- |
+| `sql-review` | beta; 10/10 supplied-input cases passed on Claude/Codex/Cursor; active installation tracked separately |
+| `library-docs-lookup` | beta; 11/11 supplied-input cases passed on Claude/Codex/Cursor; live provider and active installation tracked separately |
+
 ## Operating Guardrails
 
 Reusable baseline guardrails for checking reuse, evidence, verification, context, and impact before building, plus the credential, test-integrity, and schema-migration prohibitions that hold unconditionally.

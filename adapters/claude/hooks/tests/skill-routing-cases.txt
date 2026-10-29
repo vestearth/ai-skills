@@ -23,3 +23,13 @@ match	decision-wayfinding	the destination is still unclear and there are several
 nomatch	decision-wayfinding	Add a health-check endpoint to an existing service.
 nomatch	decision-wayfinding	Should this existing service use Go or Laravel for one new internal API?
 nomatch	decision-wayfinding	the test failed with an unknown error
+match	sql-review	Review this PostgreSQL query and its EXPLAIN plan
+match	sql-review	ช่วยรีวิว SQL นี้หน่อย ผลรวมจาก JOIN ถูกไหม
+match	sql-review	Check pgx transaction isolation and parameter binding
+nomatch	sql-review	Rename a local variable in this function
+nomatch	sql-review	Review ClickHouse retention and partition keys
+match	library-docs-lookup	Check the library documentation for this pinned version
+match	library-docs-lookup	ใช้ Context7 ตรวจเอกสาร API ตามเวอร์ชันนี้
+match	library-docs-lookup	ค้นเอกสารไลบรารีเพื่อเช็ค API ของเวอร์ชันนี้
+nomatch	library-docs-lookup	Rename a local variable in this function
+nomatch	library-docs-lookup	Review the wording of this internal documentation
