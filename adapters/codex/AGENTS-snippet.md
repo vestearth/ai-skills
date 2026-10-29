@@ -60,6 +60,8 @@ Suggested routing:
 - Recurring weekly work summary or Weekly Review log update -> weekly-report
 - Bugs -> debugging
 - Code review -> code-review
+- SQL correctness, query plans, indexes, transactions, or migrations -> sql-review (PostgreSQL/pgx first; ClickHouse uses clickhouse-io)
+- Library/platform API documentation or version uncertainty -> library-docs-lookup (existing provider or official docs as needed)
 - Figma-to-code implementation or frontend visual/state/responsive/accessibility review -> frontend-ui-review
 - ClickHouse tables, ingestion, queries, retention, or event storage -> clickhouse-io
 - API changes -> api-contract-review

@@ -1,0 +1,15 @@
+schema_version: 1
+owner: earth
+version: 1.0.0
+supported_lanes:
+  - claude
+  - codex
+  - cursor
+maturity: beta
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: '2026-10-28'
+  status: passing
+  pass_rate: 1.0
+known_failure_modes:
+  - "2026-10: initial structured replays omitted supplied-fixture provenance/date; the output contract now preserves source/version evidence and separates review date from an unknown original retrieval date."

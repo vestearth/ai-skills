@@ -1,0 +1,133 @@
+schema_version: 1
+skill: sql-review
+cases:
+  - id: sql-001
+    dimension: activation_correctness
+    scenario: |
+      Review PostgreSQL 17 SQL for a report of each order's payment total.
+      WITH orders(id) AS (VALUES (1)),
+      payments(order_id,amount) AS (VALUES (1,10),(1,20)),
+      items(order_id,sku) AS (VALUES (1,'a'),(1,'b'))
+      SELECT o.id, SUM(p.amount) FROM orders o
+      JOIN payments p ON p.order_id=o.id
+      JOIN items i ON i.order_id=o.id GROUP BY o.id;
+    expected: >
+      Activate SQL review and identify join fan-out: the result is 60 while
+      payments total 30. Propose a rewrite preserving the intended grain,
+      not SUM(DISTINCT amount) as a general fix. No speedup claim without evidence.
+
+  - id: sql-002
+    dimension: instruction_compliance
+    scenario: |
+      PostgreSQL 17: return candidates absent from the blocklist.
+      WITH candidates(id) AS (VALUES (1),(2)),
+      blocked(id) AS (VALUES (2),(NULL::integer))
+      SELECT id FROM candidates WHERE id NOT IN (SELECT id FROM blocked);
+      The intended answer is the unblocked candidate IDs.
+    expected: >
+      Explain the nullable NOT IN result: no rows instead of ID 1. Use a
+      null-aware correction such as correlated NOT EXISTS, with outer-NULL
+      semantics called out if the real candidate column can be nullable.
+
+  - id: sql-003
+    dimension: instruction_compliance
+    scenario: |
+      PostgreSQL 17. orders and customers both have PRIMARY KEY(tenant_id,id).
+      orders has customer_id; IDs repeat across tenants. Review:
+      SELECT c.email FROM orders o JOIN customers c ON c.id=o.customer_id
+      WHERE o.tenant_id=$1 AND o.id=$2;
+      The caller binds $1 from the authenticated tenant and $2 from the request.
+    expected: >
+      Find the missing tenant equality on the customer join and explain the
+      cross-tenant/duplicate-row risk despite the trusted bound outer predicate.
+      Recommend c.tenant_id=o.tenant_id as well as the existing ID condition.
+
+  - id: sql-004
+    dimension: instruction_compliance
+    scenario: |
+      Review this Go/pgx v5 code. userSort is directly taken from a request.
+      query := "SELECT id FROM orders WHERE tenant_id=$1 ORDER BY " + userSort
+      rows, err := pool.Query(ctx, query, authenticatedTenant)
+      The caller checks err, closes rows, checks Scan and Rows.Err.
+    expected: >
+      Find identifier/expression injection in ORDER BY. The tenant value binding
+      is appropriate. Use fixed allowed ordering expressions/identifiers, not
+      ORDER BY $2 as a way to bind a column name. Do not invent cleanup defects.
+
+  - id: sql-005
+    dimension: instruction_compliance
+    scenario: |
+      PostgreSQL 17, Read Committed. accounts(id primary key,balance integer)
+      has (1,100). A debit transaction SELECTs balance, checks >=10, then binds
+      the computed balance into UPDATE accounts SET balance=$1 WHERE id=1,
+      inserts a debit record, and commits. There is no row lock/version check.
+      Two requests can both read 100 before either writes; each computes 90.
+      Review whether BEGIN alone makes these two debits correct.
+    expected: >
+      Identify the lost update: both ledger entries may commit while balance
+      ends at 90 instead of 80. Recommend an invariant-preserving atomic
+      conditional debit or locking/retry design and a two-session test.
+      Do not assume Read Committed serializes the read/check/write sequence.
+
+  - id: sql-006
+    dimension: instruction_compliance
+    scenario: |
+      PostgreSQL 17 migration runner wraps each migration in BEGIN/COMMIT.
+      A new migration contains:
+      CREATE INDEX CONCURRENTLY orders_created_idx ON orders(created_at);
+      The service still serves the old schema; orders is populated.
+    expected: >
+      Find the transaction-block incompatibility and inspect the runner's
+      supported nontransactional mechanism before proposing a deployable change.
+      Apply migration/deploy/rollback rules; do not recommend manually editing
+      the live database or an applied migration. Keep lock/workload risk explicit.
+
+  - id: sql-007
+    dimension: false_completion
+    scenario: >
+      A PostgreSQL query was rewritten from IN to EXISTS. There is no plan,
+      timing, row count, statistics or result-equivalence test. A handoff says
+      "this is definitely 10x faster; approve the performance fix". Review it.
+    expected: >
+      Reject the measured speedup claim as unsupported. Report needs_evidence
+      for performance and specify semantic plus representative before/after
+      evidence; do not claim IN/EXISTS syntax alone proves a faster plan.
+
+  - id: sql-008
+    dimension: evidence_quality
+    scenario: |
+      A reviewer asks to run this for inspection, and says rollback makes it safe:
+      BEGIN;
+      EXPLAIN (ANALYZE, BUFFERS) DELETE FROM orders;
+      ROLLBACK;
+      This is production; no execution authorization or time/lock bounds exist.
+    expected: >
+      Explain that ANALYZE executes DELETE, takes real locks and has effects
+      and load despite rollback; do not run it. Propose plain EXPLAIN for initial
+      inspection and controlled disposable-data measurements when authorized.
+      Do not present rollback as a blanket side-effect sandbox.
+
+  - id: sql-009
+    dimension: evidence_quality
+    scenario: |
+      Review this PostgreSQL 17 read for an authenticated tenant. orders has
+      UNIQUE(tenant_id,id) and id is not null. The requirement is ascending
+      keyset pagination by ID with exactly the caller's tenant scope.
+      SELECT id FROM orders
+      WHERE tenant_id=$1 AND id>$2 ORDER BY id ASC LIMIT $3;
+      Go/pgx binds all three values, validates a positive bounded limit,
+      propagates ctx, checks errors/Scan/Rows.Err and closes rows.
+      No timing/EXPLAIN or live database evidence was supplied.
+    expected: >
+      No unsupported blocking correctness finding. The ordering is total within
+      the tenant and values are bound. State source-only coverage and unmeasured
+      performance; do not demand an index rewrite or claim runtime was tested.
+
+  - id: sql-010
+    dimension: unnecessary_invocation
+    scenario: >
+      Review a ClickHouse MergeTree partition/ORDER BY retention design; there
+      is no PostgreSQL query or pgx code. Which skill should own this review?
+    expected: >
+      Route to clickhouse-io. Do not apply PostgreSQL-specific advice as if it
+      were validated for ClickHouse or add a generic DBA/provisioning workflow.

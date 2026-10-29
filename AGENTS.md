@@ -69,6 +69,8 @@ Recommended skills:
 - weekly-report
 - debugging
 - code-review
+- sql-review
+- library-docs-lookup
 - frontend-ui-review
 - clickhouse-io
 - api-contract-review
