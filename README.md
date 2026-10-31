@@ -96,6 +96,17 @@ records passing case replays on all three lanes and the remaining rollout limits
 Codex plugin consumers need to refresh their cached installation to load the
 updated package; editing this source repository does not update an existing cache.
 
+## Operations Evidence and VerifySlip Promotion
+
+| Skill | Use when |
+| --- | --- |
+| `cloudwatch-log-evidence` | CloudWatch Logs must become evidence: post-deploy checks, before/after comparisons, request_id joins across services, error or 5xx counts in a fixed window |
+| `verifyslip-promote` | Promoting VerifySlip `slip-api` / `slip-system` from `main` to `staging` to `prod`, each step through a PR, with a dry-run tree check, rollback revision and post-deploy evidence |
+
+Both start at beta. Their eval cases are written but not yet replayed
+(`metadata.yaml` status `not_run`). They come from a 2026-10-30/31 session that
+repeated these reads and one promotion by hand.
+
 ## Recommended project layout
 
 ```text

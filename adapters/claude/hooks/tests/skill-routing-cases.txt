@@ -33,3 +33,13 @@ match	library-docs-lookup	ใช้ Context7 ตรวจเอกสาร API 
 match	library-docs-lookup	ค้นเอกสารไลบรารีเพื่อเช็ค API ของเวอร์ชันนี้
 nomatch	library-docs-lookup	Rename a local variable in this function
 nomatch	library-docs-lookup	Review the wording of this internal documentation
+match	cloudwatch-log-evidence	เช็ค CloudWatch ว่า daily digest ส่งหรือยัง
+match	cloudwatch-log-evidence	count 5xx in /ecs/slip-api-production after the deploy
+match	cloudwatch-log-evidence	use filter-log-events on this log group for the last window
+nomatch	cloudwatch-log-evidence	Rename a local variable in this function
+nomatch	cloudwatch-log-evidence	add a structured log line in the handler
+match	verifyslip-promote	promote slip-api main to staging
+match	verifyslip-promote	ขึ้น prod ให้ slip-system หน่อย
+match	verifyslip-promote	ขึ้น staging/prod ได้เลย สำหรับ slip-api
+nomatch	verifyslip-promote	fix the slip-api handler test
+nomatch	verifyslip-promote	promote Games Labs wallet to prod

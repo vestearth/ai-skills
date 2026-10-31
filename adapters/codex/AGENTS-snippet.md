@@ -68,6 +68,8 @@ Suggested routing:
 - Dependency changes -> dependency-guard
 - Service ownership changes -> microservice-boundary-review
 - Deployment, rollout, or release readiness -> release-checklist
+- CloudWatch Logs as evidence (post-deploy checks, before/after, request_id joins) -> cloudwatch-log-evidence
+- Promoting VerifySlip slip-api/slip-system main -> staging -> prod (each step via PR) -> verifyslip-promote
 - CI/CD pipeline or GitHub Actions workflow changes -> cicd-pipeline-review
 - Dockerfile, base image, or container build changes -> cicd-pipeline-review
 - ArgoCD, GitOps sync, or declared image version changes -> k8s-deploy-review

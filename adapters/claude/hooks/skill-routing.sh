@@ -84,6 +84,8 @@ golang-service-review~handler/worker/consumer/repo ใน Go~handler|worker|cons
 golang-project-structure~วาง package/cmd/internal layout~โครงสร้าง|project structure|package layout| cmd | internal
 rabbitmq-event-review~publisher/consumer/exchange/routing key/DLQ~rabbitmq|amqp|exchange|queue|routing key|publish|dead letter
 clickhouse-io~ClickHouse table/ingestion/retention/analytics query~clickhouse
+cloudwatch-log-evidence~CloudWatch Logs เป็นหลักฐาน: อ่านครบทุกหน้า, เทียบก่อน/หลัง deploy, join ด้วย request_id~cloudwatch|filter log events|log group|logs insights| ecs slip | ecs games
+verifyslip-promote~ขึ้น slip-api/slip-system main→staging→prod ทีละ PR + dry-run tree + rollback~(slip api|slip system|verifyslip|upslip).*(promote|ขึ้น staging|ขึ้น prod|to staging|to prod|release pr)|(promote|ขึ้น staging|ขึ้น prod).*(slip api|slip system|verifyslip|upslip)
 k8s-deploy-review~k8s/k3s manifest, ArgoCD, probes, image ref~kubernetes| k8s | k3s |kustomize|argocd|manifest|helm
 cicd-pipeline-review~GitHub Actions, Dockerfile, build-push job~github actions|workflow|dockerfile|build push|pipeline| ci cd
 secrets-management~secret/credential/token/.env/kubeconfig~secret|credential|access token|bearer token|api token|refresh token|auth token|jwt| env |kubeconfig|api key|รหัสผ่าน
