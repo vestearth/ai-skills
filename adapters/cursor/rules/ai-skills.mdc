@@ -69,6 +69,8 @@ and even when the change is otherwise in scope.
 - ClickHouse tables, ingestion, queries, retention, or event storage -> `ai-skills/skills/clickhouse-io/SKILL.md`
 - Dependency, Docker, CI, shared module, `go.work`, or `replace` changes -> `ai-skills/skills/dependency-guard/SKILL.md`
 - Release, deployment, rollback, or smoke test readiness -> `ai-skills/skills/release-checklist/SKILL.md`
+- CloudWatch Logs as evidence (post-deploy checks, before/after, request_id joins) -> `ai-skills/skills/cloudwatch-log-evidence/SKILL.md`
+- Promoting VerifySlip slip-api/slip-system main -> staging -> prod (each step via PR) -> `ai-skills/skills/verifyslip-promote/SKILL.md`
 - CI/CD pipeline or GitHub Actions workflow changes -> `ai-skills/skills/cicd-pipeline-review/SKILL.md`
 - Dockerfile, base image, or container build changes -> `ai-skills/skills/cicd-pipeline-review/SKILL.md`
 - ArgoCD, GitOps sync, or declared image version changes -> `ai-skills/skills/k8s-deploy-review/SKILL.md`

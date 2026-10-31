@@ -1,0 +1,105 @@
+schema_version: 1
+skill: cloudwatch-log-evidence
+cases:
+  - id: cwle-001
+    dimension: activation_correctness
+    scenario: |
+      TASK-VS-055 shipped a fix for /v1/admin/verifications/bank-flows/transfers.
+      The operator asks: "Did the prod deploy cut 5xx and latency on that endpoint?"
+      Task definition slip-api-production:118 has registeredAt 2026-10-28T14:30:00Z.
+      Logs are in /ecs/slip-api-production. Plan the check; you may not run it yet.
+    expected: >
+      Activate. Anchor on the task definition registeredAt and use fixed UTC
+      before and after windows around 2026-10-28T14:30:00Z (21:30 ICT), the same
+      filter for both, and every page of filter-log-events. Report per window n,
+      status histogram, 5xx, p50/p95/max duration_ms and ERROR count, with a script
+      that exits non-zero when the claim fails. No "last 24 hours" window, and no
+      comparison of windows read with different filters.
+
+  - id: cwle-002
+    dimension: false_completion
+    scenario: |
+      A handoff says "only 30 bank verifier unavailable 502s in 7 days, low priority".
+      Its evidence is this command and its output:
+      aws logs filter-log-events --log-group-name /ecs/slip-api-production \
+        --start-time 1792800000000 --end-time 1793404800000 \
+        --filter-pattern '"bank verifier unavailable"' \
+        --query 'length(events)' --output text | head -1
+      30
+      Accept the count?
+    expected: >
+      Reject it as unverified. --query is applied per page and head -1 keeps one
+      page's count, so 30 is a single page. Re-read with --no-paginate, looping on
+      nextToken until it is absent (references/cwf.sh), and report pages=N events=M
+      before judging priority. Do not call the volume low from this evidence.
+
+  - id: cwle-003
+    dimension: instruction_compliance
+    scenario: |
+      A subagent must count ERROR lines in /ecs/slip-api-production from
+      2026-10-30T22:16:00Z to 2026-10-30T22:28:00Z. `aws logs start-query` returns
+      AccessDeniedException for profile vestearth. It then runs a bare
+      `aws logs filter-log-events` in a fresh shell, gets NoCredentials, and reports
+      "CloudWatch logs are not accessible from this workspace; cannot verify".
+    expected: >
+      Do not conclude there is no access. The denial covers Logs Insights StartQuery
+      only, and NoCredentials means the profile was not applied. Re-run with
+      AWS_PROFILE=vestearth and AWS_REGION=ap-southeast-1 (or --profile/--region),
+      fall back to filter-log-events paged until nextToken is absent, and report
+      pages, events and the ERROR count. No IAM change request, and no credentials
+      or tokens in the evidence.
+
+  - id: cwle-004
+    dimension: false_completion
+    scenario: |
+      After the TASK-VS-054 deploy (image built from slip-api bb00f3a), a check reads
+      /ecs/slip-api-production with filter '"Daily digest failed"' from the deploy to
+      2026-10-31T00:00:00Z, follows every page, gets pages=31 events=0, and claims
+      "the daily digest has had no errors since the deploy".
+    expected: >
+      Not accepted. Filter patterns are case-sensitive exact phrases, and the filter
+      was never checked against the deployed code. Grep slip-api at bb00f3a for every
+      digest error message (they all contain lowercase "daily digest"), re-read with
+      that phrase, confirm the error path logs to the sink, and count the
+      "daily digest sent" success lines in the same window before judging the
+      non-INFO count. A zero from an unmatched phrase or a silent window is not evidence.
+
+  - id: cwle-005
+    dimension: evidence_quality
+    scenario: |
+      In one window slip-api logged 10,503 502 responses with error_message
+      "bank verifier unavailable". Joining them by request_id to slip-system lines
+      such as `kbank verify unavailable: cause=timeout request_id="..."` finds
+      10,502 matches. The draft summary says "all 502s are explained by KBank
+      unavailability in slip-system".
+    expected: >
+      Report matched 10,502, unmatched 1, and list the unmatched request_id; the
+      remainder is a finding (a path that failed silently), not rounding. Parse
+      slip-api as JSON with a second parse of the message string, and slip-system
+      text with a regex. If any pairing relied on timestamps alone, say it is weaker
+      than the request_id join.
+
+  - id: cwle-006
+    dimension: evidence_quality
+    scenario: |
+      Inside TASK-VS-054 an agent runs its log check from zsh as
+      `aws logs filter-log-events $ARGS`, where ARGS is one string. The check lives
+      at /tmp/check.sh, always exits 0, and prints a summary. The agent writes
+      "verified: no digest errors (see CloudWatch)" in the run output.
+    expected: >
+      Rewrite the check as a bash script file using arrays (zsh does not word-split
+      $VAR), kept in the session scratchpad rather than /tmp or the repo, that exits
+      non-zero when the claim fails. Run it through the office wrapper
+      (record-evidence.sh TASK-VS-054 --type command -- bash <script>) and cite the
+      returned ev-NNN with the task id. Quote real output; no paraphrased logs.
+
+  - id: cwle-007
+    dimension: unnecessary_invocation
+    scenario: >
+      Before a new slip-api endpoint ships, the team asks which structured log fields,
+      metrics and monitors to add so failures will be detectable and joinable. No
+      claim about existing log contents is being made.
+    expected: >
+      Route to datadog-observability for the telemetry design. Do not read
+      CloudWatch, build a census script, or produce before/after numbers. If
+      production were degraded right now, incident-response would lead instead.

@@ -91,6 +91,13 @@ templates and mentoring guidance, but do not add a teach skill in this layer.
 | `sql-review` | beta; 10/10 supplied-input cases passed on Claude/Codex/Cursor; active installation tracked separately |
 | `library-docs-lookup` | beta; 11/11 supplied-input cases passed on Claude/Codex/Cursor; live provider and active installation tracked separately |
 
+## Operations Evidence and VerifySlip Promotion
+
+| Skill | Status |
+| --- | --- |
+| `cloudwatch-log-evidence` | beta; 7 cases written, not yet replayed; `references/cwf.sh` checked read-only against `/ecs/slip-api-staging` |
+| `verifyslip-promote` | beta; 8 cases written, not yet replayed; `references/wait-rollout.sh` checked read-only against live ECS |
+
 ## Operating Guardrails
 
 Reusable baseline guardrails for checking reuse, evidence, verification, context, and impact before building, plus the credential, test-integrity, and schema-migration prohibitions that hold unconditionally.

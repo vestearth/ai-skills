@@ -71,6 +71,8 @@ Recommended skills:
 - code-review
 - sql-review
 - library-docs-lookup
+- cloudwatch-log-evidence
+- verifyslip-promote
 - frontend-ui-review
 - clickhouse-io
 - api-contract-review
