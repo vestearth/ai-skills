@@ -29,8 +29,10 @@ to be silence), with the script's exit code as the verdict.
 
 - The claim as a countable test, e.g. "0 ERROR lines and 0 5xx on path P after the deploy".
 - The log group and log format of each service involved.
-- Deploy anchor (ECS task definition `registeredAt`, deployment `createdAt`, or the
-  workflow run) and the image's source commit, readable to find the exact log messages.
+- Deploy anchor and the image's source commit, readable to find the exact log messages.
+  Prefer the ECS deployment `createdAt` (rollout start) and the time it reached
+  COMPLETED; the task definition `registeredAt` or the workflow run only when those are
+  gone. Traffic between rollout start and COMPLETED is mixed: exclude it or report it apart.
 
 ## Process
 
@@ -44,8 +46,9 @@ to be silence), with the script's exit code as the verdict.
    is in the evidence. One call returns one page; the CLI's own paging applies `--query`
    per page. Real reads here took 23 to 106 pages; one page silently undercounts.
 3. Windows: fixed UTC start and end (ms epoch for the API, both bounds inclusive),
-   never "now". Place before and after windows around the deploy anchor, of equal
-   length where traffic allows. Report each in UTC and Bangkok time (ICT, UTC+7).
+   never "now". The before window ends at rollout start and the after window starts
+   at COMPLETED (or at the anchor you had, with the overlap named); equal lengths
+   where traffic allows. Report each in UTC and Bangkok time (ICT, UTC+7).
 4. Filter: patterns are case-sensitive and exact-phrase. Grep the source at the image
    commit for every message that could carry the claim and pick a phrase they all
    contain (every slip-api daily-digest error contains lowercase `daily digest`).
@@ -62,8 +65,9 @@ to be silence), with the script's exit code as the verdict.
 7. Summarize each window with the same filter: n, status histogram, 5xx count,
    p50/p95/max `duration_ms`, ERROR count. Exit non-zero when the claim fails.
 8. Shell: a `bash` script file with arrays (zsh does not word-split `$VAR`); macOS has
-   bash 3.2 and Ruby 2.6 (no `filter_map`, no `tally`). Work in the session scratchpad,
-   not a product repo; it lives under `/private/tmp`, which macOS purges after 3 days,
+   bash 3.2 and Ruby 2.6 (no `filter_map`, no `tally`). Work in the session-specific
+   scratchpad directory the harness gives you, never a `/tmp` path you create or a
+   product repo. Even that scratchpad may be purged (macOS clears `/tmp` after 3 days),
    so the durable copy is the recorded evidence (step 9), never the scratch file.
 9. Record: inside an ai-dev-office TASK, run `record-evidence.sh <TASK-ID> --type command
    -- bash <script>` (the wrapper in `ai-dev-office/scripts/`) and cite the returned
@@ -75,6 +79,8 @@ to be silence), with the script's exit code as the verdict.
 - Source: log group, exact filter, windows in UTC and ICT, deploy anchor (task
   definition revision and `registeredAt`, or run id), image commit.
 - Completeness: `pages=N events=M` for every read.
+- Parse: method per service (JSON with the second parse of `message`, or a regex for
+  text logs) and the count of lines that failed to parse.
 - Filter proof: the source grep at the image commit, and the success/traffic count.
 - Before vs after, same filter: n, status histogram, 5xx, p50/p95/max `duration_ms`, ERROR.
 - Join: key, matched, unmatched, the unmatched ids; "timestamp-only" when that is all.

@@ -103,8 +103,9 @@ updated package; editing this source repository does not update an existing cach
 | `cloudwatch-log-evidence` | CloudWatch Logs must become evidence: post-deploy checks, before/after comparisons, request_id joins across services, error or 5xx counts in a fixed window |
 | `verifyslip-promote` | Promoting VerifySlip `slip-api` / `slip-system` from `main` to `staging` to `prod`, each step through a PR, with a dry-run tree check, rollback revision and post-deploy evidence |
 
-Both start at beta. Their eval cases are written but not yet replayed
-(`metadata.yaml` status `not_run`). They come from a 2026-10-30/31 session that
+Both are beta. The 2026-11-01 replay on Claude, Codex and Cursor had no fails
+and recorded `partial` with the remaining gaps in `known_failure_modes`; see the
+[replay report](docs/reports/2026-11-01-ops-evidence-skills-replay.md). They come from a 2026-10-30/31 session that
 repeated these reads and one promotion by hand.
 
 ## Recommended project layout

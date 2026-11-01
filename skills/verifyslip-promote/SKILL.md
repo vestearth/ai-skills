@@ -15,9 +15,9 @@ description: Use when promoting VerifySlip (UpSlip) slip-api or slip-system from
 
 ## Do Not Use When
 
-- Games Labs ECS: use `playbooks/games-labs/ecs-deploy.md` (prod is cost-gated).
-  Generic readiness: `skills/release-checklist/SKILL.md`. Prod degraded:
-  `incident-response`.
+- Games Labs ECS: use `playbooks/games-labs/ecs-deploy.md` with
+  `skills/release-checklist/SKILL.md`. Its prod sits at desired 0, and going above 0
+  needs Earth's explicit approval to pay. Prod degraded: `incident-response`.
 - `slip-front-end` (`main`, `staging`, `prod` on one fast-forwarded commit), and
   `slip-admin` / `slip-landing` (PR promotions, no prod-only files or migrations).
   For these, steps 2–4 do not apply; steps 5–7 do.
@@ -38,18 +38,21 @@ the new image without new 5xx or ERROR lines.
 - The open `TASK-VS-*` run. PRs into `main` run no CI, so local
   `GOWORK=off go test ./...` and `go build -mod=readonly ./...` evidence is the
   gate. Keep the `slip-contracts` `replace` in `go.mod`.
-- AWS profile `vestearth` (`ap-southeast-1`); gh account `Sichol-Earth`.
+- The workspace-wide AWS profile `vestearth` (`ap-southeast-1`); gh account `Sichol-Earth`.
 
 ## Process
 
 Commands: [references/promote.md](references/promote.md). At every **STOP**, report
 to Earth and wait; never work around it.
 
-1. **Approval and scope.** STOP without approval for staging and for prod (one does
-   not cover the other). Prod gets both `git log --no-merges origin/staging..origin/main`
-   and `origin/prod..origin/staging`. STOP on any commit outside the approved work,
-   showing Earth commits and authors (watcharapol-spl sometimes merges main to
-   staging to prod without a PR). STOP if prod does not run
+1. **Approval and scope.** The read-only scope listing and the dry run (step 2) run
+   before asking, so Earth approves real commits. STOP without approval for staging
+   and for prod (one does not cover the other). Prod gets both
+   `git log --no-merges origin/staging..origin/main` and `origin/prod..origin/staging`.
+   STOP on any commit outside the approved work, showing Earth commits and authors
+   (watcharapol-spl sometimes merges main to staging to prod without a PR); the only
+   way on is Earth approving the larger scope. Never cherry-pick around, revert, or
+   drop someone else's commit. STOP if prod does not run
    `production-sha-<origin/prod short>` or a deploy run is active (a push cancels it).
 2. **Dry run.** T1 = `git merge-tree --write-tree origin/staging origin/main`;
    `commit-tree` T1 and merge-tree that commit with `origin/prod` to get T2.
@@ -68,13 +71,17 @@ to Earth and wait; never work around it.
    (`--match-head-commit`); the merged tree must equal T1. Wait for
    `staging-sha-<short>` with [references/wait-rollout.sh](references/wait-rollout.sh),
    then check the run conclusion and boot logs (clean start, no ERROR or panic).
-   Staging proves boot, not behavior. STOP on FAILED, TIMEOUT, or a failed run.
+   Staging proves boot, not behavior. STOP on FAILED, TIMEOUT, or a failed run (below).
 6. **Prod.** In a temporary worktree (never the main checkout), branch
    `release/TASK-VS-NNN-production` from `origin/prod`, merge `origin/staging` (tree
    must equal T2), push the branch, and open a PR into `prod` (as #106, #107); merge
    it pinned to the head. Wait for `production-sha-<short>` with running = desired
    (Auto Scaling sets it). Hash-compare env and secrets of the old and new task
    definitions: only the image may change. STOP on FAILED, TIMEOUT, or a diff.
+   **After a FAILED or TIMEOUT:** read the stopped tasks' `stoppedReason` and boot
+   logs; confirm the previous revision is PRIMARY again (staging rolls back itself,
+   prod has no circuit breaker: point it at the rollback revision); fix on `main`
+   through the normal PR; then restart from step 1. Never promote prod past it.
 7. **Post-deploy.** With `cloudwatch-log-evidence`, deploy to about +12 min: request
    count, status histogram, 5xx = 0, ERROR lines = 0; a spike goes to
    `incident-response` with the rollback revision. The fix's effect shows later, so
