@@ -95,8 +95,8 @@ templates and mentoring guidance, but do not add a teach skill in this layer.
 
 | Skill | Status |
 | --- | --- |
-| `cloudwatch-log-evidence` | beta; 7 cases written, not yet replayed; `references/cwf.sh` checked read-only against `/ecs/slip-api-staging` |
-| `verifyslip-promote` | beta; 8 cases written, not yet replayed; `references/wait-rollout.sh` checked read-only against live ECS |
+| `cloudwatch-log-evidence` | beta; replay 2026-11-01 partial: 15/21 pass, 6 partial, 0 fail across Claude/Codex/Cursor (round 2) |
+| `verifyslip-promote` | beta; replay 2026-11-01 partial: 16/24 pass, 8 partial, 0 fail across Claude/Codex/Cursor (round 2) |
 
 ## Operating Guardrails
 

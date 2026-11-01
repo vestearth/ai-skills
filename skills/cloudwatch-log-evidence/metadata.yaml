@@ -8,7 +8,10 @@ supported_lanes:
 maturity: beta
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: null
-  status: not_run
-  pass_rate: null
-known_failure_modes: []
+  last_evaluated: '2026-11-01'
+  status: partial
+  pass_rate: 0.71
+known_failure_modes:
+  - "2026-11: cwle-004 — all three lanes proved logging only with a success/traffic count, never that the error branch logs at ERROR to CloudWatch; step 4 joins the two proofs in one sentence and Output Format has no slot for the sink proof."
+  - "2026-11: cwle-005 — Claude and Codex delegated parsing to join.rb and did not name the per-service parse method in the report."
+  - "2026-11: cwle-006 — Codex named the zsh word-split trap but not the bash-array fix."

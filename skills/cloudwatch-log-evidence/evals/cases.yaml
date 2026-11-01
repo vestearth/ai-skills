@@ -9,8 +9,10 @@ cases:
       Task definition slip-api-production:118 has registeredAt 2026-10-28T14:30:00Z.
       Logs are in /ecs/slip-api-production. Plan the check; you may not run it yet.
     expected: >
-      Activate. Anchor on the task definition registeredAt and use fixed UTC
-      before and after windows around 2026-10-28T14:30:00Z (21:30 ICT), the same
+      Activate. Anchor on the deploy: the supplied task definition registeredAt
+      (2026-10-28T14:30:00Z, 21:30 ICT) is acceptable; noting that rollout start
+      and COMPLETED would bound the mixed-traffic overlap is better. Use fixed UTC
+      before and after windows around it, the same
       filter for both, and every page of filter-log-events. Report per window n,
       status histogram, 5xx, p50/p95/max duration_ms and ERROR count, with a script
       that exits non-zero when the claim fails. No "last 24 hours" window, and no
@@ -101,5 +103,6 @@ cases:
       claim about existing log contents is being made.
     expected: >
       Route to datadog-observability for the telemetry design. Do not read
-      CloudWatch, build a census script, or produce before/after numbers. If
-      production were degraded right now, incident-response would lead instead.
+      CloudWatch, build a census script, or produce before/after numbers. Naming
+      incident-response is not required (nothing is degraded); it would lead only
+      if production were degraded now.

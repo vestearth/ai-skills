@@ -106,6 +106,26 @@ check: use `cloudwatch-log-evidence` on `/ecs/$REPO-staging` from the merge unti
 2 minutes after COMPLETED. The new task reaches its listener, and there are no
 ERROR, panic, or fatal lines.
 
+### After FAILED or TIMEOUT (staging or prod)
+
+Do not promote further. Find why the new tasks stopped, confirm what serves now, then
+fix on `main` through the normal PR and restart from step 1.
+
+```bash
+ENV=staging   # or production
+aws ecs list-tasks --cluster "upslip-$ENV-ecs" --service-name "$REPO-$ENV" --desired-status STOPPED \
+  --query 'taskArns[0:5]' --output text \
+  | xargs aws ecs describe-tasks --cluster "upslip-$ENV-ecs" --tasks \
+      --query 'tasks[].[taskDefinitionArn,stoppedReason,containers[0].exitCode]' --output text
+aws ecs describe-services --cluster "upslip-$ENV-ecs" --services "$REPO-$ENV" \
+  --query 'services[0].deployments[].[status,taskDefinition,rolloutState]' --output text
+```
+
+Staging rolls back on its own: the previous revision should be PRIMARY again. Prod has
+no circuit breaker, so point it at the step 3 rollback revision (with Earth's
+go-ahead or an `incident-response` decision). Read the boot logs of a stopped task
+with `cloudwatch-log-evidence`.
+
 ## 6. Prod
 
 Prod takes a `release/TASK-VS-NNN-production` branch cut from `origin/prod` with

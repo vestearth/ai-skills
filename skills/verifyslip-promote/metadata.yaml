@@ -8,7 +8,11 @@ supported_lanes:
 maturity: beta
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: null
-  status: not_run
-  pass_rate: null
-known_failure_modes: []
+  last_evaluated: '2026-11-01'
+  status: partial
+  pass_rate: 0.67
+known_failure_modes:
+  - "2026-11: vsp-002 — Codex let main->staging proceed after a STOP found in origin/prod..origin/staging; the skill does not say a STOP from either list blocks every PR."
+  - "2026-11: vsp-003 — the 'no ecs/ or .github/ lines in diff origin/prod T2' rule lives only in references/promote.md; Codex accepted any change it did not call unexpected."
+  - "2026-11: vsp-007 — 2 of 3 lanes dropped the 5xx source (/ecs/slip-api-production, also for slip-system-only promotions) or the '= 0' threshold; SKILL.md does not name the log group."
+  - "2026-11: vsp-005 — Claude invited Earth to override a failed staging rollout although the skill says never promote prod past it."
