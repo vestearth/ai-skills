@@ -1,0 +1,15 @@
+schema_version: 1
+owner: earth
+version: 1.0.0
+supported_lanes:
+  - codex
+  - multica
+maturity: beta
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: '2026-11-04'
+  status: passing
+  pass_rate: 1.0
+known_failure_modes:
+  - "2026-11 (fixed, replayed 2026-11-04): empty workflow handlers were taken to require a separate dispatch after assignment; the skill now requires native assignment semantics and run readback before another start."
+  - "2026-11 (fixed, replayed 2026-11-04): rollout allowed a read-modify-write replacement of bindings; the skill now requires the native additive operation and preserves existing bindings."

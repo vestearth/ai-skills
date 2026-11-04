@@ -58,6 +58,7 @@ Recommended skills:
 - model-router
 - verification-loop
 - completion-audit
+- multica-office-workflow
 - remove-ai-marks
 - search-first
 - change-impact-analysis
