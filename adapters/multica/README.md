@@ -8,9 +8,9 @@ Multica workspace skills are imported snapshots, not a second authoring
 surface. Do not edit their `SKILL.md` content in Multica. Make a reviewed
 change here first, merge it, then refresh the imported workspace skill.
 
-## Initial candidates
+## Engineering candidates
 
-Only these stable, passing skills are approved for the first adapter pass:
+These stable, passing engineering skills are approved for the adapter:
 
 - `verification-loop`
 - `search-first`
@@ -18,6 +18,26 @@ Only these stable, passing skills are approved for the first adapter pass:
 
 Their current `metadata.yaml` files are the eligibility source of truth. Do
 not add another skill merely because it is available in another runtime.
+
+## Coordination pilot
+
+The operator approved `multica-office-workflow` on 2026-11-04, alongside the
+three engineering skills above. It is an explicitly scoped **beta** pilot:
+supplied-input behavioral replay, workspace import, agent binding, and actual
+runtime use are separate checks. Do not label it stable from installation alone.
+Its source remains `skills/multica-office-workflow/`, with the same reviewed
+merge and hosted-source import/refresh contract as the engineering skills.
+
+This skill owns the engineering handoff between Multica and repository/Office
+records. Native Multica platform skills own CLI and trigger semantics. The
+coordination skill does not replace those native skills or duplicate the
+engineering review procedures.
+
+Bind by responsibility: builders use all three engineering candidates;
+investigators/reviewers use search and verification (plus minimal-change when
+editing); coordinators use search, verification and the coordination pilot.
+Workers may also use the coordination pilot for receiving/reporting Office
+handoffs. Use additive bindings and preserve unrelated skills.
 
 ## Required duplicate check
 
@@ -81,11 +101,20 @@ The snapshot is current only after the refresh result and imported `SKILL.md`
 match the intended canonical commit. A successful import or binding does not
 prove refresh propagation.
 
+Paths such as `rules/...` in an engineering skill are relative to the canonical
+`ai-skills` repository, not the task's temporary skill directory. Resolve them
+from the target project's instructions and accessible source checkout. A hosted
+folder import does not promise to bundle files outside that folder: inspect the
+imported files and report unavailable dependencies rather than claiming the
+skill is self-contained. Preserve canonical content instead of making an edited
+Multica-only fork to hide a missing reference.
+
 ## Deliberate non-goals
 
 - No Multica-specific fork of any canonical skill.
 - No automatic import, refresh, binding, or overwrite from this repository.
-- No expansion beyond the three initial candidates without repeating the
-  duplicate check and confirming stable, passing metadata.
+- No expansion beyond the three engineering candidates and the explicitly
+  approved coordination pilot without a duplicate check and approval. Additional
+  engineering candidates require stable, passing metadata.
 - No assumption that a runtime-local skill copy stays synchronized with the
   Multica workspace copy.

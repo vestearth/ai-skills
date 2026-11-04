@@ -75,6 +75,7 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | `mcp-audit` | complete |
 | `model-router` | complete |
 | `completion-audit` | complete |
+| `multica-office-workflow` | beta; 12/12 supplied-input Codex replay cases passing 2026-11-04; Multica installation and live runtime use tracked separately |
 | `remove-ai-marks` | complete |
 
 The former compact-guard and module-map skills were consolidated away: compact-guard
