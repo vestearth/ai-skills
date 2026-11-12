@@ -46,7 +46,7 @@ Suggested routing:
 - Auditing MCP servers for token overhead, redundancy, or usage -> mcp-audit
 - Orienting in an unfamiliar code area with a one-screen map -> search-first
 - Starting a task, delegating a subtask, or task/model mismatch -> model-router
-- Before completion, fix, merge, deploy, or handoff claims -> verification-loop
+- Before completion, fix, merge, deploy, or handoff claims, or a diagnosis the operator will act on -> verification-loop
 - Receiving work claimed complete from another agent, handoff, or PR -> completion-audit
 - Recording, starting, following up, or accepting Multica engineering work -> multica-office-workflow
 - Stripping AI provenance marks or metadata from content we own before publishing -> remove-ai-marks

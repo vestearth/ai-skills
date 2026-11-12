@@ -139,7 +139,7 @@ These apply before choosing a larger implementation path.
 | Skill or rule | Use when |
 | --- | --- |
 | `minimal-change-review` | Before modifying code, creating files, adding dependencies, scaffolding features, or checking for overbuilt implementations |
-| `verification-loop` | Before final answers, fix claims, merge/deploy readiness, release notes, or handoff claims |
+| `verification-loop` | Before final answers, fix claims, merge/deploy readiness, release notes, handoff claims, or a diagnosis/tool-state claim someone will act on |
 | `search-first` | Starting implementation, debugging, refactoring, review, or repository discovery in an unfamiliar area; when repository context is large, stale, tool-derived, or likely to overload the session; or orienting fast with a one-screen module map of entry points, modules, flow, and coupling |
 | `change-impact-analysis` | Changing shared code, contracts, schemas, generated code, service behavior, runtime config, or high-risk production paths |
 | `rules/reuse-before-build/RULE.md` | Checking need, existing code, standard library, platform/native features, existing dependencies, then smallest new code |

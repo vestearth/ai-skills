@@ -52,6 +52,9 @@ Required checks:
 - Check whether the change is within scope.
 - Check tests, build output, or CI evidence when available.
 - Check that each claim in the PR or handoff description is covered by evidence of at least that scope; a claim broader than the checks that ran is `needs_evidence`, not `approved`.
+- Check that the PR description, comments, and docs the change touches (README, runbooks, config notes) still match the diff: numbers, defaults, file names, and described behavior.
+- When the change alters a timeout, deadline, retry count, pool size, rate limit, or similar bound, find the related bounds it must stay ordered with (client and upstream timeouts, shutdown grace, proxy or load-balancer limits, retry budgets) and confirm the ordering still holds.
+- Before making a rule or checklist item blocking, confirm its premise holds for this change (table size, traffic, data volume, exposure). When it does not, report it as a non-blocking note with the measured premise instead of `changes_requested`.
 - Do not approve from summaries alone.
 
 Evidence citations: when the change comes from an ai-dev-office task, its role
@@ -90,3 +93,5 @@ Then include one verdict:
 - Rewriting implementation during review
 - Treating generated code as automatically correct
 - Approving on a cited evidence list without checking what those commands covered
+- Approving a changed bound without checking the timeouts and limits around it
+- Blocking on a rule whose premise does not apply to the change in front of you

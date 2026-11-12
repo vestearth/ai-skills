@@ -1,6 +1,6 @@
 ---
 name: verification-loop
-description: Use when work needs evidence before final answer, merge, deploy, release, handoff, or claims that a bug is fixed.
+description: Use when work needs evidence before final answer, merge, deploy, release, handoff, or claims that a bug is fixed, and before stating a root cause or the state of a tool, credential, CI, platform, deployment, or billing rule that someone may act on.
 ---
 
 # Verification Loop
@@ -15,6 +15,7 @@ Verify claims with the strongest practical evidence available before reporting c
 - Before handing work to reviewer, QA, mobile, frontend, DevOps, or vendor.
 - Before merging, deploying, releasing, or writing rollout notes.
 - When debugging a reported issue.
+- Before stating a cause or a tool, credential, CI, platform, deployment, or billing state that the operator may act on (rotate a secret, re-run, pay, reassign, close). A diagnosis that triggers action is a claim.
 - When reviewing risky changes in APIs, protobuf, database, auth, wallet, provider callbacks, CI, or deployment.
 
 ## Do Not Use When
@@ -87,6 +88,7 @@ test run, or runtime signal — and never a substitute for having run anything.
 - Claiming broad test coverage from one targeted test.
 - Omitting failed, skipped, or unavailable verification.
 - Treating intent, memory, or unrelated passing checks as proof.
+- Presenting a remembered or inferred cause, platform behavior, or billing fact as current; check the dated source or say it is unverified.
 - Accepting a mock or stub as proof of behavior only the real dependency can exhibit.
 - Skipping verification because no canonical evidence ledger exists.
 - Citing an evidence id as if it were a check you ran, or letting a cited id cover more than the command it recorded.

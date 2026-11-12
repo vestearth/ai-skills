@@ -1,15 +1,16 @@
 schema_version: 1
 owner: earth
-version: 1.0.0
+version: 1.1.0
 supported_lanes:
   - codex
   - multica
 maturity: beta
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: '2026-11-04'
+  last_evaluated: '2026-11-12'
   status: passing
   pass_rate: 1.0
 known_failure_modes:
   - "2026-11 (fixed, replayed 2026-11-04): empty workflow handlers were taken to require a separate dispatch after assignment; the skill now requires native assignment semantics and run readback before another start."
   - "2026-11 (fixed, replayed 2026-11-04): rollout allowed a read-modify-write replacement of bindings; the skill now requires the native additive operation and preserves existing bindings."
+  - "2026-11 (fixed 2026-11-12; mow-013..016 passed a supplied-input replay by one independent evaluator with expected answers withheld): observed in SPAR-55/62/63/67/69 and interactive sessions: assignment advice ignored leader-only squad instructions; a result was posted on a superseded spec; a local session and a run wrote one checkout; release work rode a brainstorm issue; done was claimed with production_acceptance pending."

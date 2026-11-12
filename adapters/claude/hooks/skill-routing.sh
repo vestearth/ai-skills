@@ -123,7 +123,7 @@ done <<< "$ROUTES"
 ctx=""
 if [ "$show_core" -eq 1 ]; then
 ctx="[ai-skills routing] — ประเมินเองว่า prompt นี้เข้าข้อไหน แล้วเรียก skill นั้นก่อนเริ่ม:
-  search-first ก่อนไล่หาไฟล์ · debugging ก่อนเสนอ fix · verification-loop ก่อนเคลมว่าเสร็จ
+  search-first ก่อนไล่หาไฟล์ · debugging ก่อนเสนอ fix · verification-loop ก่อนเคลมว่าเสร็จหรือสรุปสาเหตุ
   code-review เมื่อถูกขอให้ดู diff/PR · completion-audit เมื่อรับงานที่คนอื่นบอกว่าเสร็จ
   release-checklist ก่อน deploy · incident-response ถ้าของจริงล่ม · model-router ถ้างานเบากว่าโมเดล
   minimal-change-review ถ้าจะเพิ่มไฟล์/scaffold/abstraction · deslop ก่อน commit/handoff

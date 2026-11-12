@@ -1,6 +1,6 @@
 schema_version: 1
 owner: earth
-version: 1.0.0
+version: 1.1.0
 supported_lanes:
   - claude
   - codex
@@ -16,3 +16,4 @@ known_failure_modes:
   - "2026-11: vsp-003 — the 'no ecs/ or .github/ lines in diff origin/prod T2' rule lives only in references/promote.md; Codex accepted any change it did not call unexpected."
   - "2026-11: vsp-007 — 2 of 3 lanes dropped the 5xx source (/ecs/slip-api-production, also for slip-system-only promotions) or the '= 0' threshold; SKILL.md does not name the log group."
   - "2026-11: vsp-005 — Claude invited Earth to override a failed staging rollout although the skill says never promote prod past it."
+  - "2026-11: SPAR-55 — a review required the 01:00–05:00 index pre-build for a table with about one row; Earth overrode it as accepted risk. The rule now scopes to large or hot tables (added 2026-11-12; vsp-009 passed a supplied-input replay, other cases not re-run)."
