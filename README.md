@@ -79,6 +79,7 @@ the full v4 Tech Lead OS complete.
 | `completion-audit` | Auditing work another agent, handoff, PR, or past session claims is complete — re-run claimed checks against the real diff before accepting |
 | `multica-office-workflow` | Recording, starting, following up, or accepting Multica engineering work with repository scope, AI Office evidence links, and delivery gates |
 | `remove-ai-marks` | Stripping AI provenance from content we own — invisible Unicode in text, C2PA/EXIF/XMP and generator metadata on images, PDF, DOCX, SVG, HTML, Markdown — via the local watermarks-remover service |
+| `humanizer` | Making English or Thai prose read like the writer wrote it, on request, without changing facts, numbers, paths, or technical terms; wraps the pinned upstream blader/humanizer catalog (MIT) with a Thai overlay |
 
 `multica-office-workflow` starts as an operator-approved beta pilot. Its
 [behavioral replay and initial rollout report](docs/reports/2026-11-04-multica-office-workflow.md)

@@ -60,6 +60,7 @@ Recommended skills:
 - completion-audit
 - multica-office-workflow
 - remove-ai-marks
+- humanizer
 - search-first
 - change-impact-analysis
 - knowledge-query

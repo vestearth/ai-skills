@@ -77,6 +77,7 @@ skill-library quality without declaring the full v4 Tech Lead OS complete.
 | `completion-audit` | complete |
 | `multica-office-workflow` | beta; 12/12 supplied-input Codex replay cases passing 2026-11-04; Multica installation and live runtime use tracked separately |
 | `remove-ai-marks` | complete |
+| `humanizer` | beta (wraps upstream blader/humanizer 4.0.0 @ b48c832, MIT, unmodified in `references/`; Thai overlay T1 to T6 is new; smoke-tested 2026-11-12 on one Thai and one English sample against a no-skill baseline: invariants intact in both, Thai T1/T2 removed only with the skill) |
 
 The former compact-guard and module-map skills were consolidated away: compact-guard
 into `session-handoff` (pre-compaction snapshot/restore) and module-map into

@@ -98,6 +98,7 @@ decision-grilling~stress-test แผน/design ก่อนลงมือ~ค�
 decision-wayfinding~ปัญหาใหญ่/ยังไม่ชัด หลาย session → decision map ก่อน spec~wayfind|decision map|not yet known|still unclear|unknowns|ยังไม่ชัด|ยังไม่รู้จะ|หลาย session|multi session|หลายเรื่องต้องตัดสินใจ
 deslop~กวาด AI slop ออกจาก diff ก่อน commit/handoff~slop|cleanup|ก่อน commit|tidy|เก็บกวาด
 remove-ai-marks~ลบ AI provenance (invisible unicode / C2PA / EXIF) จากไฟล์ที่เราเป็นเจ้าของ~watermark|ลายน้ำ|c2pa|content credentials|exif| xmp |invisible unicode|zero width|synthid|ai provenance
+humanizer~เกลาสำนวนที่ดูเป็น AI (EN/TH) โดยไม่เปลี่ยนข้อเท็จจริง/ตัวเลข/path~humaniz| de ai |ai sounding|sounds like ai|ai writing|เกลา|สำนวน|เหมือน ?ai ?เขียน|ดูเป็น ?ai|ลดความเป็น ?ai|เป็นธรรมชาติ
 sprint-planning~แปลง goal/backlog เป็น scope + acceptance criteria~sprint|backlog|roadmap|วางแผน|แผนงาน
 knowledge-query~งานนี้อาจพึ่งความรู้/ADR/บทเรียนเดิม~เคยทำ|ที่ผ่านมา|prior decision| adr
 skill-authoring-review~แก้/เพิ่ม/ตัด skill ใน ai-skills~ai skills|skill md|skill authoring|สกิล

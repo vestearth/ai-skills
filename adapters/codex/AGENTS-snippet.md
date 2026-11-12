@@ -50,6 +50,7 @@ Suggested routing:
 - Receiving work claimed complete from another agent, handoff, or PR -> completion-audit
 - Recording, starting, following up, or accepting Multica engineering work -> multica-office-workflow
 - Stripping AI provenance marks or metadata from content we own before publishing -> remove-ai-marks
+- Making English or Thai prose read less AI-written, on request, without changing facts, numbers, paths, or technical terms -> humanizer
 - Unfamiliar repository area -> search-first
 - Large, stale, or tool-derived context -> search-first
 - Shared code, contracts, schemas, generated code, runtime config, or high-risk paths -> change-impact-analysis
