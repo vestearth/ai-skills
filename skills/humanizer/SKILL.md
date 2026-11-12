@@ -97,7 +97,10 @@ add or strip them as a fix.
 
 ## Output Format
 
-- Pasted mode: the draft, a short list of tells still present, and the final rewrite.
+- Pasted mode: the final rewrite, then a short list of the tells fixed (quoted, with
+  §N or TN) and any tell left on purpose, with the reason. The draft from upstream
+  step 2 stays internal; show it only when the user asks. This overrides upstream
+  "Pasted text (default)", which returns the draft as well.
 - Review-only: each tell quoted with its id (§N or TN); no rewrite.
 - File mode: write only the final prose to the file, then report the sections reviewed,
   any not covered (a partial pass is reported as partial), and that invariants were
