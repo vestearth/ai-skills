@@ -43,3 +43,10 @@ match	verifyslip-promote	ขึ้น prod ให้ slip-system หน่อย
 match	verifyslip-promote	ขึ้น staging/prod ได้เลย สำหรับ slip-api
 nomatch	verifyslip-promote	fix the slip-api handler test
 nomatch	verifyslip-promote	promote Games Labs wallet to prod
+match	humanizer	humanize ข้อความนี้ให้หน่อย
+match	humanizer	ช่วยเกลาภาษา README นี้
+match	humanizer	อ่านแล้วเหมือน AI เขียน แก้ให้หน่อย
+match	humanizer	ตรงไหนดูเป็น AI บ้าง
+nomatch	humanizer	ลบ watermark ออกจากรูปนี้
+nomatch	humanizer	rewrite function นี้ใหม่
+nomatch	humanizer	ai-skills มี skill อะไรบ้าง
