@@ -21,6 +21,7 @@ Examples:
 - This bug comes from a specific file, function, query, config, service, or deployment.
 - This API response shape is safe for clients.
 - This migration is backward compatible.
+- This vendor call, status code, or event is billed (or free).
 
 ## Source of Truth Order
 
@@ -34,6 +35,19 @@ Prefer evidence in this order:
 6. Previous summaries or chat history
 
 Indexed context and AI memory are discovery aids, not final proof.
+
+## External Facts: Billing, Pricing, Quotas, Contracts
+
+What a vendor charges, a quota or price, and a contract term cannot be proven
+from code. Code only shows what the system does. The source of truth is the
+dated statement from the vendor or the operator: an email, ticket, invoice,
+contract, or a decision recorded in a task.
+
+- Cite the source and its date when stating the fact.
+- When memory or an older note disagrees with a newer dated statement, the
+  newer statement wins. Fix the stale note instead of repeating it.
+- With no dated source in reach, call it unverified. Do not let a remembered
+  billing rule decide cost, quota, or retry behavior.
 
 Agent narrative is never evidence. A summary, checklist, handoff report, or
 list of evidence ids is a claim *about* evidence; the evidence is the command
@@ -77,6 +91,7 @@ Evidence:
 - Claiming compatibility without checking callers or contracts.
 - Treating generated code, stale index results, or old summaries as final proof.
 - Hiding unverified assumptions behind confident wording.
+- Stating what a vendor bills from memory or from code alone.
 - Citing an `ev-NNN` id without its task id, or citing one that was never seen
   in that task's ledger.
 - Treating a cited evidence id as proof stronger than the current repository,
