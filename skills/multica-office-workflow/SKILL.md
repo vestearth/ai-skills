@@ -43,7 +43,9 @@ losing scope, starting duplicate work, or confusing a run with verified delivery
    reads bounded. Use the native Multica platform skill for command semantics,
    trigger side effects, mentions, and project workflows; inspect CLI help when
    its documented flags differ. Do not copy a cached platform manual into this
-   skill or print authentication/configuration secrets.
+   skill or print authentication/configuration secrets. Re-read the issue body
+   and newest comments again right before dispatching or posting a result: a
+   spec revised mid-run supersedes the brief the run started from.
 
    For an approved skill rollout, follow the repository's Multica adapter:
    check workspace/native overlap, import from the reviewed canonical source,
@@ -66,7 +68,16 @@ losing scope, starting duplicate work, or confusing a run with verified delivery
      and read back before any separate dispatch. If a run already covers the work,
      follow or steer
      that run rather than starting another. Do not make new agents, squads,
-     automations, or extra approval gates just to route ordinary work.
+     automations, or extra approval gates just to route ordinary work. Check
+     where guidance is delivered before relying on it: squad-level instructions
+     may reach only the leader, and issue text telling assignees to wait will
+     stall the start you just made.
+   - Several independent opinions (review, brainstorm, comparison): an issue has
+     one assignee, so fan out with sub-issues or explicit agent mentions. Runs
+     sharing one local checkout execute one at a time and later runs see earlier
+     replies; ask for blind posting when independence matters. Put the verdict
+     contract in the issue for any agent whose own instructions lack one. Route
+     by role, and read the run record for the runtime that actually ran.
    - Follow up: read the run and its result; a status question alone does not
      authorize a retry, reassignment, priority change, or implementation.
    - When a mutation times out or its response cannot be parsed, read back the
@@ -78,7 +89,12 @@ losing scope, starting duplicate work, or confusing a run with verified delivery
    approval; do not ask for it again. An investigation-only task stays an
    investigation until its implementation boundary is lifted. A worker sharing
    a checkout must preserve others' edits; use an isolated checkout when needed
-   or required. Existing merge, release, production-cost and read-only repository
+   or required. Runs on the same local directory serialize
+   (`waiting_local_directory`); do not write a checkout an active run holds,
+   including from a local session, and do not stop another run only to free it.
+   When a brainstorm or investigation becomes implementation or release, open
+   or link an issue for that phase instead of carrying it in the same thread.
+   Existing merge, release, production-cost and read-only repository
    restrictions continue to apply. Assignment alone does not authorize a new
    release or a wider implementation scope.
 
@@ -107,7 +123,10 @@ losing scope, starting duplicate work, or confusing a run with verified delivery
    or a deployment succeeded. An investigation can deliver a verified diagnosis
    and options while its proposed fix remains unapproved. Retain missing gates
    in the handoff and use the active workflow's delivery/review status instead
-   of marking the larger outcome complete.
+   of marking the larger outcome complete. Before reporting done or answering
+   whether work can close, list every gate, acceptance and record still open in
+   the owning ledger (pending gates, uncommitted Office records, open linked
+   issues), not only the latest run's result.
 
 7. **Close the knowledge loop once.** Follow the owning repository's closeout
    policy when the working session ends. Reuse its existing scope and capture
@@ -124,6 +143,10 @@ Keep the update proportional to the request:
 - Delivered and verified outcomes, with repository/revision and checks as needed.
 - Remaining blocker, decision or acceptance gate, and the next owner/action.
 
+For a status question ("ได้อะไรมาแล้วบ้าง", "จบได้หรือยัง"), answer from the
+records: delivered and verified, in flight with its observed run state, open
+gates and decisions, next owner. Do not answer from memory of earlier turns.
+
 Use the user's language for coordination and the repository's convention for
 engineering artifacts. Omit empty fields rather than inventing identifiers.
 
@@ -137,3 +160,6 @@ engineering artifacts. Omit empty fields rather than inventing identifiers.
 - Treating a merged PR as deployed, or a proposed fix as implemented.
 - Mirroring status strings, inventing evidence ids, or duplicating task ledgers.
 - Rewriting native Multica command documentation or forking engineering skills.
+- Posting a result against a spec revision that changed while the run worked.
+- Editing a checkout that an active run holds, or carrying release work inside a
+  brainstorm issue.

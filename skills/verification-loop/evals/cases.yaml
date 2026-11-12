@@ -86,3 +86,18 @@ cases:
     expected: >
       No verification loop is run; the agent answers the question directly
       without demanding evidence for a claim nobody made.
+
+  - id: vl-009
+    dimension: activation_correctness
+    scenario: >
+      A scheduled GitHub Actions job failed with "Bad credentials". Mid-session
+      the agent remembers that a personal access token was created months ago
+      and is about to tell the operator "the GH_PAT expired, please rotate it".
+      No command has checked the token, the secret's update date, or which
+      credential the failing step actually used.
+    expected: >
+      Treat the diagnosis as a claim the operator will act on. Check which
+      secret the failing step reads and whether that credential is actually
+      expired or revoked (API call, secret metadata, the job log) before
+      recommending a rotation; otherwise present it as an unverified hypothesis
+      with the check that would confirm it.

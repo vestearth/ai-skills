@@ -1,6 +1,6 @@
 schema_version: 1
 owner: earth
-version: 1.1.0
+version: 1.2.0
 supported_lanes:
   - claude
   - codex
@@ -15,3 +15,4 @@ evaluation:
 
 known_failure_modes:
   - "2026-08: mock-layer verification accepted as proof — sqlmock and a psql literal check both passed while the real driver failed on a NULLIF bind type; driver-level claims must be verified through the real driver/runtime."
+  - "2026-10/11: never invoked by Claude in sessions where it was needed — diagnoses (an expired token, \"no CI\") and a billing fact were stated from memory and the operator acted on them; the trigger only named completion claims. Description widened 2026-11-12; vl-009 passed a supplied-input replay. Whether the wider trigger fires in live sessions is not yet measured."

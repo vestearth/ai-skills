@@ -79,7 +79,11 @@ task that is still migrating after about 150 s. A non-concurrent index build
 locks writes the whole time. To ship an index migration: Earth schedules it, the
 index is built by hand with `CREATE INDEX CONCURRENTLY` between 01:00 and 05:00
 Bangkok, and the migration uses `IF NOT EXISTS` with the same name, so the boot
-migration does nothing. `slip-system` has no migrations.
+migration does nothing. That rule came from the large `verifications` table. A
+new or small table (VS-060's `blog_posts`: a few rows, migration 070 took 99 ms
+on staging) does not need the window: report the row count, staging timing and
+remaining lock-wait risk, and Earth decides whether boot-time migration is
+accepted. `slip-system` has no migrations.
 
 ## 5. Staging
 

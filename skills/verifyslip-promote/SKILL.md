@@ -65,7 +65,9 @@ to Earth and wait; never work around it.
    points the service back at that revision. List `migrations/` changes in T2.
 4. **Migrations.** STOP on any; plan it with Earth. slip-api runs goose before its
    listener and ECS replaces a task not up after ~150 s; a 2m58s index build caused
-   12 verify 504s (2026-10-28). Pre-build indexes by hand, 01:00–05:00 Bangkok only.
+   12 verify 504s (2026-10-28). Pre-build indexes by hand, 01:00–05:00 Bangkok only,
+   for large or hot tables. For a new or small table, cite the row count and the
+   staging migration time and let Earth accept boot-time migration instead.
 5. **Staging.** Open a PR `main` → `staging` (as #103, #105), check `gh pr view`
    shows that base and head, and merge it with a merge commit pinned to the head
    (`--match-head-commit`); the merged tree must equal T1. Wait for
