@@ -7,7 +7,7 @@ supported_lanes:
 maturity: beta
 evaluation:
   case_file: evals/cases.yaml
-  last_evaluated: '2026-11-12'
+  last_evaluated: '2026-11-27'
   status: passing
   pass_rate: 1.0
 known_failure_modes:

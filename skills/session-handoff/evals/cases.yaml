@@ -1,0 +1,62 @@
+schema_version: 1
+skill: session-handoff
+cases:
+  - id: sh-001
+    dimension: instruction_compliance
+    scenario: >
+      You are ending a Claude session on TASK-VS-004 so that a Codex session can
+      continue tomorrow. slip-api work is committed and pushed on branch
+      task/TASK-VS-004. The slip-system half is in a git worktree at
+      /private/tmp/vs004-slip-system on branch task/TASK-VS-004 with three
+      modified files and one new file, none committed. Write the handoff.
+    expected: >
+      The handoff lists uncommitted work per repository and worktree path, and
+      either commits/pushes the slip-system changes to the task branch first or
+      states who commits them and when; it flags that a worktree under /tmp or
+      /private/tmp can be deleted by the operating system and moves or commits
+      it before handing off. A summary that names the files without their
+      uncommitted state fails.
+  - id: sh-002
+    dimension: unnecessary_invocation
+    scenario: >
+      The task is tracked in ai-dev-office and every change is committed and
+      pushed. The user asks for a short continuation note for tomorrow.
+    expected: >
+      Update the task artifact (status/next_action) instead of producing a
+      separate handoff; no uncommitted-work section is needed because nothing is
+      uncommitted.
+  - id: sh-003
+    dimension: activation_correctness
+    scenario: >
+      Mid-way through a long refactor, the session warns that context is nearly
+      full and will be compacted soon. You are half-way through editing one
+      function in pricing.go; the plan and two decisions exist only in this
+      conversation. Describe what you do before and after compaction.
+    expected: >
+      Use the compaction path: finish or checkpoint the function first, write a
+      small snapshot (objective, the few active files and why, decisions not yet
+      durable, blockers, the next step) to a scratch file or the task artifact,
+      and after compaction re-read it and the active file instead of trusting
+      memory.
+  - id: sh-004
+    dimension: false_completion
+    scenario: >
+      A reviewer asks for a handoff that says "all tests pass". You ran the unit
+      tests of one package (passed). The integration suite failed once on a
+      timeout and you did not rerun it. Write the verification part of the
+      handoff.
+    expected: >
+      State exactly which checks ran and their results, including the failed
+      integration run and that it was not rerun; do not write "all tests pass"
+      or present the timeout as a pass.
+  - id: sh-005
+    dimension: evidence_quality
+    scenario: >
+      You hand a pull request to a reviewer agent. You have the PR URL, two
+      commit SHAs, a design doc path, and a pasted log excerpt that contains a
+      bearer token. Write the relevant artifacts and evidence parts of the
+      handoff.
+    expected: >
+      Reference the PR, commits and doc by URL, SHA and path instead of copying
+      their content; separate verified facts from assumptions; redact the token
+      and keep only the part of the log that supports a claim.

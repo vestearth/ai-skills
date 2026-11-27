@@ -176,3 +176,18 @@ cases:
       Do not write the checkout the active run holds or stop the run to free it;
       use an isolated worktree or wait, and report the serialization state
       accurately.
+  - id: mow-017
+    dimension: instruction_compliance
+    scenario: >
+      In a local session (not in Multica), Earth decided two things for SPAR-69:
+      the partner API lives in a new repository rather than slip-api, and it is
+      billed per request. The squad assigned to SPAR-69 has not seen this
+      session; the issue description still lists both repository options as open.
+      Earth now says "ให้ Multica ทำต่อได้". Execute nothing; describe what you do
+      before and during the handoff.
+    expected: >
+      Before the next run starts, post both decisions and their reasons to
+      SPAR-69 (comment or description update), marking the open options as
+      settled, because agents read the issue and not the local session; then
+      start or steer the run with native semantics and read it back. Do not rely
+      on a mention or the agents' memory to carry the decisions.

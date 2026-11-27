@@ -41,20 +41,21 @@ Produce a compact, source-aware handoff — to another agent or to your post-com
 ## Process
 
 1. Decide the target: temporary handoff, reviewer brief, future continuation, durable capture candidate, or pre-compaction snapshot for your own future self.
-2. Reference existing artifacts by path or URL instead of copying their contents.
-3. Summarize only what the next reader needs: objective, status, decisions, changed files, evidence, and next actions.
-4. Separate verified facts from assumptions, TODOs, and blocked items.
-5. Redact secrets, credentials, PII, internal tokens, and sensitive payloads.
-6. If the content is durable project knowledge, recommend `knowledge-capture` instead of hiding it in a handoff or leaving it only in a snapshot that expires with the session.
-7. End with a resume command: one paste-ready instruction or command the next reader can run immediately to continue.
-8. Keep the handoff short enough to paste into a new session.
+2. When the next reader is another agent or session, make the work durable first: run `git status` in every repository and worktree you touched. Commit and push uncommitted work to the task branch if you may commit; otherwise ask, or move the work out of temporary directories (`/tmp`, `/private/tmp` and similar are cleaned by the operating system) and name who commits it and when. Noting the risk in the handoff is not enough.
+3. Reference existing artifacts by path or URL instead of copying their contents.
+4. Summarize only what the next reader needs: objective, status, decisions, changed files, evidence, and next actions.
+5. Separate verified facts from assumptions, TODOs, and blocked items.
+6. Redact secrets, credentials, PII, internal tokens, and sensitive payloads.
+7. If the content is durable project knowledge, recommend `knowledge-capture` instead of hiding it in a handoff or leaving it only in a snapshot that expires with the session.
+8. End with a resume command: one paste-ready instruction or command the next reader can run immediately to continue.
+9. Keep the handoff short enough to paste into a new session.
 
 Across a compaction boundary (handoff to future self):
 
-9. Prefer compacting at a task boundary: finish or checkpoint the current step before the snapshot.
-10. Write the snapshot to a scratch file or the open task artifact — one-line objective, the few active files with why each matters, session decisions not yet durable, blockers, and the single immediate next step. Keep it small enough to re-read cheaply — a prioritized handful of files, not everything touched.
-11. After compaction, re-read the snapshot and the primary active file, then resume from the documented next step instead of trusting memory of pre-compaction context.
-12. Reduce future compaction pressure: delegate broad searches to subagents and use ranged reads on large files.
+10. Prefer compacting at a task boundary: finish or checkpoint the current step before the snapshot.
+11. Write the snapshot to a scratch file or the open task artifact — one-line objective, the few active files with why each matters, session decisions not yet durable, blockers, and the single immediate next step. Keep it small enough to re-read cheaply — a prioritized handful of files, not everything touched.
+12. After compaction, re-read the snapshot and the primary active file, then resume from the documented next step instead of trusting memory of pre-compaction context.
+13. Reduce future compaction pressure: delegate broad searches to subagents and use ranged reads on large files.
 
 ## Output Format
 
@@ -80,6 +81,7 @@ Compaction snapshot (handoff to future self) — the minimum working state that 
 - Duplicating PRDs, plans, ADRs, task files, diffs, or commits instead of linking them.
 - Mixing temporary continuation notes with durable knowledge-base capture, or leaving durable decisions only in a snapshot that expires with the session.
 - Omitting failed checks or unresolved questions.
+- Handing off uncommitted work left in a temporary directory, or naming that risk without committing or moving the work.
 - Including secrets or raw sensitive payloads.
 - Writing a polished narrative when the next reader needs operational context.
 - Dumping conversation history or full file contents into a snapshot.
