@@ -1,0 +1,15 @@
+schema_version: 1
+owner: earth
+version: 1.1.0
+supported_lanes:
+  - claude
+  - codex
+  - cursor
+maturity: beta
+evaluation:
+  case_file: evals/cases.yaml
+  last_evaluated: '2026-11-27'
+  status: passing
+  pass_rate: 1.0
+known_failure_modes:
+  - "2026-11 (fixed, replayed 2026-11-27 on Claude, Codex and Cursor): a handoff named the risk of uncommitted work under /private/tmp but left it uncommitted (Cursor baseline sh-001; the TASK-VS-004 loss of 2026-10-31). The skill now makes the work durable before a handoff to another agent or session: commit and push when allowed, otherwise ask or move it out of temporary directories and name who commits it."
